@@ -1,4 +1,5 @@
 package JavaClass.Entity;
 
-public class Character {
+public class Character extends Entity{
+
 }
