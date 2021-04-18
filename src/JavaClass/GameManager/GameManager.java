@@ -33,8 +33,4 @@ public class GameManager {
 
     }
 }
-    public void ghghvgh(){
-
-    }
-}
 
