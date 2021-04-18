@@ -29,6 +29,6 @@ public class GameManager {
         sceneManager.Init();
     }
     public void ghghvgh(){
-        
+
     }
 }
