@@ -28,4 +28,7 @@ public class Assets {
             zone1[i] = new Image (new FileInputStream("src/Resources/Textures/Tiles/Zone1/item"+Integer.toString(i)));
         }
     }
+    public void foo(){
+        
+    }
 }
