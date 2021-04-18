@@ -22,12 +22,14 @@ public class LevelButton extends Button {
     private StarDisplay starDisplay;
     public double x = 0; //x =vertical
     public double y = 0; //y = horizontal
-    public LevelButton(AnchorPane anchorPane,double x,double y) throws FileNotFoundException {
-        Init(anchorPane,x,y);
+    int buttonname;
+    public LevelButton(AnchorPane anchorPane,double x,double y,int buttonname) throws FileNotFoundException {
+        Init(anchorPane,x,y,buttonname);
     }
-    private void Init(AnchorPane anchorPane,double x,double y) throws FileNotFoundException {
+    private void Init(AnchorPane anchorPane,double x,double y,int buttonname) throws FileNotFoundException {
         backGround = new Image(new FileInputStream("src/Resources/UI/SelectMapScene/Button/GUI_MAP_level.png"),62,50,false,true);
         backGroundView = new Decorator(backGround,62,50);
+        this.buttonname = buttonname;
         setGraphic(backGroundView);
         setStyle(
                 "-fx-background-radius: 5em; " +
@@ -77,7 +79,19 @@ public class LevelButton extends Button {
         });
     }
     private void OnButtonClick(){
-        //GameManager.Instance.sceneManager.SwitchScene();
+        switch (buttonname){
+            case 0:{
+                GameManager.Instance.sceneManager.SwitchScene(GameManager.Instance.sceneManager.map11);
+                break;
+            }
+            case 1:{
+                GameManager.Instance.sceneManager.SwitchScene(GameManager.Instance.sceneManager.map12);
+                break;
+            }
+            default:{
+                break;
+            }
+        }
         GameManager.Instance.GameLoop();
     }
 }
