@@ -28,7 +28,13 @@ public class GameManager {
         sceneManager = new SceneManager();
         sceneManager.Init();
     }
+
+    public void doSomething(){
+
+    }
+}
     public void ghghvgh(){
         
     }
 }
+
