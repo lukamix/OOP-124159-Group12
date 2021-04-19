@@ -12,18 +12,25 @@ public class GameManager {
     public static GameManager Instance = new GameManager();
     public SceneManager sceneManager;
     private Timeline gameLoop = new Timeline();
-    public void GameLoop(){
+
+    public void GameLoop() {
         KeyFrame kf = new KeyFrame(Duration.seconds(0.017),
                 actionEvent -> {
-            // Handle GamePlay Here !
-            System.out.println("loop");
-        });
+                    // Handle GamePlay Here !
+                    System.out.println("loop");
+                });
         gameLoop.setCycleCount(Animation.INDEFINITE);
         gameLoop.getKeyFrames().add(kf);
         gameLoop.play();
     }
+
     public void Init() throws FileNotFoundException {
-        sceneManager =new SceneManager();
+        sceneManager = new SceneManager();
         sceneManager.Init();
     }
+
+    public void doSomething(){
+
+    }
 }
+

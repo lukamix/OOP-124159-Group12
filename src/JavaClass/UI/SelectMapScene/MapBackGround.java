@@ -24,7 +24,7 @@ public class MapBackGround extends Decorator {
         levelButton = new LevelButton[SystemConstant.NUMBER_LEVEL_EACH_ZONE];
         for(int i=0;i<levelButton.length;i++){
             levelButton[i] = new LevelButton(
-                    anchorPane,SystemConstant.ZONE1BUTTONPOSITION[i][0],SystemConstant.ZONE1BUTTONPOSITION[i][1]);
+                    anchorPane,SystemConstant.ZONE1BUTTONPOSITION[i][0],SystemConstant.ZONE1BUTTONPOSITION[i][1],i);
             levelButton[i].setViewOrder(2);
             levelButton[i].SetTextButton(anchorPane,i+1);
         }
