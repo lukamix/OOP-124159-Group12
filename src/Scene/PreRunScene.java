@@ -4,14 +4,14 @@ import JavaClass.UI.PreRunScene.EnemyDecorator;
 import JavaClass.UI.PreRunScene.PlayerDecorator;
 import JavaClass.UI.PreRunScene.ShadowDecorator;
 import JavaClass.UI.PreRunScene.TapToPlayButton;
-import javafx.scene.Scene;
+import Scene.Zone1.MapWithTile;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class PreRunScene extends Scene {
+public class PreRunScene extends MapWithTile {
 
     public PreRunScene(AnchorPane anchorPane, double width, double height) throws FileNotFoundException {
         super(anchorPane, width, height);
