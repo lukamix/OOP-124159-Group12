@@ -146,7 +146,6 @@ public class Player extends Entity{
         if(velocity.y>0){
             jumping =false;
         }
-        System.out.println(isGrounded);
     }
     private void UpdateAnimation(){
         if(isGrounded){

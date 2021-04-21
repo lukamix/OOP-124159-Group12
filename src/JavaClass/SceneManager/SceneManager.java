@@ -2,6 +2,7 @@ package JavaClass.SceneManager;
 
 import Constant.SystemConstant;
 import Scene.*;
+import Scene.Zone1.Map1_3;
 import Scene.Zone1.MapWithTile;
 import Scene.Zone1.Map1_1;
 import Scene.Zone1.Map1_2;
@@ -17,8 +18,7 @@ public class SceneManager {
     public PreRunScene preRunScene;
     public LoadingScene loadingScene;
     public SelectMapScene selectMapScene;
-    public Map1_1 map11;
-    public Map1_2 map12;
+    public MapWithTile[] map1 = new MapWithTile[15];
     private AnchorPane[] anchorPane = new AnchorPane[SystemConstant.NUMBER_SCENE];
     public Canvas[] canvas = new Canvas[SystemConstant.NUMBER_SCENE];
     public Canvas currentCanvas;
@@ -41,8 +41,10 @@ public class SceneManager {
                 SystemConstant.SCREEN_WIDTH,SystemConstant.SCREEN_HEIGHT);
         selectMapScene = new SelectMapScene(anchorPane[2],
                 SystemConstant.SCREEN_WIDTH,SystemConstant.SCREEN_HEIGHT,1);
-        map11 = new Map1_1(anchorPane[3],SystemConstant.SCREEN_WIDTH,SystemConstant.SCREEN_HEIGHT);
-        map12 = new Map1_2(anchorPane[4],SystemConstant.SCREEN_WIDTH,SystemConstant.SCREEN_HEIGHT);
+        map1[0] = new Map1_1(anchorPane[3],SystemConstant.SCREEN_WIDTH,SystemConstant.SCREEN_HEIGHT);
+        map1[1] = new Map1_2(anchorPane[4],SystemConstant.SCREEN_WIDTH,SystemConstant.SCREEN_HEIGHT);
+        map1[2] = new Map1_3(anchorPane[5],SystemConstant.SCREEN_WIDTH,SystemConstant.SCREEN_HEIGHT);
+        //map1[...] = new Map1_...(anchorPane[3+...],SystemConstant.SCREEN_WIDTH,SystemConstant.SCREEN_HEIGHT)
         mainStage = new Stage();
     }
     public void setCurrentCanvas(int index){
