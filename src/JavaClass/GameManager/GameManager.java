@@ -18,7 +18,7 @@ public class GameManager {
     private Player player = new Player();
 
     public void GameLoop() {
-        KeyHandler.AddKeyListener(sceneManager.currentScene,player);
+        InitGameLoop();
         KeyFrame kf = new KeyFrame(Duration.seconds(SystemConstant.FPS),
             actionEvent -> {
                 sceneManager.currentCanvas.getGraphicsContext2D().clearRect(0, 0, SystemConstant.SCREEN_WIDTH, SystemConstant.SCREEN_HEIGHT);
@@ -28,6 +28,10 @@ public class GameManager {
         gameLoop.setCycleCount(Animation.INDEFINITE);
         gameLoop.getKeyFrames().add(kf);
         gameLoop.play();
+    }
+    public void InitGameLoop(){
+        KeyHandler.AddKeyListener(sceneManager.currentScene,player);
+        player.tileMap = sceneManager.currentScene.tileMap ;
     }
     public void StopGameLoop(){
         gameLoop.stop();
