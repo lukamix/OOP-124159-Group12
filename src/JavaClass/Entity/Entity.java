@@ -43,7 +43,8 @@ public abstract class Entity {
     protected boolean isJump;
     protected boolean jumping;
     protected boolean canJump;
-    protected boolean isCheckAnimation;
+    protected boolean isCheckMoveAnimation;
+    protected boolean isCheckJumpAnimation;
     protected boolean isGrounded;
     //endregion
     //region Map Properties

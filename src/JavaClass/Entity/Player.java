@@ -43,7 +43,7 @@ public class Player extends Entity{
         }
     }
     private void InitMovement(){
-        velocity.x = .8f;
+        velocity.x = 1.2f;
         velocity.y = 0f;
         maxVec = 3.0f;
     }
@@ -149,22 +149,27 @@ public class Player extends Entity{
         System.out.println(isGrounded);
     }
     private void UpdateAnimation(){
+        if(isGrounded){
+            if(isCheckJumpAnimation) isCheckMoveAnimation = false;
+            isCheckJumpAnimation = false;
+        }
         if(isJump){
-            if(!isCheckAnimation){
-                isCheckAnimation =true;
+            if(!isCheckJumpAnimation){
+                isCheckJumpAnimation =true;
                 animation.setDuration(.05f);
                 animation.setFrames(Assets.Instance.playerImage[2]);
             }
         }
         else if(isLeft || isRight){
-            if(!isCheckAnimation){
-                isCheckAnimation =true;
+            if(!isCheckMoveAnimation){
+                isCheckMoveAnimation =true;
                 animation.setDuration(.05f);
                 animation.setFrames(Assets.Instance.playerImage[1]);
             }
         }
         else{
-            isCheckAnimation = false;
+            isCheckJumpAnimation = false;
+            isCheckMoveAnimation = false;
             animation.setDuration(.05f);
             animation.setFrames(Assets.Instance.playerImage[0]);
         }
