@@ -12,7 +12,8 @@ public class Map1_1 extends MapWithTile {
     public Map1_1(AnchorPane anchorPane, double width, double height) throws FileNotFoundException {
         super(anchorPane, width, height);
         tileMap.loadTile("src/Resources/SpriteSheet/spritesheet30.png");
-        tileMap.loadMap("src/Resources/SpriteSheet/map1.tmx");
+        tileMap.loadTile("src/Resources/SpriteSheet/spritesheet2.png");
+        tileMap.loadMap("src/Resources/SpriteSheet/Map1.1.tmx");
         tileMap.setPosition(0.0, 0.0);
     }
 
