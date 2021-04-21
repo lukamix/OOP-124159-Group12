@@ -26,13 +26,13 @@ public class Player extends Entity{
         InitMovement();
     }
     private void InitProperties(){
-        localPosition = new Vector2(1000,1000);
-        globalPosition = new Vector2(500,500);
+        localPosition = new Vector2(600,400);
+        globalPosition = new Vector2(0,0);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
-        veclocity = new Vector2();
+        velocity = new Vector2();
         Dimension = new Vector2(95,90);
-        CollideBox = new Vector2(95,90);
+        CollideBox = new Vector2(60,80);
     }
     private void InitAnimation(){
         animation=new Animation();
@@ -43,8 +43,8 @@ public class Player extends Entity{
         }
     }
     private void InitMovement(){
-        veclocity.x = .8f;
-        veclocity.y = 0f;
+        velocity.x = .8f;
+        velocity.y = 0f;
         maxVec = 3.0f;
     }
     //endregion
@@ -59,9 +59,9 @@ public class Player extends Entity{
         super.Draw(gc);
     }
     private void UpdatePosition(){
-        UpdateXY();
         checkTileMapCollision();
-        setPosition(nextPosition);
+        UpdateXY();
+        setPosition(updatedPosition);
         if(isRight) faceRight=true;
         if(isLeft) faceRight=false;
     }
@@ -105,12 +105,12 @@ public class Player extends Entity{
     }
     private void UpdateDx(){
         if (isLeft) {
-            dx -= veclocity.x;
+            dx -= velocity.x;
             if (dx < -maxVec) {
                 dx = -maxVec;
             }
         } else if (isRight) {
-            dx += veclocity.x;
+            dx += velocity.x;
             if (dx > maxVec) {
                 dx = maxVec;
             }
@@ -121,18 +121,32 @@ public class Player extends Entity{
     private void UpdateDy(){
         if(isJump && canJump) {
             canJump = false;
+            jumping =true;
             dy = 0;
-            veclocity.y = -400;
+            velocity.y = -400;
             spaceButtonPressed = false;
+            isGrounded =false;
         }
         if(!isGrounded){
-            veclocity.y += SystemConstant.GRAVITY * SystemConstant.FPS ;
-            dy = veclocity.y * SystemConstant.FPS;
+            velocity.y += SystemConstant.GRAVITY * SystemConstant.FPS ;
+            dy = velocity.y * SystemConstant.FPS;
         }
-        if(isGrounded){
-            isJump = false;
-            canJump = true;
+        if((bottomLeft||bottomRight||collideBottom) && !isGrounded){
+            if(!jumping){
+                isGrounded = true;
+                dy=0;
+                isJump = false;
+                canJump = true;
+            }
         }
+        else if(isGrounded && !collideBottom && !bottomLeft && !bottomRight){
+            velocity.y = 0;
+            isGrounded = false;
+        }
+        if(velocity.y>0){
+            jumping =false;
+        }
+        System.out.println(isGrounded);
     }
     private void UpdateAnimation(){
         if(isJump){
@@ -156,39 +170,30 @@ public class Player extends Entity{
         }
     }
     //region Getter && Setter Key Pressed
-
     public boolean isLeftButtonPressed() {
         return leftButtonPressed;
     }
-
     public boolean isRightButtonPressed() {
         return rightButtonPressed;
     }
-
     public boolean isEnterButtonPressed() {
         return enterButtonPressed;
     }
-
     public boolean isSpaceButtonPressed() {
         return spaceButtonPressed;
     }
-
     public boolean isBothRightLeftPressed() {
         return bothRightLeftPressed;
     }
-
     public void setLeftButtonPressed(boolean leftButtonPressed) {
         this.leftButtonPressed = leftButtonPressed;
     }
-
     public void setRightButtonPressed(boolean rightButtonPressed) {
         this.rightButtonPressed = rightButtonPressed;
     }
-
     public void setEnterButtonPressed(boolean enterButtonPressed) {
         this.enterButtonPressed = enterButtonPressed;
     }
-
     public void setSpaceButtonPressed(boolean spaceButtonPressed) {
         this.spaceButtonPressed = spaceButtonPressed;
     }

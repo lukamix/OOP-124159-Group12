@@ -8,60 +8,57 @@ import javafx.scene.image.WritableImage;
 import java.io.*;
 
 public class TileMap {
-    //position
+    //region Map Position
     private double x;
     private double y;
-    //bounds
+    //endregion
+    //region Map Bounds
     private int xmin;
     private int ymin;
     private int ymax;
     private int xmax;
-
-    private double tween;
-
-    //map
+    //endregion
+    //region Map Properties
     private int [][] map;
-    private int numRows;
-    private int numCols;
+    public int numRows;
+    public int numCols;
     private int width;
     private int height;
-
-    //spawn point
+    //endregion
+    //region Player Spawn Point
     public int spawnX;
     public int spawnY;
-
-    //tileset
+    //endregion
+    //region Map Tileset
     private Image tileset;
     private int numTileHorizontal;
     private int numTileVertical;
     private Tile[][] tiles;
-
-    //drawing
+    //endregion
+    //region Map Actual Drawing Properties
     private int startRow;
     private int startCol;
     private int rowToDraw;
     private int colToDraw;
-
+    //endregion
     public TileMap() throws FileNotFoundException {
-        rowToDraw = SystemConstant.SCREEN_WIDTH/90+2;
-        colToDraw = SystemConstant.SCREEN_HEIGHT/90+2;
+        rowToDraw = SystemConstant.SCREEN_HEIGHT/30+2;
+        colToDraw = SystemConstant.SCREEN_WIDTH/30+2;
     }
-    //load image hear
     public void loadTile(String s)
     {
         try{
             tileset=new Image(new FileInputStream(s));
-            numTileHorizontal=(int)tileset.getWidth()/90;
-            numTileVertical=(int)tileset.getHeight()/90;
+            numTileHorizontal=(int)tileset.getWidth()/30;
+            numTileVertical=(int)tileset.getHeight()/30;
             tiles=new Tile[numTileVertical][numTileHorizontal];
             Image subPixel;
             for(int row=0;row<numTileVertical;row++)
             {
                 for(int col=0;col<numTileHorizontal;col++)
                 {
-                    subPixel=new WritableImage(tileset.getPixelReader(),90*col,
-                            90*row,
-                            90,90);
+                    subPixel=new WritableImage(tileset.getPixelReader(),30*col,
+                            30*row,30,30);
                     if(row==0&&col==0)
                     {
                         tiles[row][col]=new Tile(subPixel,Tile.NORMAL);
@@ -69,7 +66,6 @@ public class TileMap {
                     else {
                         tiles[row][col]=new Tile(subPixel,Tile.BLOCKED);
                     }
-
                 }
             }
         }
@@ -90,8 +86,8 @@ public class TileMap {
             numRows=Integer.parseInt(br.readLine());
             spawnX=Integer.parseInt(br.readLine());
             spawnY=Integer.parseInt(br.readLine());
-            width = numCols * 90;
-            height = numRows * 90;
+            width = numCols * 30;
+            height = numRows * 30;
             xmin = 0;
             xmax = width-SystemConstant.SCREEN_WIDTH;
             ymin = 0;
@@ -103,9 +99,8 @@ public class TileMap {
             //layer3
             layer3=new int[numRows][numCols];
 
-            width=numCols*90;
-            height=numRows*90;
-
+            width=numCols*30;
+            height=numRows*30;
             //basic layer for movement
             for(int row =0 ;row<numRows ;row++)
             {
@@ -144,18 +139,17 @@ public class TileMap {
     }
     public int getType(int row,int col)
     {
-        if(row<0||col<0||col>39||row>29)
+        if(row<0||col<0||col>numCols-1||row>numRows-1)
         {
             return Tile.BLOCKED;
         }
         //qui doi vi tri tuong ung
-        int tileIndex=layer2[row][col];//va cham layer 2
+        int tileIndex=map[row][col]; //If Change Layer Check Collide, Change map to layer2,layer3,..
         if(tileIndex==0)
         {
             return Tile.NORMAL;
         }
         int r = (tileIndex-1) / numTileHorizontal;
-
         int c = (tileIndex-1) % numTileHorizontal;
         return tiles[r][c].getType();
     }
@@ -164,8 +158,8 @@ public class TileMap {
         this.x=x;
         this.y=y;
         fixBounds();
-        startCol=(int)this.x/90;
-        startRow=(int)this.y/90;
+        startCol=(int)this.x/30;
+        startRow=(int)this.y/30;
     }
     private void fixBounds() {
         if(x < xmin) x = xmin;
@@ -174,33 +168,18 @@ public class TileMap {
         if(y > ymax) y = ymax;
     }
     public void drawMap(GraphicsContext graphicsContext) {
-        for (
-            int row = startRow;
-            row < startRow + rowToDraw;
-            row++) {
+        for (int row = startRow; row < startRow + rowToDraw; row++) {
             if (row >= numRows) break;
-            for (
-                    int col = startCol;
-                    col < startCol + colToDraw;
-                    col++) {
-
+            for (int col = startCol;col < startCol + colToDraw;col++) {
                 if (col >= numCols) break;
-
                 if (map[row][col] == 0) continue;
-
                 int rc = map[row][col];
                 if(rc-1<0) continue;
                 int r = (rc - 1) / numTileHorizontal;
                 int c = (rc - 1) % numTileHorizontal;
-
-                graphicsContext.drawImage(
-                        tiles[r][c].getImage(),
-                        -x+col*90,
-                        -y + row * 90,
-                        90, 90
-                );
+                graphicsContext.drawImage(tiles[r][c].getImage(),-x+col*30,
+                        -y + row * 30,30, 30);
             }
-
         }
     }
     public void drawLayer2(GraphicsContext graphicsContext)
@@ -228,9 +207,9 @@ public class TileMap {
                 graphicsContext.drawImage(
                         tiles[r][c].getImage(),
 
-                        -x+col*90,
-                        -y + row * 90,
-                        90, 90
+                        -x+col*30,
+                        -y + row * 30,
+                        30, 30
                 );
             }
 
@@ -258,13 +237,11 @@ public class TileMap {
                 if(rc-1<0) continue;
                 int r = (rc - 1) / numTileHorizontal;
                 int c = (rc - 1) % numTileHorizontal;
-
                 graphicsContext.drawImage(
                         tiles[r][c].getImage(),
-
-                        -x+col*90,
-                        -y + row * 90,
-                        90, 90
+                        -x+col*30,
+                        -y + row * 30,
+                        30, 30
                 );
             }
 
