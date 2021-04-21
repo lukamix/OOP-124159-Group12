@@ -32,7 +32,7 @@ public class Animation {
             currFrame++;
             startTimeInSecond=System.currentTimeMillis()/1000.0;//reset
         }
-        if(currFrame==frames.length)
+        if(frames[currFrame]==null)
         {
             currFrame=0;
             played=true;
