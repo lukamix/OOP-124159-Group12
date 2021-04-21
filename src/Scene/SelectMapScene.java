@@ -1,16 +1,15 @@
 package Scene;
 
-import JavaClass.UI.PreRunScene.PlayerDecorator;
 import JavaClass.UI.SelectMapScene.Button.BackButton;
 import JavaClass.UI.SelectMapScene.MapBackGround;
-import javafx.scene.Scene;
+import Scene.Zone1.MapWithTile;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class SelectMapScene extends Scene {
+public class SelectMapScene extends MapWithTile {
     public SelectMapScene(AnchorPane anchorPane, double width, double height,int map) throws FileNotFoundException {
         super(anchorPane, width, height);
         Init(anchorPane,map);

@@ -79,19 +79,23 @@ public class LevelButton extends Button {
         });
     }
     private void OnButtonClick(){
+        int offSetScene = 3;
         switch (buttonname){
             case 0:{
                 GameManager.Instance.sceneManager.SwitchScene(GameManager.Instance.sceneManager.map11);
+                GameManager.Instance.sceneManager.setCurrentScene(GameManager.Instance.sceneManager.map11);
                 break;
             }
             case 1:{
                 GameManager.Instance.sceneManager.SwitchScene(GameManager.Instance.sceneManager.map12);
+                GameManager.Instance.sceneManager.setCurrentScene(GameManager.Instance.sceneManager.map12);
                 break;
             }
             default:{
                 break;
             }
         }
+        GameManager.Instance.sceneManager.setCurrentCanvas(buttonname+offSetScene);
         GameManager.Instance.GameLoop();
     }
 }
