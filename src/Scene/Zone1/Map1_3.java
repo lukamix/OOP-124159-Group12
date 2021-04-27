@@ -10,8 +10,8 @@ import java.io.FileNotFoundException;
 public class Map1_3 extends MapWithTile {
     public Map1_3(AnchorPane anchorPane, double width, double height) throws FileNotFoundException {
         super(anchorPane, width, height);
-        tileMap.loadTile("src/Resources/SpriteSheet/spritesheet30.png");
-        tileMap.loadMap("src/Resources/SpriteSheet/Level 2.tmx");
+        tileMap.loadTile("src/Resources/SpriteSheet/spritesheet1.png");
+        tileMap.loadMap("src/Resources/SpriteSheet/Map1.3.tmx");
         tileMap.setPosition(0.0, 0.0);
     }
     @Override
