@@ -6,6 +6,7 @@ import JavaClass.TileMap.TileMap;
 import Utils.Vector2;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public abstract class Entity {
     protected Vector2 CollideBox;
     protected Animation animation;
     public boolean faceRight;
+    protected Rectangle debugRec;
     //endregion
     //region Movement Attributes
     protected Vector2 velocity;
@@ -162,5 +164,12 @@ public abstract class Entity {
 
     public Vector2 getUpdatedPosition() {
         return updatedPosition;
+    }
+    protected void drawRectangle(GraphicsContext gc,Rectangle rect,double x,double y,double width,double height){
+        gc.fillRect(x,
+                y,
+                width,
+                height);
+        gc.setStroke(Color.RED);
     }
 }
