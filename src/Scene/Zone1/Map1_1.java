@@ -2,9 +2,11 @@ package Scene.Zone1;
 
 import Constant.SystemConstant;
 import JavaClass.Entity.Player;
+import JavaClass.UI.PreRunScene.TapToPlayButton;
 import javafx.scene.Parent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 import java.io.FileNotFoundException;
 

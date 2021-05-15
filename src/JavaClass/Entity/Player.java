@@ -5,6 +5,7 @@ import JavaClass.Animation.Animation;
 import JavaClass.Sprites.Assets;
 import Utils.Vector2;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.shape.Rectangle;
 
 public class Player extends Entity{
 
@@ -26,13 +27,14 @@ public class Player extends Entity{
         InitMovement();
     }
     private void InitProperties(){
-        localPosition = new Vector2(600,400);
-        globalPosition = new Vector2(0,0);
+        localPosition = new Vector2(600,500);
+        globalPosition = new Vector2(2400,400);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
         Dimension = new Vector2(95,90);
         CollideBox = new Vector2(60,80);
+        debugRec = new Rectangle(CollideBox.x,CollideBox.y);
     }
     private void InitAnimation(){
         animation=new Animation();
@@ -202,4 +204,7 @@ public class Player extends Entity{
         this.spaceButtonPressed = spaceButtonPressed;
     }
     //endregion
+    public void CheckPlayerJumpEnemyHead(Entity enemy){
+
+    }
 }
