@@ -1,6 +1,7 @@
 package JavaClass.Sprites;
 
 import javafx.scene.image.Image;
+import javafx.scene.text.Text;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,6 +17,7 @@ public class Assets {
         }
     }
     public Image[][] playerImage = new Image[7][20];
+    public Image[][] mushroomImage = new Image[3][15];
     public Image[] zone1 = new Image[100];
     public Assets() throws FileNotFoundException {
         Init();
@@ -23,6 +25,7 @@ public class Assets {
     public void Init() throws FileNotFoundException {
         InitZone1Image();
         InitPlayerImage();
+        InitMushroomImage();
     }
     public void InitZone1Image() throws FileNotFoundException {
         for(int i=1;i<=98;i++){
@@ -43,5 +46,17 @@ public class Assets {
             playerImage[3][i] = new Image( new FileInputStream(
                     "src/Resources/Textures/Character Player/Orc/attack/main_character_attack"+Integer.toString(i)+".png"));
         }
+    }
+    public void InitMushroomImage() throws FileNotFoundException{
+        for(int i=0;i<14;i++){
+            mushroomImage[0][i] = new Image( new FileInputStream(
+                    "src/Resources/Textures/Monster Enemy/Monsters/Mushroom1/move/monster2_move"+Integer.toString(i)+".png"));
+        }
+            mushroomImage[1][0] = new Image(new FileInputStream(
+             "src/Resources/Textures/Monster Enemy/Monsters/Mushroom1/damage/monster2_dame"+".png"
+            ));
+            mushroomImage[2][0] = new Image(new FileInputStream(
+                    "src/Resources/Textures/Monster Enemy/Monsters/Mushroom1/die/monster2_die"+".png"
+            ));
     }
 }
