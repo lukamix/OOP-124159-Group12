@@ -1,18 +1,41 @@
 <component name="libraryTable">
   <library name="lib">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../javafx-sdk-11.0.2/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="file://$PROJECT_DIR$/../javafx-sdk-11.0.2/lib/javafx.base" />
-      <root url="file://$PROJECT_DIR$/../javafx-sdk-11.0.2/lib/javafx.controls" />
-      <root url="file://$PROJECT_DIR$/../javafx-sdk-11.0.2/lib/javafx.fxml" />
-      <root url="file://$PROJECT_DIR$/../javafx-sdk-11.0.2/lib/javafx.graphics" />
-      <root url="file://$PROJECT_DIR$/../javafx-sdk-11.0.2/lib/javafx.media" />
-      <root url="file://$PROJECT_DIR$/../javafx-sdk-11.0.2/lib/javafx.swing" />
-      <root url="file://$PROJECT_DIR$/../javafx-sdk-11.0.2/lib/javafx.web" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.base" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.compiler" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.datatransfer" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.desktop" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.instrument" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.logging" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.management" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.management.rmi" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.naming" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.net.http" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.prefs" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.rmi" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.scripting" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.security.jgss" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.security.sasl" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.smartcardio" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.sql" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.sql.rowset" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.transaction.xa" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.xml" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/java.xml.crypto" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/jdk.accessibility" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/jdk.aot/jdk.tools.jaotc.binformat/src" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/jdk.aot/jdk.tools.jaotc.test/src" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/jdk.aot/jdk.tools.jaotc/src" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/jdk.attach" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/jdk.charsets" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib/jdk.compiler" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib" />
     </SOURCES>
-    <jarDirectory url="file://$PROJECT_DIR$/../javafx-sdk-11.0.2/lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-15.0.2/lib" recursive="false" type="SOURCES" />
   </library>
 </component>

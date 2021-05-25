@@ -12,6 +12,7 @@ public class Map1_2 extends MapWithTile {
         super(anchorPane, width, height);
         tileMap.loadTile("src/Resources/SpriteSheet/spritesheet1.png");
         tileMap.loadMap("src/Resources/SpriteSheet/Map1.2.tmx");
+        tileMap.loadMap("src/Resources/SpriteSheet/Map1.1.tmx");
         tileMap.setPosition(0.0, 0.0);
     }
     @Override
