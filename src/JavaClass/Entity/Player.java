@@ -2,8 +2,8 @@ package JavaClass.Entity;
 
 import Constant.SystemConstant;
 import JavaClass.Animation.Animation;
-import Utils.Vector2;
 import JavaClass.Sprites.Assets;
+import Utils.Vector2;
 import javafx.scene.canvas.GraphicsContext;
 
 public class Player extends Entity{
@@ -28,20 +28,17 @@ public class Player extends Entity{
     private void InitProperties(){
         localPosition = new Vector2(600,400);
         globalPosition = new Vector2(0,0);
-        localPosition = new Vector2(300,400);
-        globalPosition = new Vector2(300,400);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
         Dimension = new Vector2(95,90);
         CollideBox = new Vector2(60,80);
-        CollideBox = new Vector2(50,60);
     }
     private void InitAnimation(){
         animation=new Animation();
         animation.setDuration(.05f);
         animation.setFrames(Assets.Instance.playerImage[0]);
-        for(int i=0;i<5;i++){
+        for(int i=0;i<4;i++){
             AnimationSprites.add(Assets.Instance.playerImage[i]);
         }
     }
@@ -75,13 +72,6 @@ public class Player extends Entity{
         UpdateDy();
     }
     private void UpdateLeftRightBoolean(){
-        if(isDead){
-            leftButtonPressed = false;
-            bothRightLeftPressed = false;
-            rightButtonPressed = false;
-            isRight = false;
-            isLeft = false;
-        }
         if (leftButtonPressed && rightButtonPressed)
         {
             if (bothRightLeftPressed == false) {
@@ -109,10 +99,6 @@ public class Player extends Entity{
         }
     }
     private void UpdateJumpBoolean(){
-        if(isDead){
-            spaceButtonPressed = false;
-            canJump = false;
-        }
         if(spaceButtonPressed){
             isJump =true;
         }
@@ -128,7 +114,7 @@ public class Player extends Entity{
             if (dx > maxVec) {
                 dx = maxVec;
             }
-        } else {
+        } else if (!isLeft && !isRight) {
             dx = 0;
         }
     }
@@ -166,45 +152,54 @@ public class Player extends Entity{
             if(isCheckJumpAnimation) isCheckMoveAnimation = false;
             isCheckJumpAnimation = false;
         }
-        if(!isDead){
-            if(isJump){
-                if(!isCheckJumpAnimation){
-                    isCheckJumpAnimation =true;
-                    animation.setDuration(.05f);
-                    animation.setFrames(Assets.Instance.playerImage[2]);
-                }
-            }
-            else if(isLeft || isRight){
-                if(!isCheckMoveAnimation){
-                    isCheckMoveAnimation =true;
-                    animation.setDuration(.05f);
-                    animation.setFrames(Assets.Instance.playerImage[1]);
-                }
-            } else{
-                isCheckMoveAnimation = false;
-                animation.setDuration(0.05f);
-                animation.setFrames(Assets.Instance.playerImage[0]);
+        if(isJump){
+            if(!isCheckJumpAnimation){
+                isCheckJumpAnimation =true;
+                animation.setDuration(.05f);
+                animation.setFrames(Assets.Instance.playerImage[2]);
             }
         }
-        else {
+        else if(isLeft || isRight){
+            if(!isCheckMoveAnimation){
+                isCheckMoveAnimation =true;
+                animation.setDuration(.05f);
+                animation.setFrames(Assets.Instance.playerImage[1]);
+            }
+        }
+        else{
             isCheckJumpAnimation = false;
             isCheckMoveAnimation = false;
             animation.setDuration(.05f);
-            animation.setFrames(Assets.Instance.playerImage[4]);
+            animation.setFrames(Assets.Instance.playerImage[0]);
         }
     }
     //region Getter && Setter Key Pressed
+    public boolean isLeftButtonPressed() {
+        return leftButtonPressed;
+    }
+    public boolean isRightButtonPressed() {
+        return rightButtonPressed;
+    }
+    public boolean isEnterButtonPressed() {
+        return enterButtonPressed;
+    }
+    public boolean isSpaceButtonPressed() {
+        return spaceButtonPressed;
+    }
+    public boolean isBothRightLeftPressed() {
+        return bothRightLeftPressed;
+    }
     public void setLeftButtonPressed(boolean leftButtonPressed) {
         this.leftButtonPressed = leftButtonPressed;
     }
     public void setRightButtonPressed(boolean rightButtonPressed) {
         this.rightButtonPressed = rightButtonPressed;
     }
-    public void setSpaceButtonPressed(boolean spaceButtonPressed) {
-        this.spaceButtonPressed = spaceButtonPressed;
-    }
     public void setEnterButtonPressed(boolean enterButtonPressed) {
         this.enterButtonPressed = enterButtonPressed;
+    }
+    public void setSpaceButtonPressed(boolean spaceButtonPressed) {
+        this.spaceButtonPressed = spaceButtonPressed;
     }
     //endregion
 }
