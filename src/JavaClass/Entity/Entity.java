@@ -6,7 +6,6 @@ import JavaClass.TileMap.TileMap;
 import Utils.Vector2;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
@@ -30,11 +29,15 @@ public abstract class Entity {
     protected boolean topRight;
     protected boolean bottomLeft;
     protected boolean bottomRight;
-
     protected boolean collideTop;
     protected boolean collideBottom;
     protected boolean collideLeft;
     protected boolean collideRight;
+
+    private boolean collideTopEnemy;
+    private boolean collideBottomEnemy;
+    private boolean collideRightEnemy;
+    private boolean collideLeftEnemy;
     //endregions
     protected double dx;
     protected double dy;
@@ -46,6 +49,7 @@ public abstract class Entity {
     protected boolean isCheckMoveAnimation;
     protected boolean isCheckJumpAnimation;
     protected boolean isGrounded;
+    protected boolean isDead;
     //endregion
     //region Map Properties
     public TileMap tileMap;
@@ -82,40 +86,39 @@ public abstract class Entity {
         updatedPosition.y = localPosition.y;
         if(nextPosition.x>0 + CollideBox.x/2  &&  nextPosition.x< 30* tileMap.numCols- CollideBox.x/2) {
             calculateCorner(nextPosition.x, localPosition.y);
-            if (dx > 0) {
-                if (collideRight) {
+            if(dx>0){
+                if(collideRight){
                     dx = 0;
                     updatedPosition.x = localPosition.x;
                 } else {
                     updatedPosition.x += dx;
                 }
             }
-            if (dx < 0) {
-                if (collideLeft) {
+            if(dx<0){
+                if(collideLeft){
                     dx = 0;
                     updatedPosition.x = localPosition.x;
                 } else {
-                    updatedPosition.x += dx;
+                    updatedPosition.x+=dx;
                 }
             }
         }
         if(nextPosition.y>0+ CollideBox.y/2 && nextPosition.y < 30 * tileMap.numRows - CollideBox.y/2) {
             calculateCorner(localPosition.x, nextPosition.y);
-            if (velocity.y < 0)
-            {
-                if (topLeft || topRight || collideTop) {
+            if(velocity.y<0){
+                if(collideTop){
                     dy=0;
-                    updatedPosition.y = nextPosition.y;
-                } else {
-                    updatedPosition.y += dy;
+                    updatedPosition.y = localPosition.y;
+                } else{
+                    updatedPosition.y+=dy;
                 }
             }
-            if (velocity.y > 0) {
-                if (bottomLeft || bottomRight || collideBottom) {
-                    dy = 0;
-                    updatedPosition.y =  nextPosition.y;
-                } else {
-                    updatedPosition.y += dy;
+            if(velocity.y>0){
+                if(collideBottom){
+                    dy=0;
+                    updatedPosition.y = localPosition.y;
+                } else{
+                    updatedPosition.y+=dy;
                 }
             }
         }
@@ -159,8 +162,46 @@ public abstract class Entity {
     public Vector2 getNextPosition() {
         return nextPosition;
     }
+    protected void checkPlayerCollision(Player player) {
+        if(Math.abs(player.nextPosition.x-updatedPosition.x)< CollideBox.x/2+player.CollideBox.x/2
+                &&Math.abs(player.nextPosition.y- updatedPosition.y)< CollideBox.y/2+player.CollideBox.y/2)
+            calculateCornerEnemy(player);
+        if(collideRightEnemy||collideLeftEnemy){
+            updatedPosition.x = localPosition.x;
+            player.updatedPosition.x = player.localPosition.x;
+        }
+        if(collideBottomEnemy||collideTopEnemy){
+            updatedPosition.y = localPosition.y;
+            player.updatedPosition.y = player.localPosition.y;
+        }
+        if(collideTopEnemy||collideRightEnemy||collideLeftEnemy){
+            player.isDead = true;
+        }
+        if(collideBottomEnemy){
+            isDead = true;
+        }
+    }
+    public void calculateCornerEnemy(Player player) {
+        int left = (int)(nextPosition.x-CollideBox.x/2+0.001)/30;
+        int right = (int)(nextPosition.x+ CollideBox.x/2-0.001)/30;
+        int top = (int)(nextPosition.y-CollideBox.y/2+0.001)/30;
+        int bottom = (int)(nextPosition.y+ CollideBox.y/2-0.001)/30;
 
-    public Vector2 getUpdatedPosition() {
-        return updatedPosition;
+        int leftEnemy = (int)(player.nextPosition.x-player.CollideBox.x/2+0.001)/30;
+        int rightEnemy = (int)(player.nextPosition.x+ player.CollideBox.x/2-0.001)/30;
+        int topEnemy = (int)(player.nextPosition.y-player.CollideBox.y/2+0.001)/30;
+        int bottomEnemy = (int)(player.nextPosition.y+ player.CollideBox.y/2-0.001)/30;
+
+        collideTopEnemy = (topEnemy == bottom);
+        collideBottomEnemy = (bottomEnemy == top);
+        collideLeftEnemy = (leftEnemy == right);
+        collideRightEnemy = (rightEnemy == left);
+
+        if(collideTopEnemy&&collideLeftEnemy||collideTopEnemy&&collideRightEnemy){
+            collideTopEnemy = false;
+        }
+        if(collideBottomEnemy&&collideRightEnemy||collideBottomEnemy&&collideLeftEnemy){
+            collideBottomEnemy = false;
+        }
     }
 }
