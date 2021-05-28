@@ -5,8 +5,8 @@ import Utils.Vector2;
 import javafx.scene.canvas.GraphicsContext;
 import JavaClass.Sprites.Assets;
 
-public class MushRoom extends Entity {
-    public MushRoom(Player player,Bullet b) {
+public class Chicken extends Entity {
+    public Chicken(Player player,Bullet b) {
         bullet = b;
         this.player = player;
         Init();
@@ -21,21 +21,21 @@ public class MushRoom extends Entity {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(350, 610);
-        globalPosition = new Vector2(350, 610);
+        localPosition = new Vector2(1380, 630);
+        globalPosition = new Vector2(1380, 630);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
-        Dimension = new Vector2(50, 60);
-        CollideBox = new Vector2(40, 50);
+        Dimension = new Vector2(95, 90);
+        CollideBox = new Vector2(50, 60);
     }
 
     private void InitAnimation() {
         animation = new Animation();
         animation.setDuration(.05f);
-        animation.setFrames(Assets.Instance.mushroomImage[0]);
-        for (int i = 0; i < 3; i++) {
-            AnimationSprites.add(Assets.Instance.mushroomImage[i]);
+        animation.setFrames(Assets.Instance.chickenImage[0]);
+        for (int i = 0; i < 4; i++) {
+            AnimationSprites.add(Assets.Instance.chickenImage[i]);
         }
     }
 
@@ -51,10 +51,12 @@ public class MushRoom extends Entity {
         UpdatePosition();
         UpdateAnimation();
     }
+
     @Override
     public void Draw(GraphicsContext gc) {
         super.Draw(gc);
     }
+
     private void UpdatePosition() {
         checkTileMapCollision();
         if(!isDead&&!player.isDead) {
@@ -86,10 +88,10 @@ public class MushRoom extends Entity {
             isLeft = false;
             isRight = false;
         }
-        if (updatedPosition.x > 450 && isRight) {
+        if (updatedPosition.x > 1430 && isRight) {
             isLeft = true;
             isRight = false;
-        } else if (updatedPosition.x < 250 && isLeft) {
+        } else if (updatedPosition.x < 1230 && isLeft) {
             isRight = true;
             isLeft = false;
         }
@@ -119,19 +121,19 @@ public class MushRoom extends Entity {
                 if (!isCheckMoveAnimation) {
                     isCheckMoveAnimation = true;
                     animation.setDuration(.05f);
-                    animation.setFrames(Assets.Instance.mushroomImage[0]);
+                    animation.setFrames(Assets.Instance.chickenImage[0]);
                 }
             } else {
                 isCheckMoveAnimation = false;
                 animation.setDuration(.05f);
-                animation.setFrames(Assets.Instance.mushroomImage[0]);
+                animation.setFrames(Assets.Instance.chickenImage[2]);
             }
         }
         else {
             isCheckJumpAnimation = false;
             isCheckMoveAnimation = false;
             animation.setDuration(0.05f);
-            animation.setFrames(Assets.Instance.mushroomImage[2]);
+            animation.setFrames(Assets.Instance.chickenImage[3]);
         }
     }
 }
