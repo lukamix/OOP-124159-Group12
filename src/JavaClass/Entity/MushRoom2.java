@@ -22,8 +22,8 @@ public class MushRoom2 extends Entity {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(1750, 640);
-        globalPosition = new Vector2(1750, 640);
+        localPosition = new Vector2(1750, 550);
+        globalPosition = new Vector2(1750, 550);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
