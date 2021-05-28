@@ -2,10 +2,9 @@ package JavaClass.Entity;
 
 import Constant.SystemConstant;
 import JavaClass.Animation.Animation;
-import JavaClass.Sprites.Assets;
 import Utils.Vector2;
+import JavaClass.Sprites.Assets;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.shape.Rectangle;
 
 public class Player extends Entity{
 
@@ -15,9 +14,12 @@ public class Player extends Entity{
     private boolean enterButtonPressed;
     private boolean spaceButtonPressed;
     private boolean bothRightLeftPressed=false;
+    private boolean isAttack;
+    private int destiny = 3;
+    private int point;
     //endregion
-
-    public Player(){
+    public Player(Bullet b){
+        bullet = b;
         Init();
     }
     //region Init
@@ -27,20 +29,20 @@ public class Player extends Entity{
         InitMovement();
     }
     private void InitProperties(){
-        localPosition = new Vector2(600,500);
-        globalPosition = new Vector2(2400,400);
+        localPosition = new Vector2(100,400);
+        globalPosition = new Vector2(100,400);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
         Dimension = new Vector2(95,90);
         CollideBox = new Vector2(60,80);
-        debugRec = new Rectangle(CollideBox.x,CollideBox.y);
+        CollideBox = new Vector2(50,60);
     }
     private void InitAnimation(){
         animation=new Animation();
         animation.setDuration(.05f);
         animation.setFrames(Assets.Instance.playerImage[0]);
-        for(int i=0;i<4;i++){
+        for(int i=0;i<6;i++){
             AnimationSprites.add(Assets.Instance.playerImage[i]);
         }
     }
@@ -66,6 +68,7 @@ public class Player extends Entity{
         setPosition(updatedPosition);
         if(isRight) faceRight=true;
         if(isLeft) faceRight=false;
+        UpdateAttack();
     }
     private void UpdateXY() {
         UpdateLeftRightBoolean();
@@ -74,6 +77,13 @@ public class Player extends Entity{
         UpdateDy();
     }
     private void UpdateLeftRightBoolean(){
+        if(destiny<=0){
+            leftButtonPressed = false;
+            bothRightLeftPressed = false;
+            rightButtonPressed = false;
+            isRight = false;
+            isLeft = false;
+        }
         if (leftButtonPressed && rightButtonPressed)
         {
             if (bothRightLeftPressed == false) {
@@ -101,6 +111,10 @@ public class Player extends Entity{
         }
     }
     private void UpdateJumpBoolean(){
+        if(destiny<=0){
+            spaceButtonPressed = false;
+            canJump = false;
+        }
         if(spaceButtonPressed){
             isJump =true;
         }
@@ -116,7 +130,7 @@ public class Player extends Entity{
             if (dx > maxVec) {
                 dx = maxVec;
             }
-        } else if (!isLeft && !isRight) {
+        } else {
             dx = 0;
         }
     }
@@ -149,62 +163,80 @@ public class Player extends Entity{
             jumping =false;
         }
     }
+    private void UpdateAttack(){
+        if(destiny<=0){
+            enterButtonPressed = false;
+            isAttack=false;
+        } else{
+            if(bullet.velocity.x==0)isAttack = false;
+            if(enterButtonPressed){
+                bullet.velocity.x = 0.5;
+                bullet.setPosition(new Vector2(localPosition.x+CollideBox.x/2,localPosition.y));
+                isAttack = true;
+            }
+        }
+    }
     private void UpdateAnimation(){
         if(isGrounded){
             if(isCheckJumpAnimation) isCheckMoveAnimation = false;
             isCheckJumpAnimation = false;
         }
-        if(isJump){
-            if(!isCheckJumpAnimation){
-                isCheckJumpAnimation =true;
-                animation.setDuration(.05f);
-                animation.setFrames(Assets.Instance.playerImage[2]);
+        if(destiny>0){
+            if(!isDead){
+                if(isJump){
+                    if(!isCheckJumpAnimation){
+                        isCheckJumpAnimation =true;
+                        animation.setDuration(.05f);
+                        animation.setFrames(Assets.Instance.playerImage[2]);
+                    }
+                }
+                else if(isLeft || isRight){
+                    if(!isCheckMoveAnimation){
+                        isCheckMoveAnimation =true;
+                        animation.setDuration(.05f);
+                        animation.setFrames(Assets.Instance.playerImage[1]);
+                    }
+                } else{
+                    isCheckMoveAnimation = false;
+                    animation.setDuration(0.05f);
+                    animation.setFrames(Assets.Instance.playerImage[0]);
+                }
             }
-        }
-        else if(isLeft || isRight){
-            if(!isCheckMoveAnimation){
-                isCheckMoveAnimation =true;
+            else {
+                isCheckJumpAnimation = false;
+                isCheckMoveAnimation = true;
                 animation.setDuration(.05f);
-                animation.setFrames(Assets.Instance.playerImage[1]);
+                animation.setFrames(Assets.Instance.playerImage[5]);
             }
-        }
-        else{
+        } else{
             isCheckJumpAnimation = false;
             isCheckMoveAnimation = false;
             animation.setDuration(.05f);
-            animation.setFrames(Assets.Instance.playerImage[0]);
+            animation.setFrames(Assets.Instance.playerImage[4]);
         }
     }
     //region Getter && Setter Key Pressed
-    public boolean isLeftButtonPressed() {
-        return leftButtonPressed;
-    }
-    public boolean isRightButtonPressed() {
-        return rightButtonPressed;
-    }
-    public boolean isEnterButtonPressed() {
-        return enterButtonPressed;
-    }
-    public boolean isSpaceButtonPressed() {
-        return spaceButtonPressed;
-    }
-    public boolean isBothRightLeftPressed() {
-        return bothRightLeftPressed;
-    }
     public void setLeftButtonPressed(boolean leftButtonPressed) {
         this.leftButtonPressed = leftButtonPressed;
     }
     public void setRightButtonPressed(boolean rightButtonPressed) {
         this.rightButtonPressed = rightButtonPressed;
     }
-    public void setEnterButtonPressed(boolean enterButtonPressed) {
-        this.enterButtonPressed = enterButtonPressed;
-    }
     public void setSpaceButtonPressed(boolean spaceButtonPressed) {
         this.spaceButtonPressed = spaceButtonPressed;
     }
-    //endregion
-    public void CheckPlayerJumpEnemyHead(Entity enemy){
-
+    public void setEnterButtonPressed(boolean enterButtonPressed) {
+        this.enterButtonPressed = enterButtonPressed;
     }
+    public boolean getAttack(){
+        return isAttack;
+    }
+    public void setAttack(boolean isAttack){
+        this.isAttack= isAttack;
+    }
+    public int getDestiny(){return destiny;}
+    public void setDestiny(int d){
+        destiny = d;
+    }
+    //endregion
 }
