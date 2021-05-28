@@ -10,13 +10,14 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 
 public abstract class Entity {
+    protected Bullet bullet;
+    protected Player player;
     //region Entity Properties
     protected Vector2 localPosition;
     protected Vector2 Dimension;
     protected Vector2 CollideBox;
     protected Animation animation;
     public boolean faceRight;
-    //endregion
     //region Movement Attributes
     protected Vector2 velocity;
     protected double maxVec;
@@ -34,10 +35,10 @@ public abstract class Entity {
     protected boolean collideLeft;
     protected boolean collideRight;
 
-    private boolean collideTopEnemy;
-    private boolean collideBottomEnemy;
-    private boolean collideRightEnemy;
-    private boolean collideLeftEnemy;
+    protected boolean collideTopEnemy;
+    protected boolean collideBottomEnemy;
+    protected boolean collideRightEnemy;
+    protected boolean collideLeftEnemy;
     //endregions
     protected double dx;
     protected double dy;
@@ -154,17 +155,9 @@ public abstract class Entity {
         collideRight = (typeRight == Tile.BLOCKED);
         //endregion
     }
-    public void setGlobalPosition()
-    {
-        globalPosition.x=tileMap.getX();
-        globalPosition.y=tileMap.getY();
-    }
-    public Vector2 getNextPosition() {
-        return nextPosition;
-    }
     protected void checkPlayerCollision(Player player) {
-        if(Math.abs(player.nextPosition.x-updatedPosition.x)< CollideBox.x/2+player.CollideBox.x/2
-                &&Math.abs(player.nextPosition.y- updatedPosition.y)< CollideBox.y/2+player.CollideBox.y/2)
+        if(Math.abs(player.nextPosition.x-localPosition.x)< CollideBox.x/2+player.CollideBox.x/2
+                &&Math.abs(player.nextPosition.y- localPosition.y)< CollideBox.y/2+player.CollideBox.y/2)
             calculateCornerEnemy(player);
         if(collideRightEnemy||collideLeftEnemy){
             updatedPosition.x = localPosition.x;
@@ -181,11 +174,11 @@ public abstract class Entity {
             isDead = true;
         }
     }
-    public void calculateCornerEnemy(Player player) {
-        int left = (int)(nextPosition.x-CollideBox.x/2+0.001)/30;
-        int right = (int)(nextPosition.x+ CollideBox.x/2-0.001)/30;
-        int top = (int)(nextPosition.y-CollideBox.y/2+0.001)/30;
-        int bottom = (int)(nextPosition.y+ CollideBox.y/2-0.001)/30;
+    protected void calculateCornerEnemy(Player player) {
+        int left = (int)(localPosition.x-CollideBox.x/2+0.001)/30;
+        int right = (int)(localPosition.x+ CollideBox.x/2-0.001)/30;
+        int top = (int)(localPosition.y-CollideBox.y/2+0.001)/30;
+        int bottom = (int)(localPosition.y+ CollideBox.y/2-0.001)/30;
 
         int leftEnemy = (int)(player.nextPosition.x-player.CollideBox.x/2+0.001)/30;
         int rightEnemy = (int)(player.nextPosition.x+ player.CollideBox.x/2-0.001)/30;
@@ -203,5 +196,13 @@ public abstract class Entity {
         if(collideBottomEnemy&&collideRightEnemy||collideBottomEnemy&&collideLeftEnemy){
             collideBottomEnemy = false;
         }
+    }
+    public void setGlobalPosition()
+    {
+        globalPosition.x=tileMap.getX();
+        globalPosition.y=tileMap.getY();
+    }
+    public Vector2 getNextPosition() {
+        return nextPosition;
     }
 }

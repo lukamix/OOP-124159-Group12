@@ -1,13 +1,14 @@
 package JavaClass.Entity;
 
+import Constant.SystemConstant;
 import JavaClass.Animation.Animation;
 import Utils.Vector2;
 import javafx.scene.canvas.GraphicsContext;
 import JavaClass.Sprites.Assets;
 
 public class BatPig extends Entity {
-    Player player;
-    public BatPig(Player player) {
+    public BatPig(Player player,Bullet b) {
+        bullet = b;
         this.player = player;
         Init();
     }
@@ -41,7 +42,7 @@ public class BatPig extends Entity {
 
     private void InitMovement() {
         velocity.x = 1f;
-        velocity.y = 0f;
+        velocity.y = 0.1f;
         maxVec = 2.0f;
     }
 
@@ -62,6 +63,12 @@ public class BatPig extends Entity {
         if(!isDead&&!player.isDead) {
             checkPlayerCollision(player);
         }
+        if(!isDead){
+            if(player.getAttack()&&Math.abs(bullet.nextPosition.y- localPosition.y)<CollideBox.y/2&&
+                    Math.abs(bullet.nextPosition.x- localPosition.x)< CollideBox.x/2){
+                isDead = true;
+            }
+        }
         UpdateXY();
         setPosition(updatedPosition);
         if (isRight) {
@@ -75,6 +82,7 @@ public class BatPig extends Entity {
     private void UpdateXY() {
         UpdateLeftRightBoolean();
         UpdateDx();
+        UpdateDy();
     }
 
     private void UpdateLeftRightBoolean() {
@@ -104,6 +112,38 @@ public class BatPig extends Entity {
             }
         } else {
             dx = 0;
+        }
+    }
+    private void UpdateDy(){
+        if(isDead){
+            if(!isGrounded){
+                velocity.y += SystemConstant.GRAVITY * SystemConstant.FPS ;
+                dy = velocity.y * SystemConstant.FPS;
+            }
+            if((bottomLeft||bottomRight||collideBottom) && !isGrounded){
+                if(!jumping){
+                    isGrounded = true;
+                    dy=0;
+                }
+            }
+            else if(isGrounded && !collideBottom && !bottomLeft && !bottomRight){
+                velocity.y = 0;
+                isGrounded = false;
+            }
+            if(velocity.y>0){
+                jumping =false;
+            }
+        }
+        if (isLeft) {
+            dy -= velocity.y;
+            if (dy < -maxVec) {
+                dy = -maxVec;
+            }
+        } else if (isRight) {
+            dy += velocity.y;
+            if (dy > maxVec) {
+                dy = maxVec;
+            }
         }
     }
     private void UpdateAnimation() {

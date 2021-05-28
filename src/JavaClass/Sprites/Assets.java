@@ -17,6 +17,9 @@ public class Assets {
     public Image[][] mushroomImage = new Image[3][15];
     public Image[][] chickenImage = new Image[4][20];
     public Image[][] batPigImage = new Image[2][15];
+    public Image[][] mushroom2Image = new Image[3][15];
+    public Image[] bulletImage = new Image[2];
+    public Image[] coinImage = new Image[5];
     public Image[] zone1 = new Image[100];
     public Assets() throws FileNotFoundException {
         Init();
@@ -27,6 +30,9 @@ public class Assets {
         InitMushroomImage();
         InitChickenImage();
         InitBatPigImage();
+        InitMushroom2Image();
+        InitBulletImage();
+        InitCoinImage();
     }
     public void InitZone1Image() throws FileNotFoundException {
         for(int i=1;i<=98;i++){
@@ -51,6 +57,7 @@ public class Assets {
             playerImage[4][i] = new Image( new FileInputStream(
                     "src/Resources/Textures/Character Player/Orc/die/main_character_die"+i+".png"));
         }
+        playerImage[5][0] = new Image(new FileInputStream("src/Resources/Textures/Character Player/Orc/dame/main_character_dame.png"));
     }
     public void InitMushroomImage() throws FileNotFoundException{
         for(int i=0;i<14;i++){
@@ -88,5 +95,29 @@ public class Assets {
         batPigImage[1][0] = new Image(new FileInputStream(
                 "src/Resources/Textures/Monster Enemy/Monsters/BatPig/monster4_die"+".png"
         ));
+    }
+    public void InitMushroom2Image() throws FileNotFoundException{
+        for(int i=0;i<14;i++){
+            mushroom2Image[0][i] = new Image( new FileInputStream(
+                    "src/Resources/Textures/Monster Enemy/Monsters/Mushroom2/monster3_move"+i+".png"));
+        }
+        mushroom2Image[1][0] = new Image(new FileInputStream(
+                "src/Resources/Textures/Monster Enemy/Monsters/Mushroom2/monster3_dame"+".png"
+        ));
+        mushroom2Image[2][0] = new Image(new FileInputStream(
+                "src/Resources/Textures/Monster Enemy/Monsters/Mushroom2/monster3_die"+".png"
+        ));
+    }
+    public void InitBulletImage() throws FileNotFoundException{
+        bulletImage[0] = new Image(new FileInputStream(
+                "src/Resources/Textures/bullet"+".png"
+        ));
+    }
+    public void InitCoinImage() throws FileNotFoundException{
+        coinImage[0] = new Image(new FileInputStream(
+                "src/Resources/Textures/Assets/Coin/item_coin0.png"
+        ));
+        coinImage[1] = new Image(new FileInputStream(
+                "src/Resources/Textures/Assets/Coin/item_coin1.png"));
     }
 }

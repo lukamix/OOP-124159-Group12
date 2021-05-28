@@ -6,8 +6,8 @@ import javafx.scene.canvas.GraphicsContext;
 import JavaClass.Sprites.Assets;
 
 public class Chicken extends Entity {
-    Player player;
-    public Chicken(Player player) {
+    public Chicken(Player player,Bullet b) {
+        bullet = b;
         this.player = player;
         Init();
     }
@@ -21,8 +21,8 @@ public class Chicken extends Entity {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(1350, 630);
-        globalPosition = new Vector2(1350, 630);
+        localPosition = new Vector2(1380, 630);
+        globalPosition = new Vector2(1380, 630);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
@@ -62,6 +62,12 @@ public class Chicken extends Entity {
         if(!isDead&&!player.isDead) {
             checkPlayerCollision(player);
         }
+        if(!isDead){
+            if(player.getAttack()&&Math.abs(bullet.nextPosition.y- localPosition.y)<CollideBox.y/2&&
+                    Math.abs(bullet.nextPosition.x- localPosition.x)< CollideBox.x/2){
+                isDead = true;
+            }
+        }
         UpdateXY();
         setPosition(updatedPosition);
         if (isRight) {
@@ -82,10 +88,10 @@ public class Chicken extends Entity {
             isLeft = false;
             isRight = false;
         }
-        if (updatedPosition.x > 1400 && isRight) {
+        if (updatedPosition.x > 1430 && isRight) {
             isLeft = true;
             isRight = false;
-        } else if (updatedPosition.x < 1200 && isLeft) {
+        } else if (updatedPosition.x < 1230 && isLeft) {
             isRight = true;
             isLeft = false;
         }
