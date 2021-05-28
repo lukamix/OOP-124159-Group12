@@ -37,6 +37,7 @@ public class GameManager {
                     ck.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                     pb.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                     mr2.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                    PostRender.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                     if(player.getAttack()) {
                         bl.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                     }
