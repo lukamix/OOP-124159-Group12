@@ -1,39 +1,133 @@
 package JavaClass.GameManager;
 
 import Constant.SystemConstant;
-import JavaClass.Entity.MushRoom;
-import JavaClass.Entity.Player;
-import JavaClass.Entity.PostRender;
+import JavaClass.Entity.*;
 import JavaClass.SceneManager.KeyHandler;
 import JavaClass.SceneManager.SceneManager;
-import JavaClass.Sprites.Assets;
-import JavaClass.UI.Decorator;
+import Utils.Vector2;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.image.Image;
 import javafx.util.Duration;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class GameManager {
     public static GameManager Instance = new GameManager();
     public SceneManager sceneManager;
     private Timeline gameLoop = new Timeline();
-    private Player player = new Player();
-    private MushRoom mr = new MushRoom();
+    private Bullet bl = new Bullet();
+    private Player player = new Player(bl);
+    private MushRoom mr = new MushRoom(player,bl);
+    private Chicken ck = new Chicken(player,bl);
+    private BatPig pb = new BatPig(player,bl);
+    private MushRoom2 mr2 = new MushRoom2(player,bl);
+    private Coin[] c = {new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
+            ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
+            ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
+            ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
+            ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
+            ,new Coin(player),new Coin(player),new Coin(player),new Coin(player) ,new Coin(player),new Coin(player),new Coin(player),new Coin(player)};
 
     public void GameLoop() {
         InitGameLoop();
         KeyFrame kf = new KeyFrame(Duration.seconds(SystemConstant.FPS),
-            actionEvent -> {
-                sceneManager.currentCanvas.getGraphicsContext2D().clearRect(0, 0, SystemConstant.SCREEN_WIDTH, SystemConstant.SCREEN_HEIGHT);
-                sceneManager.currentScene.Update(player,sceneManager.currentCanvas.getGraphicsContext2D());
-                player.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                mr.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                PostRender.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-            });
+                actionEvent -> {
+                    sceneManager.currentCanvas.getGraphicsContext2D().clearRect(0, 0, SystemConstant.SCREEN_WIDTH, SystemConstant.SCREEN_HEIGHT);
+                    sceneManager.currentScene.Update(player,sceneManager.currentCanvas.getGraphicsContext2D());
+                    player.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                    mr.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                    ck.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                    pb.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                    mr2.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                    PostRender.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                    if(player.getAttack()) {
+                        bl.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                    }
+                    for(int i = 0;i<4;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(520 + i * 50, 570));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    for(int i = 4;i<8;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(1030 + i * 50, 300));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    for(int i = 8;i<12;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(1060 + i * 50, 180));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    for(int i = 12;i<17;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(1140 + i * 50, 550));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    for(int i = 17;i<21;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(2489 + i * 50, 275));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    for(int i = 21;i<25;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(2650 + i * 50, 218));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    for(int i = 25;i<29;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(2809 + i * 50, 180));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    for(int i = 29;i<33;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(2965 + i * 50, 275));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    for(int i = 33;i<37;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(3600 + i * 50, 270));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    for(int i = 37;i<41;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(4050 + i * 50, 270));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }for(int i = 41;i<45;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(4100 + i * 50, 600));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    try{
+                        if(player.getDestiny()>0){
+                            sceneManager.currentCanvas.getGraphicsContext2D().drawImage(new Image(
+                                    new FileInputStream("src/Resources/Textures/Textures/Assets/item_heart.png")),0,0);
+                        }
+                        if(player.getDestiny()>1){
+                            sceneManager.currentCanvas.getGraphicsContext2D().drawImage(new Image(
+                                    new FileInputStream("src/Resources/Textures/Textures/Assets/item_heart.png")),45,0);
+                        }
+                        if(player.getDestiny()>2){
+                            sceneManager.currentCanvas.getGraphicsContext2D().drawImage(new Image(
+                                    new FileInputStream("src/Resources/Textures/Textures/Assets/item_heart.png")),90,0);
+                        }
+                    }catch(FileNotFoundException e){
+                        e.printStackTrace();
+                    }
+                });
         gameLoop.setCycleCount(Animation.INDEFINITE);
         gameLoop.getKeyFrames().add(kf);
         gameLoop.play();
@@ -42,6 +136,12 @@ public class GameManager {
         KeyHandler.AddKeyListener(sceneManager.currentScene,player);
         player.tileMap = sceneManager.currentScene.tileMap ;
         mr.tileMap = sceneManager.currentScene.tileMap ;
+        ck.tileMap = sceneManager.currentScene.tileMap ;
+        pb.tileMap = sceneManager.currentScene.tileMap;
+        mr2.tileMap = sceneManager.currentScene.tileMap;
+        bl.tileMap = sceneManager.currentScene.tileMap;
+        for(int i=0;i<45;i++)
+            c[i].tileMap = sceneManager.currentScene.tileMap;
     }
     public void StopGameLoop(){
         gameLoop.stop();

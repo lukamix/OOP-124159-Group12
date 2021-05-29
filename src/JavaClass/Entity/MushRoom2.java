@@ -5,9 +5,10 @@ import Utils.Vector2;
 import javafx.scene.canvas.GraphicsContext;
 import JavaClass.Sprites.Assets;
 
-public class MushRoom extends Entity {
-    public MushRoom(Player player,Bullet b) {
-        bullet = b;
+public class MushRoom2 extends Entity {
+    private boolean attacked;
+    public MushRoom2(Player player,Bullet b) {
+        bullet =b;
         this.player = player;
         Init();
     }
@@ -21,8 +22,8 @@ public class MushRoom extends Entity {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(350, 573);
-        globalPosition = new Vector2(350, 573);
+        localPosition = new Vector2(1750, 550);
+        globalPosition = new Vector2(1750, 550);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
@@ -33,9 +34,9 @@ public class MushRoom extends Entity {
     private void InitAnimation() {
         animation = new Animation();
         animation.setDuration(.05f);
-        animation.setFrames(Assets.Instance.mushroomImage[0]);
+        animation.setFrames(Assets.Instance.mushroom2Image[0]);
         for (int i = 0; i < 3; i++) {
-            AnimationSprites.add(Assets.Instance.mushroomImage[i]);
+            AnimationSprites.add(Assets.Instance.mushroom2Image[i]);
         }
     }
 
@@ -51,20 +52,22 @@ public class MushRoom extends Entity {
         UpdatePosition();
         UpdateAnimation();
     }
+
     @Override
     public void Draw(GraphicsContext gc) {
         super.Draw(gc);
     }
+
     private void UpdatePosition() {
         checkTileMapCollision();
         if(!isDead&&!player.isDead) {
             checkPlayerCollision(player);
         }
-        if(!isDead){
-            if(player.getAttack()&&Math.abs(bullet.nextPosition.y- localPosition.y)<CollideBox.y/2&&
-                    Math.abs(bullet.nextPosition.x- localPosition.x)< CollideBox.x/2){
-                isDead = true;
-            }
+        if(isDead&&!attacked)isDead = false;
+        if(player.getAttack()&&Math.abs(bullet.nextPosition.y- localPosition.y)<CollideBox.y/2&&
+                Math.abs(bullet.nextPosition.x- localPosition.x)< CollideBox.x/2){
+            attacked = true;
+            isDead = true;
         }
         UpdateXY();
         setPosition(updatedPosition);
@@ -86,10 +89,10 @@ public class MushRoom extends Entity {
             isLeft = false;
             isRight = false;
         }
-        if (updatedPosition.x > 450 && isRight) {
+        if (updatedPosition.x > 1850 && isRight) {
             isLeft = true;
             isRight = false;
-        } else if (updatedPosition.x < 250 && isLeft) {
+        } else if (updatedPosition.x < 1650 && isLeft) {
             isRight = true;
             isLeft = false;
         }
@@ -119,19 +122,19 @@ public class MushRoom extends Entity {
                 if (!isCheckMoveAnimation) {
                     isCheckMoveAnimation = true;
                     animation.setDuration(.05f);
-                    animation.setFrames(Assets.Instance.mushroomImage[0]);
+                    animation.setFrames(Assets.Instance.mushroom2Image[0]);
                 }
             } else {
                 isCheckMoveAnimation = false;
                 animation.setDuration(.05f);
-                animation.setFrames(Assets.Instance.mushroomImage[0]);
+                animation.setFrames(Assets.Instance.mushroom2Image[0]);
             }
         }
         else {
             isCheckJumpAnimation = false;
             isCheckMoveAnimation = false;
             animation.setDuration(0.05f);
-            animation.setFrames(Assets.Instance.mushroomImage[2]);
+            animation.setFrames(Assets.Instance.mushroom2Image[2]);
         }
     }
 }

@@ -1,12 +1,13 @@
 package JavaClass.Entity;
 
+import Constant.SystemConstant;
 import JavaClass.Animation.Animation;
 import Utils.Vector2;
 import javafx.scene.canvas.GraphicsContext;
 import JavaClass.Sprites.Assets;
 
-public class MushRoom extends Entity {
-    public MushRoom(Player player,Bullet b) {
+public class BatPig extends Entity {
+    public BatPig(Player player,Bullet b) {
         bullet = b;
         this.player = player;
         Init();
@@ -21,8 +22,8 @@ public class MushRoom extends Entity {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(350, 573);
-        globalPosition = new Vector2(350, 573);
+        localPosition = new Vector2(800, 400);
+        globalPosition = new Vector2(800, 400);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
@@ -33,15 +34,15 @@ public class MushRoom extends Entity {
     private void InitAnimation() {
         animation = new Animation();
         animation.setDuration(.05f);
-        animation.setFrames(Assets.Instance.mushroomImage[0]);
-        for (int i = 0; i < 3; i++) {
-            AnimationSprites.add(Assets.Instance.mushroomImage[i]);
+        animation.setFrames(Assets.Instance.batPigImage[0]);
+        for (int i = 0; i < 2; i++) {
+            AnimationSprites.add(Assets.Instance.batPigImage[i]);
         }
     }
 
     private void InitMovement() {
         velocity.x = 1f;
-        velocity.y = 0f;
+        velocity.y = 0.1f;
         maxVec = 2.0f;
     }
 
@@ -51,10 +52,12 @@ public class MushRoom extends Entity {
         UpdatePosition();
         UpdateAnimation();
     }
+
     @Override
     public void Draw(GraphicsContext gc) {
         super.Draw(gc);
     }
+
     private void UpdatePosition() {
         checkTileMapCollision();
         if(!isDead&&!player.isDead) {
@@ -79,6 +82,7 @@ public class MushRoom extends Entity {
     private void UpdateXY() {
         UpdateLeftRightBoolean();
         UpdateDx();
+        UpdateDy();
     }
 
     private void UpdateLeftRightBoolean() {
@@ -86,10 +90,10 @@ public class MushRoom extends Entity {
             isLeft = false;
             isRight = false;
         }
-        if (updatedPosition.x > 450 && isRight) {
+        if (updatedPosition.x > 900 && isRight) {
             isLeft = true;
             isRight = false;
-        } else if (updatedPosition.x < 250 && isLeft) {
+        } else if (updatedPosition.x < 700 && isLeft) {
             isRight = true;
             isLeft = false;
         }
@@ -110,6 +114,38 @@ public class MushRoom extends Entity {
             dx = 0;
         }
     }
+    private void UpdateDy(){
+        if(isDead){
+            if(!isGrounded){
+                velocity.y += SystemConstant.GRAVITY * SystemConstant.FPS ;
+                dy = velocity.y * SystemConstant.FPS;
+            }
+            if((bottomLeft||bottomRight||collideBottom) && !isGrounded){
+                if(!jumping){
+                    isGrounded = true;
+                    dy=0;
+                }
+            }
+            else if(isGrounded && !collideBottom && !bottomLeft && !bottomRight){
+                velocity.y = 0;
+                isGrounded = false;
+            }
+            if(velocity.y>0){
+                jumping =false;
+            }
+        }
+        if (isLeft) {
+            dy -= velocity.y;
+            if (dy < -maxVec) {
+                dy = -maxVec;
+            }
+        } else if (isRight) {
+            dy += velocity.y;
+            if (dy > maxVec) {
+                dy = maxVec;
+            }
+        }
+    }
     private void UpdateAnimation() {
         if (isGrounded) {
             if (isCheckJumpAnimation) isCheckMoveAnimation = false;
@@ -119,19 +155,19 @@ public class MushRoom extends Entity {
                 if (!isCheckMoveAnimation) {
                     isCheckMoveAnimation = true;
                     animation.setDuration(.05f);
-                    animation.setFrames(Assets.Instance.mushroomImage[0]);
+                    animation.setFrames(Assets.Instance.batPigImage[0]);
                 }
             } else {
                 isCheckMoveAnimation = false;
                 animation.setDuration(.05f);
-                animation.setFrames(Assets.Instance.mushroomImage[0]);
+                animation.setFrames(Assets.Instance.batPigImage[0]);
             }
         }
         else {
             isCheckJumpAnimation = false;
             isCheckMoveAnimation = false;
             animation.setDuration(0.05f);
-            animation.setFrames(Assets.Instance.mushroomImage[2]);
+            animation.setFrames(Assets.Instance.batPigImage[1]);
         }
     }
 }
