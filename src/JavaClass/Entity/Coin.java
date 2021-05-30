@@ -45,27 +45,12 @@ public class Coin extends Entity {
     private void checkCollisionPlayer(){
         if(Math.abs(player.nextPosition.x-localPosition.x)< CollideBox.x/2+player.CollideBox.x/2
                 &&Math.abs(player.nextPosition.y- localPosition.y)< CollideBox.y/2+player.CollideBox.y/2)
-            calculateCornerEnemy();
+            calculateCornerEnemy(player);
         if(collideBottomEnemy||collideLeftEnemy||collideRightEnemy||collideTopEnemy){
             getCoin = true;
         }
     }
     public boolean getCoin(){
         return getCoin;
-    }
-    public void setCoin(boolean getCoin) {
-        this.getCoin = getCoin;
-    }
-    public void setCollideBottomEnemy(boolean collideBottomEnemy){
-        this.collideBottomEnemy = collideBottomEnemy;
-    }
-    public void setCollideTopEnemy(boolean collideTopEnemy){
-        this.collideTopEnemy = collideTopEnemy;
-    }
-    public void setCollideLeftEnemy(boolean collideLeftEnemy){
-        this.collideLeftEnemy = collideLeftEnemy;
-    }
-    public void setCollideRightEnemy(boolean collideRightEnemy){
-        this.collideRightEnemy = collideRightEnemy;
     }
 }

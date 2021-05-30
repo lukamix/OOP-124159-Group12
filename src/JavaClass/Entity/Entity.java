@@ -39,7 +39,6 @@ public abstract class Entity {
     protected boolean collideBottomEnemy;
     protected boolean collideRightEnemy;
     protected boolean collideLeftEnemy;
-
     //endregions
     protected double dx;
     protected double dy;
@@ -52,7 +51,6 @@ public abstract class Entity {
     protected boolean isCheckJumpAnimation;
     protected boolean isGrounded;
     protected boolean isDead;
-    protected boolean isAttack;
     //endregion
     //region Map Properties
     public TileMap tileMap;
@@ -75,6 +73,10 @@ public abstract class Entity {
             gc.drawImage(animation.getImage(), localPosition.x -globalPosition.x - Dimension.x/2,
                     localPosition.y - globalPosition.y - Dimension.y/2, Dimension.x, Dimension.y);
         }
+    }
+    public void setPosition(Vector2 position)
+    {
+        localPosition = position;
     }
     protected void checkTileMapCollision(){
         currentCol = (int)localPosition.x/30;
@@ -153,10 +155,10 @@ public abstract class Entity {
         collideRight = (typeRight == Tile.BLOCKED);
         //endregion
     }
-    protected void checkPlayerCollision() {
+    protected void checkPlayerCollision(Player player) {
         if(Math.abs(player.nextPosition.x-localPosition.x)< CollideBox.x/2+player.CollideBox.x/2
                 &&Math.abs(player.nextPosition.y- localPosition.y)< CollideBox.y/2+player.CollideBox.y/2)
-            calculateCornerEnemy();
+            calculateCornerEnemy(player);
         if(collideRightEnemy||collideLeftEnemy){
             updatedPosition.x = localPosition.x;
             player.updatedPosition.x = player.localPosition.x;
@@ -172,7 +174,7 @@ public abstract class Entity {
             isDead = true;
         }
     }
-    protected void calculateCornerEnemy() {
+    protected void calculateCornerEnemy(Player player) {
         int left = (int)(localPosition.x-CollideBox.x/2+0.001)/30;
         int right = (int)(localPosition.x+ CollideBox.x/2-0.001)/30;
         int top = (int)(localPosition.y-CollideBox.y/2+0.001)/30;
@@ -202,15 +204,5 @@ public abstract class Entity {
     }
     public Vector2 getNextPosition() {
         return nextPosition;
-    }
-    public void setPosition(Vector2 position)
-    {
-        localPosition = position;
-    }
-    public Vector2 getLocalPosition(){
-        return  localPosition;
-    }
-    public boolean getAttack(){
-        return isAttack;
     }
 }

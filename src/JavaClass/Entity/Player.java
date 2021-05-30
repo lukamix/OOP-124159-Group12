@@ -7,15 +7,16 @@ import JavaClass.Sprites.Assets;
 import javafx.scene.canvas.GraphicsContext;
 
 public class Player extends Entity{
+
     //region Key Pressed
     private boolean leftButtonPressed;
     private boolean rightButtonPressed;
     private boolean enterButtonPressed;
     private boolean spaceButtonPressed;
     private boolean bothRightLeftPressed=false;
+    private boolean isAttack;
     private int destiny = 3;
-    private boolean collideBeeHive;
-
+    private int point;
     //endregion
     public Player(Bullet b){
         bullet = b;
@@ -28,10 +29,8 @@ public class Player extends Entity{
         InitMovement();
     }
     private void InitProperties(){
-        isLeft = false;
-        isRight=true;
-        localPosition = new Vector2(210,500);
-        globalPosition = new Vector2(210,500);
+        localPosition = new Vector2(100,400);
+        globalPosition = new Vector2(100,400);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
@@ -78,7 +77,7 @@ public class Player extends Entity{
         UpdateDy();
     }
     private void UpdateLeftRightBoolean(){
-        if(destiny==0){
+        if(destiny<=0){
             leftButtonPressed = false;
             bothRightLeftPressed = false;
             rightButtonPressed = false;
@@ -229,12 +228,15 @@ public class Player extends Entity{
     public void setEnterButtonPressed(boolean enterButtonPressed) {
         this.enterButtonPressed = enterButtonPressed;
     }
-    public int getDestiny(){return destiny;}
-    public boolean getCollideBeeHive(){
-        return collideBeeHive;
+    public boolean getAttack(){
+        return isAttack;
     }
-    public void setCollideBeeHive(boolean collideBeeHive){
-        this.collideBeeHive = collideBeeHive;
+    public void setAttack(boolean isAttack){
+        this.isAttack= isAttack;
+    }
+    public int getDestiny(){return destiny;}
+    public void setDestiny(int d){
+        destiny = d;
     }
     //endregion
 }

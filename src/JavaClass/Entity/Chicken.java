@@ -6,12 +6,9 @@ import javafx.scene.canvas.GraphicsContext;
 import JavaClass.Sprites.Assets;
 
 public class Chicken extends Entity {
-    Egg egg;
-    private boolean canAttack;
-    public Chicken(Player p,Bullet b,Egg e) {
-        egg = e;
+    public Chicken(Player player,Bullet b) {
         bullet = b;
-        player = p;
+        this.player = player;
         Init();
     }
 
@@ -63,36 +60,12 @@ public class Chicken extends Entity {
     private void UpdatePosition() {
         checkTileMapCollision();
         if(!isDead&&!player.isDead) {
-            checkPlayerCollision();
-            checkAttack();
+            checkPlayerCollision(player);
         }
         if(!isDead){
             if(player.getAttack()&&Math.abs(bullet.nextPosition.y- localPosition.y)<CollideBox.y/2&&
                     Math.abs(bullet.nextPosition.x- localPosition.x)< CollideBox.x/2){
                 isDead = true;
-            }
-        }
-        if(egg.velocity.x==0)isAttack = false;
-        if(canAttack){
-            {
-                isAttack = true;
-                egg.velocity.x = 0.5f;
-                if (isLeft) {
-                    egg.isLeft = true;
-                    egg.isRight = false;
-                    egg.localPosition = new Vector2(localPosition.x - CollideBox.x / 2, localPosition.y);
-                }
-                if (isRight) {
-                    egg.isLeft = false;
-                    egg.isRight = true;
-                    egg.localPosition = new Vector2(localPosition.x + CollideBox.x / 2, localPosition.y);
-                }
-            }
-        }
-        if(isAttack){
-            if(Math.abs(player.nextPosition.x-egg.localPosition.x)< CollideBox.x/2&&
-                    Math.abs(player.nextPosition.y-egg.localPosition.y)< CollideBox.y/2){
-                player.isDead = true;
             }
         }
         UpdateXY();
@@ -144,22 +117,16 @@ public class Chicken extends Entity {
             if (isCheckJumpAnimation) isCheckMoveAnimation = false;
         }
         if(!isDead){
-            if(!isAttack){
-                if (isLeft || isRight) {
-                    if (!isCheckMoveAnimation) {
-                        isCheckMoveAnimation = true;
-                        animation.setDuration(.05f);
-                        animation.setFrames(Assets.Instance.chickenImage[0]);
-                    }
-                } else {
-                    isCheckMoveAnimation = false;
+            if (isLeft || isRight) {
+                if (!isCheckMoveAnimation) {
+                    isCheckMoveAnimation = true;
                     animation.setDuration(.05f);
-                    animation.setFrames(Assets.Instance.chickenImage[2]);
+                    animation.setFrames(Assets.Instance.chickenImage[0]);
                 }
-            }else{
+            } else {
                 isCheckMoveAnimation = false;
                 animation.setDuration(.05f);
-                animation.setFrames(Assets.Instance.chickenImage[1]);
+                animation.setFrames(Assets.Instance.chickenImage[2]);
             }
         }
         else {
@@ -167,16 +134,6 @@ public class Chicken extends Entity {
             isCheckMoveAnimation = false;
             animation.setDuration(0.05f);
             animation.setFrames(Assets.Instance.chickenImage[3]);
-        }
-    }
-    private void checkAttack(){
-        int nextColEnemy = (int)(player.nextPosition.x)/30;
-        int nextRowEnemy = (int)(player.nextPosition.y)/30;
-        if(((nextColEnemy<currentCol&&nextColEnemy>currentCol-8&&isLeft)
-                ||(nextColEnemy>currentCol&&nextColEnemy<currentCol+8&&isRight))&&Math.abs(nextRowEnemy-currentRow)<=1){
-            canAttack = true;
-        }else{
-            canAttack = false;
         }
     }
 }

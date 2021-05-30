@@ -7,9 +7,9 @@ import javafx.scene.canvas.GraphicsContext;
 import JavaClass.Sprites.Assets;
 
 public class BatPig extends Entity {
-    public BatPig(Player p,Bullet b) {
+    public BatPig(Player player,Bullet b) {
         bullet = b;
-        player = p;
+        this.player = player;
         Init();
     }
 
@@ -22,8 +22,8 @@ public class BatPig extends Entity {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(850, 400);
-        globalPosition = new Vector2(850, 400);
+        localPosition = new Vector2(800, 400);
+        globalPosition = new Vector2(800, 400);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
@@ -61,7 +61,7 @@ public class BatPig extends Entity {
     private void UpdatePosition() {
         checkTileMapCollision();
         if(!isDead&&!player.isDead) {
-            checkPlayerCollision();
+            checkPlayerCollision(player);
         }
         if(!isDead){
             if(player.getAttack()&&Math.abs(bullet.nextPosition.y- localPosition.y)<CollideBox.y/2&&
@@ -90,10 +90,10 @@ public class BatPig extends Entity {
             isLeft = false;
             isRight = false;
         }
-        if (updatedPosition.x > 950 && isRight) {
+        if (updatedPosition.x > 900 && isRight) {
             isLeft = true;
             isRight = false;
-        } else if (updatedPosition.x < 750 && isLeft) {
+        } else if (updatedPosition.x < 700 && isLeft) {
             isRight = true;
             isLeft = false;
         }
