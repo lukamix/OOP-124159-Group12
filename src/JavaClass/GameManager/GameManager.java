@@ -24,7 +24,12 @@ public class GameManager {
     private Chicken ck = new Chicken(player,bl);
     private BatPig pb = new BatPig(player,bl);
     private MushRoom2 mr2 = new MushRoom2(player,bl);
-    private Coin[] c = {new Coin(player),new Coin(player),new Coin(player),new Coin(player)};
+    private Coin[] c = {new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
+            ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
+            ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
+            ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
+            ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
+            ,new Coin(player),new Coin(player),new Coin(player),new Coin(player) ,new Coin(player),new Coin(player),new Coin(player),new Coin(player)};
 
     public void GameLoop() {
         InitGameLoop();
@@ -43,7 +48,66 @@ public class GameManager {
                     }
                     for(int i = 0;i<4;i++){
                         if(!c[i].getCoin()) {
-                            c[i].setPosition(new Vector2(520 + i * 50, 550));
+                            c[i].setPosition(new Vector2(520 + i * 50, 570));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    for(int i = 4;i<8;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(1030 + i * 50, 300));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    for(int i = 8;i<12;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(1060 + i * 50, 180));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    for(int i = 12;i<17;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(1140 + i * 50, 550));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    for(int i = 17;i<21;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(2489 + i * 50, 275));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    for(int i = 21;i<25;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(2650 + i * 50, 218));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    for(int i = 25;i<29;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(2809 + i * 50, 180));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    for(int i = 29;i<33;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(2965 + i * 50, 275));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    for(int i = 33;i<37;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(3600 + i * 50, 270));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }
+                    for(int i = 37;i<41;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(4050 + i * 50, 270));
+                            c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                    }for(int i = 41;i<45;i++){
+                        if(!c[i].getCoin()) {
+                            c[i].setPosition(new Vector2(4100 + i * 50, 600));
                             c[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         }
                     }
@@ -76,7 +140,7 @@ public class GameManager {
         pb.tileMap = sceneManager.currentScene.tileMap;
         mr2.tileMap = sceneManager.currentScene.tileMap;
         bl.tileMap = sceneManager.currentScene.tileMap;
-        for(int i=0;i<4;i++)
+        for(int i=0;i<45;i++)
             c[i].tileMap = sceneManager.currentScene.tileMap;
     }
     public void StopGameLoop(){
