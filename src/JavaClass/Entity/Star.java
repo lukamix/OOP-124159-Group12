@@ -5,9 +5,9 @@ import Utils.Vector2;
 import javafx.scene.canvas.GraphicsContext;
 import JavaClass.Sprites.Assets;
 
-public class Coin extends Entity {
-    private boolean getCoin;
-    public Coin(Player p) {
+public class Star extends Entity {
+    private boolean getStar;
+    public Star(Player p) {
         player = p;
         Init();
     }
@@ -28,8 +28,8 @@ public class Coin extends Entity {
     private void InitAnimation() {
         animation = new Animation();
         animation.setDuration(0.2f);
-        animation.setFrames(Assets.Instance.coinImage);
-        AnimationSprites.add(Assets.Instance.coinImage);
+        animation.setFrames(Assets.Instance.starImage);
+        AnimationSprites.add(Assets.Instance.starImage);
     }
 
     @Override
@@ -47,25 +47,10 @@ public class Coin extends Entity {
                 &&Math.abs(player.nextPosition.y- localPosition.y)< CollideBox.y/2+player.CollideBox.y/2)
             calculateCornerEnemy();
         if(collideBottomEnemy||collideLeftEnemy||collideRightEnemy||collideTopEnemy){
-            getCoin = true;
+            getStar = true;
         }
     }
-    public boolean getCoin(){
-        return getCoin;
-    }
-    public void setCoin(boolean getCoin) {
-        this.getCoin = getCoin;
-    }
-    public void setCollideBottomEnemy(boolean collideBottomEnemy){
-        this.collideBottomEnemy = collideBottomEnemy;
-    }
-    public void setCollideTopEnemy(boolean collideTopEnemy){
-        this.collideTopEnemy = collideTopEnemy;
-    }
-    public void setCollideLeftEnemy(boolean collideLeftEnemy){
-        this.collideLeftEnemy = collideLeftEnemy;
-    }
-    public void setCollideRightEnemy(boolean collideRightEnemy){
-        this.collideRightEnemy = collideRightEnemy;
+    public boolean getStar(){
+        return getStar;
     }
 }

@@ -1,14 +1,15 @@
 package JavaClass.Entity;
 
+import Constant.SystemConstant;
 import JavaClass.Animation.Animation;
 import Utils.Vector2;
 import javafx.scene.canvas.GraphicsContext;
 import JavaClass.Sprites.Assets;
 
 public class MushRoom extends Entity {
-    public MushRoom(Player player,Bullet b) {
+    public MushRoom(Player p,Bullet b) {
         bullet = b;
-        this.player = player;
+        player = p;
         Init();
     }
 
@@ -21,8 +22,8 @@ public class MushRoom extends Entity {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(350, 573);
-        globalPosition = new Vector2(350, 573);
+        localPosition = new Vector2(380, 573);
+        globalPosition = new Vector2(380, 573);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
@@ -58,7 +59,7 @@ public class MushRoom extends Entity {
     private void UpdatePosition() {
         checkTileMapCollision();
         if(!isDead&&!player.isDead) {
-            checkPlayerCollision(player);
+            checkPlayerCollision();
         }
         if(!isDead){
             if(player.getAttack()&&Math.abs(bullet.nextPosition.y- localPosition.y)<CollideBox.y/2&&
@@ -86,10 +87,10 @@ public class MushRoom extends Entity {
             isLeft = false;
             isRight = false;
         }
-        if (updatedPosition.x > 450 && isRight) {
+        if (updatedPosition.x > 480 && isRight) {
             isLeft = true;
             isRight = false;
-        } else if (updatedPosition.x < 250 && isLeft) {
+        } else if (updatedPosition.x < 280 && isLeft) {
             isRight = true;
             isLeft = false;
         }

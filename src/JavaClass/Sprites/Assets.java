@@ -1,5 +1,6 @@
 package JavaClass.Sprites;
 
+import JavaClass.Entity.BulletMonster;
 import javafx.scene.image.Image;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,9 +19,19 @@ public class Assets {
     public Image[][] chickenImage = new Image[4][20];
     public Image[][] batPigImage = new Image[2][15];
     public Image[][] mushroom2Image = new Image[3][15];
+    public Image[][] frogImage = new Image[2][15];
+    public Image[][] aborigineImage = new Image[3][20];
+    public Image[][] woodpeckerImage = new Image[2][14];
     public Image[] bulletImage = new Image[2];
     public Image[] coinImage = new Image[5];
+    public Image[] starImage = new Image[10];
+    public Image[] beeHiveImage = new Image[11];
+    public Image[] beeImage = new Image[15];
+    public Image[] bulletMonsterImage = new Image[2];
+    public Image[] eggImage = new Image[2];
     public Image[] zone1 = new Image[100];
+    public Image[][] treeImage = new Image[3][2];
+    public Image[] grassImage = new Image[2];
     public Assets() throws FileNotFoundException {
         Init();
     }
@@ -31,8 +42,18 @@ public class Assets {
         InitChickenImage();
         InitBatPigImage();
         InitMushroom2Image();
+        InitFrogImage();
+        InitAborigineImage();
+        InitWoodPeckerImage();
         InitBulletImage();
         InitCoinImage();
+        InitStarImage();
+        InitTreeImage();
+        InitBeeHiveImage();
+        InitBeeImage();
+        InitBulletMonsterImage();
+        InitGrassImage();
+        InitEggImage();
     }
     public void InitZone1Image() throws FileNotFoundException {
         for(int i=1;i<=98;i++){
@@ -123,5 +144,87 @@ public class Assets {
                 "src/Resources/Textures/Assets/Coin/item_coin2.png"));
         coinImage[3] = new Image(new FileInputStream(
                 "src/Resources/Textures/Assets/Coin/item_coin3.png"));
+    }
+    public void InitStarImage() throws FileNotFoundException {
+        starImage[0] = new Image(new FileInputStream(
+                "src/Resources/Textures/Assets/Star/star2.png"
+        ));
+        starImage[1] = new Image(new FileInputStream(
+                "src/Resources/Textures/Assets/Star/star.png"
+        ));
+        starImage[2] = new Image(new FileInputStream(
+                "src/Resources/Textures/Assets/Star/star1.png"
+        ));
+        starImage[3] = new Image(new FileInputStream(
+                "src/Resources/Textures/Assets/Star/star.png"
+        ));
+    }
+    public void InitTreeImage() throws FileNotFoundException{
+        treeImage[0][0] = new Image(new FileInputStream(
+                "src/Resources/Textures/Textures/Tiles/Deco/deco1.png"
+        ));
+        treeImage[1][0] = new Image(new FileInputStream(
+                "src/Resources/Textures/Textures/Tiles/Deco/deco2.png"
+        ));
+        treeImage[2][0] = new Image(new FileInputStream(
+                "src/Resources/Textures/Textures/Tiles/Deco/deco3.png"
+        ));
+    }
+    public void InitFrogImage() throws FileNotFoundException{
+        for(int i=0;i<14;i++){
+            frogImage[0][i] = new Image( new FileInputStream(
+                    "src/Resources/Textures/Monster Enemy/Monsters/Frog/monster7_move"+i+".png"));
+        }
+        frogImage[1][0] = new Image(new FileInputStream(
+                "src/Resources/Textures/Monster Enemy/Monsters/Frog/monster7_die"+".png"
+        ));
+    }
+    public void InitAborigineImage() throws FileNotFoundException{
+        for(int i=0;i<9;i++){
+            aborigineImage[0][i] = new Image( new FileInputStream(
+                    "src/Resources/Textures/Monster Enemy/Monsters/Aborigine/move/aborigine_move"+i+".png"));
+        }
+        for(int i=0;i<20;i++){
+            aborigineImage[1][i] = new Image( new FileInputStream(
+                    "src/Resources/Textures/Monster Enemy/Monsters/Aborigine/attack/aborigine_attack"+i+".png"));
+        }
+        aborigineImage[2][0] = new Image( new FileInputStream(
+                "src/Resources/Textures/Monster Enemy/Monsters/Aborigine/Die/aborigine_die"+".png"));
+    }
+    public void InitWoodPeckerImage() throws FileNotFoundException{
+        for(int i=0;i<14;i++){
+            woodpeckerImage[0][i] = new Image( new FileInputStream(
+                    "src/Resources/Textures/Monster Enemy/Monsters/Woodpecker/monster5_idle"+i+".png"));
+        }
+        woodpeckerImage[1][0] = new Image(new FileInputStream(
+                "src/Resources/Textures/Monster Enemy/Monsters/Woodpecker/monster5_die"+".png"
+        ));
+    }
+    public void InitBeeHiveImage() throws FileNotFoundException{
+        for(int i=0;i<10;i++){
+            beeHiveImage[i] = new Image( new FileInputStream(
+                    "src/Resources/Textures/Monster Enemy/Monsters/Bee/BeeHive/monster12_"+(i+1)+".png"));
+        }
+    }
+    public void InitBeeImage() throws FileNotFoundException{
+        for(int i=0;i<12;i++){
+            beeImage[i] = new Image( new FileInputStream(
+                    "src/Resources/Textures/Monster Enemy/Monsters/Bee/monster12_bullet/monster12_bullet"+i+".png"));
+        }
+    }
+    public void InitBulletMonsterImage() throws FileNotFoundException{
+        bulletMonsterImage[0] = new Image(new FileInputStream(
+                "src/Resources/Textures/Monster Enemy/Monsters/Aborigine/axe.png"
+        ));
+    }
+    public void InitGrassImage() throws FileNotFoundException{
+        grassImage[0] = new Image(new FileInputStream(
+                "src/Resources/Textures/Textures/Tiles/Deco/deco8.png"
+        ));
+    }
+    public void InitEggImage() throws FileNotFoundException{
+        eggImage[0] = new Image(new FileInputStream(
+                "src/Resources/Textures/Monster Enemy/Monsters/Chicken/egg.png"
+        ));
     }
 }
