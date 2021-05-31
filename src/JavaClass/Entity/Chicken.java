@@ -21,8 +21,8 @@ public class Chicken extends Entity {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(1380, 630);
-        globalPosition = new Vector2(1380, 630);
+        localPosition = new Vector2(1380, 480);
+        globalPosition = new Vector2(1380, 480);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
