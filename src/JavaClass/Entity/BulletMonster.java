@@ -5,8 +5,8 @@ import Utils.Vector2;
 import javafx.scene.canvas.GraphicsContext;
 import JavaClass.Sprites.Assets;
 
-public class Bullet extends Entity {
-    public Bullet() {
+public class BulletMonster extends Entity {
+    public BulletMonster() {
         Init();
     }
 
@@ -17,22 +17,22 @@ public class Bullet extends Entity {
     }
 
     private void InitProperties() {
-        isLeft = false;
-        isRight = true;
-        localPosition = new Vector2(500, 640);
-        globalPosition = new Vector2(500, 640);
+        isLeft = true;
+        isRight = false;
+        localPosition = new Vector2(500, 550);
+        globalPosition = new Vector2(500, 550);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
-        Dimension = new Vector2(20, 30);
-        CollideBox = new Vector2(20, 30);
+        Dimension = new Vector2(30, 50);
+        CollideBox = new Vector2(30, 50);
     }
 
     private void InitAnimation() {
         animation = new Animation();
         animation.setDuration(1f);
-        animation.setFrames(Assets.Instance.bulletImage);
-        AnimationSprites.add(Assets.Instance.bulletImage);
+        animation.setFrames(Assets.Instance.bulletMonsterImage);
+        AnimationSprites.add(Assets.Instance.bulletMonsterImage);
     }
 
     private void InitMovement() {
@@ -55,24 +55,33 @@ public class Bullet extends Entity {
 
     private void UpdatePosition() {
         checkTileMapCollision();
-        dx += velocity.x;
-        if (dx > 20) {
-            dx = 0;
-            velocity.x = 0;
+        if(isLeft){
+            dx-=velocity.x;
+            if(dx<-20){
+                dx=0;
+                velocity.x = 0;
+            }
+        } else{
+            if(isRight){
+                dx+=velocity.x;
+                if(dx>20){
+                    dx=0;
+                    velocity.x = 0;
+                }
+            }
         }
         setPosition(updatedPosition);
         if (isRight) {
-            faceRight = true;
-        }
-        if (isLeft) {
             faceRight = false;
         }
+        if (isLeft) {
+            faceRight = true;
+        }
     }
-
     private void UpdateAnimation() {
         isCheckJumpAnimation = false;
         isCheckMoveAnimation = false;
         animation.setDuration(1f);
-        animation.setFrames(Assets.Instance.bulletImage);
+        animation.setFrames(Assets.Instance.bulletMonsterImage);
     }
 }

@@ -5,11 +5,11 @@ import Utils.Vector2;
 import javafx.scene.canvas.GraphicsContext;
 import JavaClass.Sprites.Assets;
 
-public class MushRoom2 extends Entity {
+public class MushRoom2 extends Monster {
     private boolean attacked;
-    public MushRoom2(Player player,Bullet b) {
+    public MushRoom2(Player p,Bullet b) {
         bullet =b;
-        this.player = player;
+        player = p;
         Init();
     }
 
@@ -22,8 +22,8 @@ public class MushRoom2 extends Entity {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(1750, 550);
-        globalPosition = new Vector2(1750, 550);
+        localPosition = new Vector2(1805, 550);
+        globalPosition = new Vector2(1805, 550);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
@@ -61,7 +61,7 @@ public class MushRoom2 extends Entity {
     private void UpdatePosition() {
         checkTileMapCollision();
         if(!isDead&&!player.isDead) {
-            checkPlayerCollision(player);
+            checkPlayerCollision();
         }
         if(isDead&&!attacked)isDead = false;
         if(player.getAttack()&&Math.abs(bullet.nextPosition.y- localPosition.y)<CollideBox.y/2&&
@@ -89,10 +89,10 @@ public class MushRoom2 extends Entity {
             isLeft = false;
             isRight = false;
         }
-        if (updatedPosition.x > 1850 && isRight) {
+        if (updatedPosition.x > 1905 && isRight) {
             isLeft = true;
             isRight = false;
-        } else if (updatedPosition.x < 1650 && isLeft) {
+        } else if (updatedPosition.x < 1705 && isLeft) {
             isRight = true;
             isLeft = false;
         }

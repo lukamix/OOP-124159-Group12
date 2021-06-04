@@ -7,16 +7,16 @@ import JavaClass.Sprites.Assets;
 import javafx.scene.canvas.GraphicsContext;
 
 public class Player extends Entity{
-
+    Bullet bullet;
     //region Key Pressed
     private boolean leftButtonPressed;
     private boolean rightButtonPressed;
     private boolean enterButtonPressed;
     private boolean spaceButtonPressed;
     private boolean bothRightLeftPressed=false;
-    private boolean isAttack;
+    private boolean collideBeeHive;
+    private boolean beforeState;
     private int destiny = 3;
-    private int point;
     //endregion
     public Player(Bullet b){
         bullet = b;
@@ -28,16 +28,19 @@ public class Player extends Entity{
         InitAnimation();
         InitMovement();
     }
+
     private void InitProperties(){
-        localPosition = new Vector2(100,400);
-        globalPosition = new Vector2(100,400);
+        isLeft = false;
+        isRight=true;
+        localPosition = new Vector2(210,500);
+        globalPosition = new Vector2(210,500);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
         Dimension = new Vector2(95,90);
-        CollideBox = new Vector2(60,80);
         CollideBox = new Vector2(50,60);
     }
+
     private void InitAnimation(){
         animation=new Animation();
         animation.setDuration(.05f);
@@ -55,12 +58,23 @@ public class Player extends Entity{
     @Override
     public void Update(GraphicsContext gc) {
         super.Update(gc);
+        UpdateDestiny();
         UpdatePosition();
         UpdateAnimation();
     }
     @Override
     public void Draw(GraphicsContext gc) {
         super.Draw(gc);
+    }
+    private void UpdateDestiny(){
+        if(!beforeState&&isDead){
+            destiny-=1;
+            beforeState = true;
+        }
+        if(destiny!=0){
+            isDead = false;
+            beforeState = false;
+        }
     }
     private void UpdatePosition(){
         checkTileMapCollision();
@@ -77,7 +91,7 @@ public class Player extends Entity{
         UpdateDy();
     }
     private void UpdateLeftRightBoolean(){
-        if(destiny<=0){
+        if(destiny==0){
             leftButtonPressed = false;
             bothRightLeftPressed = false;
             rightButtonPressed = false;
@@ -111,7 +125,7 @@ public class Player extends Entity{
         }
     }
     private void UpdateJumpBoolean(){
-        if(destiny<=0){
+        if(destiny==0){
             spaceButtonPressed = false;
             canJump = false;
         }
@@ -164,7 +178,7 @@ public class Player extends Entity{
         }
     }
     private void UpdateAttack(){
-        if(destiny<=0){
+        if(destiny==0){
             enterButtonPressed = false;
             isAttack=false;
         } else{
@@ -181,7 +195,7 @@ public class Player extends Entity{
             if(isCheckJumpAnimation) isCheckMoveAnimation = false;
             isCheckJumpAnimation = false;
         }
-        if(destiny>0){
+        if(destiny!=0){
             if(!isDead){
                 if(isJump){
                     if(!isCheckJumpAnimation){
@@ -231,12 +245,12 @@ public class Player extends Entity{
     public boolean getAttack(){
         return isAttack;
     }
-    public void setAttack(boolean isAttack){
-        this.isAttack= isAttack;
-    }
     public int getDestiny(){return destiny;}
-    public void setDestiny(int d){
-        destiny = d;
+    public boolean getCollideBeeHive(){
+        return collideBeeHive;
+    }
+    public void setCollideBeeHive(boolean collideBeeHive){
+        this.collideBeeHive = collideBeeHive;
     }
     //endregion
 }
