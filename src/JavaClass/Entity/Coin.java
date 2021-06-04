@@ -5,8 +5,13 @@ import Utils.Vector2;
 import javafx.scene.canvas.GraphicsContext;
 import JavaClass.Sprites.Assets;
 
-public class Coin extends Entity {
+public class Coin extends Monster {
     private boolean getCoin;
+    private boolean beforeState;
+    public static int beforePoint;
+    public static boolean raiseCoin;
+    public static int point;
+
     public Coin(Player p) {
         player = p;
         Init();
@@ -18,6 +23,8 @@ public class Coin extends Entity {
     }
 
     private void InitProperties() {
+        point = 0;
+        beforePoint = point;
         localPosition = new Vector2(500, 550);
         globalPosition = new Vector2(500, 550);
         velocity = new Vector2();
@@ -42,15 +49,27 @@ public class Coin extends Entity {
     public void Draw(GraphicsContext gc) {
         super.Draw(gc);
     }
-    private void checkCollisionPlayer(){
-        if(Math.abs(player.nextPosition.x-localPosition.x)< CollideBox.x/2+player.CollideBox.x/2
-                &&Math.abs(player.nextPosition.y- localPosition.y)< CollideBox.y/2+player.CollideBox.y/2)
-            calculateCornerEnemy(player);
-        if(collideBottomEnemy||collideLeftEnemy||collideRightEnemy||collideTopEnemy){
+
+    private void checkCollisionPlayer() {
+        if (Math.abs(player.nextPosition.x - localPosition.x) < CollideBox.x / 2 + player.CollideBox.x / 2
+                && Math.abs(player.nextPosition.y - localPosition.y) < CollideBox.y / 2 + player.CollideBox.y / 2)
+            calculateCornerEnemy();
+        if (collideBottomEnemy || collideLeftEnemy || collideRightEnemy || collideTopEnemy) {
             getCoin = true;
         }
+        if (!beforeState && getCoin) {
+            point++;
+            beforeState = true;
+        }
+        if (beforePoint != point) {
+            raiseCoin = true;
+        } else {
+            raiseCoin = false;
+        }
+        beforePoint = point;
     }
-    public boolean getCoin(){
+
+    public boolean getCoin() {
         return getCoin;
     }
 }
