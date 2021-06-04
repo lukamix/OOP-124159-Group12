@@ -5,11 +5,11 @@ import Utils.Vector2;
 import javafx.scene.canvas.GraphicsContext;
 import JavaClass.Sprites.Assets;
 
-public class Chicken extends Monster {
-    Egg egg;
+public class Aborigine extends Monster {
+    private BulletMonster bulletMonster;
     private boolean canAttack;
-    public Chicken(Player p,Bullet b,Egg e) {
-        egg = e;
+    public Aborigine(Player p,Bullet b,BulletMonster bm) {
+        bulletMonster = bm;
         bullet = b;
         player = p;
         Init();
@@ -24,21 +24,21 @@ public class Chicken extends Monster {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(1380, 480);
-        globalPosition = new Vector2(1380, 480);
+        localPosition = new Vector2(2460, 450);
+        globalPosition = new Vector2(2460, 450);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
-        Dimension = new Vector2(95, 90);
-        CollideBox = new Vector2(50, 60);
+        Dimension = new Vector2(100, 120);
+        CollideBox = new Vector2(60, 80);
     }
 
     private void InitAnimation() {
         animation = new Animation();
         animation.setDuration(.05f);
-        animation.setFrames(Assets.Instance.chickenImage[0]);
-        for (int i = 0; i < 4; i++) {
-            AnimationSprites.add(Assets.Instance.chickenImage[i]);
+        animation.setFrames(Assets.Instance.aborigineImage[0]);
+        for (int i = 0; i < 3; i++) {
+            AnimationSprites.add(Assets.Instance.aborigineImage[i]);
         }
     }
 
@@ -54,44 +54,40 @@ public class Chicken extends Monster {
         UpdatePosition();
         UpdateAnimation();
     }
-
     @Override
     public void Draw(GraphicsContext gc) {
         super.Draw(gc);
     }
-
     private void UpdatePosition() {
         checkTileMapCollision();
         if(!isDead&&!player.isDead) {
             checkPlayerCollision();
             checkAttack();
         }
-        if(!isDead){
-            if(player.getAttack()&&Math.abs(bullet.nextPosition.y- localPosition.y)<CollideBox.y/2&&
-                    Math.abs(bullet.nextPosition.x- localPosition.x)< CollideBox.x/2){
-                isDead = true;
-            }
+        if(player.isAttack&&Math.abs(bullet.nextPosition.y- localPosition.y)<CollideBox.y/2&&
+                Math.abs(bullet.nextPosition.x- localPosition.x)< CollideBox.x/2) {
+            isDead = true;
         }
-        if(egg.velocity.x==0)isAttack = false;
+        if(bulletMonster.velocity.x==0)isAttack = false;
         if(canAttack){
             {
                 isAttack = true;
-                egg.velocity.x = 0.5f;
+                bulletMonster.velocity.x = 0.5f;
                 if (isLeft) {
-                    egg.isLeft = true;
-                    egg.isRight = false;
-                    egg.localPosition = new Vector2(localPosition.x - CollideBox.x / 2, localPosition.y);
+                    bulletMonster.isLeft = true;
+                    bulletMonster.isRight = false;
+                    bulletMonster.localPosition = new Vector2(localPosition.x - CollideBox.x / 2, localPosition.y);
                 }
                 if (isRight) {
-                    egg.isLeft = false;
-                    egg.isRight = true;
-                    egg.localPosition = new Vector2(localPosition.x + CollideBox.x / 2, localPosition.y);
+                    bulletMonster.isLeft = false;
+                    bulletMonster.isRight = true;
+                    bulletMonster.localPosition = new Vector2(localPosition.x + CollideBox.x / 2, localPosition.y);
                 }
             }
         }
         if(isAttack){
-            if(Math.abs(player.nextPosition.x-egg.localPosition.x)< CollideBox.x/2&&
-                    Math.abs(player.nextPosition.y-egg.localPosition.y)< CollideBox.y/2){
+            if(Math.abs(player.nextPosition.x-bulletMonster.localPosition.x)< CollideBox.x/2&&
+                    Math.abs(player.nextPosition.y-bulletMonster.localPosition.y)< CollideBox.y/2){
                 player.isDead = true;
             }
         }
@@ -115,10 +111,10 @@ public class Chicken extends Monster {
             isLeft = false;
             isRight = false;
         }
-        if (updatedPosition.x > 1430 && isRight) {
+        if (updatedPosition.x > 2560 && isRight) {
             isLeft = true;
             isRight = false;
-        } else if (updatedPosition.x < 1230 && isLeft) {
+        } else if (updatedPosition.x < 2360 && isLeft) {
             isRight = true;
             isLeft = false;
         }
@@ -149,31 +145,31 @@ public class Chicken extends Monster {
                     if (!isCheckMoveAnimation) {
                         isCheckMoveAnimation = true;
                         animation.setDuration(.05f);
-                        animation.setFrames(Assets.Instance.chickenImage[0]);
+                        animation.setFrames(Assets.Instance.aborigineImage[0]);
                     }
                 } else {
                     isCheckMoveAnimation = false;
                     animation.setDuration(.05f);
-                    animation.setFrames(Assets.Instance.chickenImage[2]);
+                    animation.setFrames(Assets.Instance.aborigineImage[0]);
                 }
-            }else{
+            } else{
                 isCheckMoveAnimation = false;
                 animation.setDuration(.05f);
-                animation.setFrames(Assets.Instance.chickenImage[1]);
+                animation.setFrames(Assets.Instance.aborigineImage[1]);
             }
         }
         else {
             isCheckJumpAnimation = false;
             isCheckMoveAnimation = false;
             animation.setDuration(0.05f);
-            animation.setFrames(Assets.Instance.chickenImage[3]);
+            animation.setFrames(Assets.Instance.aborigineImage[2]);
         }
     }
     private void checkAttack(){
         int nextColEnemy = (int)(player.nextPosition.x)/30;
         int nextRowEnemy = (int)(player.nextPosition.y)/30;
         if(((nextColEnemy<currentCol&&nextColEnemy>currentCol-8&&isLeft)
-                ||(nextColEnemy>currentCol&&nextColEnemy<currentCol+8&&isRight))&&Math.abs(nextRowEnemy-currentRow)<=1){
+                ||(nextColEnemy>currentCol&&nextColEnemy<currentCol+8&&isRight))&&Math.abs(nextRowEnemy-currentRow)<=3){
             canAttack = true;
         }else{
             canAttack = false;

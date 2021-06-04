@@ -6,8 +6,8 @@ import Utils.Vector2;
 import javafx.scene.canvas.GraphicsContext;
 import JavaClass.Sprites.Assets;
 
-public class BatPig extends Monster {
-    public BatPig(Player p,Bullet b) {
+public class Bee extends Monster {
+    public Bee(Player p,Bullet b) {
         bullet = b;
         player = p;
         Init();
@@ -22,27 +22,25 @@ public class BatPig extends Monster {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(850, 400);
-        globalPosition = new Vector2(850, 400);
+        localPosition = new Vector2(6280, 495);
+        globalPosition = new Vector2(6280, 495);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
-        Dimension = new Vector2(50, 60);
-        CollideBox = new Vector2(40, 50);
+        Dimension = new Vector2(40, 30);
+        CollideBox = new Vector2(40, 30);
     }
 
     private void InitAnimation() {
         animation = new Animation();
         animation.setDuration(.05f);
-        animation.setFrames(Assets.Instance.batPigImage[0]);
-        for (int i = 0; i < 2; i++) {
-            AnimationSprites.add(Assets.Instance.batPigImage[i]);
-        }
+        animation.setFrames(Assets.Instance.beeImage);
+        AnimationSprites.add(Assets.Instance.beeImage);
     }
 
     private void InitMovement() {
         velocity.x = 1f;
-        velocity.y = 0.1f;
+        velocity.y = 0f;
         maxVec = 2.0f;
     }
 
@@ -60,6 +58,9 @@ public class BatPig extends Monster {
 
     private void UpdatePosition() {
         checkTileMapCollision();
+        if(collideBottom||collideLeft||collideRight||collideTop||topLeft||topRight||bottomLeft||bottomRight){
+            player.setCollideBeeHive(false);
+        }
         if(!isDead&&!player.isDead) {
             checkPlayerCollision();
         }
@@ -72,46 +73,26 @@ public class BatPig extends Monster {
         UpdateXY();
         setPosition(updatedPosition);
         if (isRight) {
-            faceRight = false;
+            faceRight = true;
         }
         if (isLeft) {
-            faceRight = true;
+            faceRight = false;
         }
     }
 
     private void UpdateXY() {
-        UpdateLeftRightBoolean();
         UpdateDx();
         UpdateDy();
     }
 
-    private void UpdateLeftRightBoolean() {
-        if(isDead){
-            isLeft = false;
-            isRight = false;
-        }
-        if (updatedPosition.x > 950 && isRight) {
-            isLeft = true;
-            isRight = false;
-        } else if (updatedPosition.x < 750 && isLeft) {
-            isRight = true;
-            isLeft = false;
-        }
-    }
-
     private void UpdateDx() {
-        if (isLeft) {
-            dx -= velocity.x;
-            if (dx < -maxVec) {
-                dx = -maxVec;
+        if(!isDead){
+            dx+=velocity.x;
+            if(dx>20){
+                dx=0;
+                velocity.x = 0;
+                player.setCollideBeeHive(false);
             }
-        } else if (isRight) {
-            dx += velocity.x;
-            if (dx > maxVec) {
-                dx = maxVec;
-            }
-        } else {
-            dx = 0;
         }
     }
     private void UpdateDy(){
@@ -134,40 +115,11 @@ public class BatPig extends Monster {
                 jumping =false;
             }
         }
-        if (isLeft) {
-            dy -= velocity.y;
-            if (dy < -maxVec) {
-                dy = -maxVec;
-            }
-        } else if (isRight) {
-            dy += velocity.y;
-            if (dy > maxVec) {
-                dy = maxVec;
-            }
-        }
     }
     private void UpdateAnimation() {
-        if (isGrounded) {
-            if (isCheckJumpAnimation) isCheckMoveAnimation = false;
-        }
-        if(!isDead){
-            if (isLeft || isRight) {
-                if (!isCheckMoveAnimation) {
-                    isCheckMoveAnimation = true;
-                    animation.setDuration(.05f);
-                    animation.setFrames(Assets.Instance.batPigImage[0]);
-                }
-            } else {
-                isCheckMoveAnimation = false;
-                animation.setDuration(.05f);
-                animation.setFrames(Assets.Instance.batPigImage[0]);
-            }
-        }
-        else {
-            isCheckJumpAnimation = false;
-            isCheckMoveAnimation = false;
-            animation.setDuration(0.05f);
-            animation.setFrames(Assets.Instance.batPigImage[1]);
-        }
+        isCheckJumpAnimation = false;
+        isCheckMoveAnimation = false;
+        animation.setDuration(0.05f);
+        animation.setFrames(Assets.Instance.beeImage);
     }
 }

@@ -10,8 +10,6 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 
 public abstract class Entity {
-    protected Bullet bullet;
-    protected Player player;
     //region Entity Properties
     protected Vector2 localPosition;
     protected Vector2 Dimension;
@@ -35,10 +33,6 @@ public abstract class Entity {
     protected boolean collideLeft;
     protected boolean collideRight;
 
-    protected boolean collideTopEnemy;
-    protected boolean collideBottomEnemy;
-    protected boolean collideRightEnemy;
-    protected boolean collideLeftEnemy;
     //endregions
     protected double dx;
     protected double dy;
@@ -51,6 +45,7 @@ public abstract class Entity {
     protected boolean isCheckJumpAnimation;
     protected boolean isGrounded;
     protected boolean isDead;
+    protected boolean isAttack;
     //endregion
     //region Map Properties
     public TileMap tileMap;
@@ -66,17 +61,13 @@ public abstract class Entity {
     {
         if(!faceRight) {
             gc.drawImage(animation.getImage(),localPosition.x - globalPosition.x + Dimension.x/2,
-                    localPosition.y- globalPosition.y - Dimension.y/2,-Dimension.x, Dimension.y);
+                    localPosition.y-globalPosition.y - Dimension.y/2,-Dimension.x, Dimension.y);
         }
         else
         {
             gc.drawImage(animation.getImage(), localPosition.x -globalPosition.x - Dimension.x/2,
                     localPosition.y - globalPosition.y - Dimension.y/2, Dimension.x, Dimension.y);
         }
-    }
-    public void setPosition(Vector2 position)
-    {
-        localPosition = position;
     }
     protected void checkTileMapCollision(){
         currentCol = (int)localPosition.x/30;
@@ -155,48 +146,6 @@ public abstract class Entity {
         collideRight = (typeRight == Tile.BLOCKED);
         //endregion
     }
-    protected void checkPlayerCollision(Player player) {
-        if(Math.abs(player.nextPosition.x-localPosition.x)< CollideBox.x/2+player.CollideBox.x/2
-                &&Math.abs(player.nextPosition.y- localPosition.y)< CollideBox.y/2+player.CollideBox.y/2)
-            calculateCornerEnemy(player);
-        if(collideRightEnemy||collideLeftEnemy){
-            updatedPosition.x = localPosition.x;
-            player.updatedPosition.x = player.localPosition.x;
-        }
-        if(collideBottomEnemy||collideTopEnemy){
-            updatedPosition.y = localPosition.y;
-            player.updatedPosition.y = player.localPosition.y;
-        }
-        if(collideTopEnemy||collideRightEnemy||collideLeftEnemy){
-            player.isDead = true;
-        }
-        if(collideBottomEnemy){
-            isDead = true;
-        }
-    }
-    protected void calculateCornerEnemy(Player player) {
-        int left = (int)(localPosition.x-CollideBox.x/2+0.001)/30;
-        int right = (int)(localPosition.x+ CollideBox.x/2-0.001)/30;
-        int top = (int)(localPosition.y-CollideBox.y/2+0.001)/30;
-        int bottom = (int)(localPosition.y+ CollideBox.y/2-0.001)/30;
-
-        int leftEnemy = (int)(player.nextPosition.x-player.CollideBox.x/2+0.001)/30;
-        int rightEnemy = (int)(player.nextPosition.x+ player.CollideBox.x/2-0.001)/30;
-        int topEnemy = (int)(player.nextPosition.y-player.CollideBox.y/2+0.001)/30;
-        int bottomEnemy = (int)(player.nextPosition.y+ player.CollideBox.y/2-0.001)/30;
-
-        collideTopEnemy = (topEnemy == bottom);
-        collideBottomEnemy = (bottomEnemy == top);
-        collideLeftEnemy = (leftEnemy == right);
-        collideRightEnemy = (rightEnemy == left);
-
-        if(collideTopEnemy&&collideLeftEnemy||collideTopEnemy&&collideRightEnemy){
-            collideTopEnemy = false;
-        }
-        if(collideBottomEnemy&&collideRightEnemy||collideBottomEnemy&&collideLeftEnemy){
-            collideBottomEnemy = false;
-        }
-    }
     public void setGlobalPosition()
     {
         globalPosition.x=tileMap.getX();
@@ -204,5 +153,21 @@ public abstract class Entity {
     }
     public Vector2 getNextPosition() {
         return nextPosition;
+    }
+    public void setPosition(Vector2 position)
+    {
+        localPosition = position;
+    }
+    public Vector2 getLocalPosition(){
+        return  localPosition;
+    }
+    public boolean getAttack(){
+        return isAttack;
+    }
+    public Vector2 getCollideBox(){
+        return CollideBox;
+    }
+    public Vector2 getGlobalPosition(){
+        return globalPosition;
     }
 }
