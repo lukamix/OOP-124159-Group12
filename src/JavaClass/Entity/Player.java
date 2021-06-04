@@ -200,7 +200,7 @@ public class Player extends Entity{
                 if(isJump){
                     if(!isCheckJumpAnimation){
                         isCheckJumpAnimation =true;
-                        animation.setDuration(.05f);
+                        animation.setDuration(.08f);
                         animation.setFrames(Assets.Instance.playerImage[2]);
                     }
                 }
