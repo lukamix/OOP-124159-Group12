@@ -78,7 +78,9 @@ public class Assets {
             playerImage[1][i] = new Image( new FileInputStream(
                     "src/Resources/Textures/Character Player/Orc/move/main_character_move"+i+".png"));
         }
-        playerImage[2][0] = new Image(new FileInputStream("src/Resources/Textures/Character Player/Orc/jump/main_character_jump.png"));
+        for(int i=0;i<13;i++){
+            playerImage[2][i] = new Image(new FileInputStream("src/Resources/Textures/Character Player/Orc/jump/main_character_jump_up"+i+".png"));
+        }
         for(int i=0;i<9;i++){
             playerImage[3][i] = new Image( new FileInputStream(
                     "src/Resources/Textures/Character Player/Orc/attack/main_character_attack"+i+".png"));
