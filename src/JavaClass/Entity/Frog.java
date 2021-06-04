@@ -5,8 +5,8 @@ import Utils.Vector2;
 import javafx.scene.canvas.GraphicsContext;
 import JavaClass.Sprites.Assets;
 
-public class MushRoom extends Monster {
-    public MushRoom(Player p,Bullet b) {
+public class Frog extends Monster {
+    public Frog(Player p,Bullet b) {
         bullet = b;
         player = p;
         Init();
@@ -21,8 +21,8 @@ public class MushRoom extends Monster {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(380, 573);
-        globalPosition = new Vector2(380, 573);
+        localPosition = new Vector2(4850, 400);
+        globalPosition = new Vector2(4850, 400);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
@@ -33,9 +33,9 @@ public class MushRoom extends Monster {
     private void InitAnimation() {
         animation = new Animation();
         animation.setDuration(.05f);
-        animation.setFrames(Assets.Instance.mushroomImage[0]);
-        for (int i = 0; i < 3; i++) {
-            AnimationSprites.add(Assets.Instance.mushroomImage[i]);
+        animation.setFrames(Assets.Instance.frogImage[0]);
+        for (int i = 0; i < 2; i++) {
+            AnimationSprites.add(Assets.Instance.frogImage[i]);
         }
     }
 
@@ -86,10 +86,10 @@ public class MushRoom extends Monster {
             isLeft = false;
             isRight = false;
         }
-        if (updatedPosition.x > 480 && isRight) {
+        if (updatedPosition.x > 4950 && isRight) {
             isLeft = true;
             isRight = false;
-        } else if (updatedPosition.x < 280 && isLeft) {
+        } else if (updatedPosition.x < 4750 && isLeft) {
             isRight = true;
             isLeft = false;
         }
@@ -119,19 +119,19 @@ public class MushRoom extends Monster {
                 if (!isCheckMoveAnimation) {
                     isCheckMoveAnimation = true;
                     animation.setDuration(.05f);
-                    animation.setFrames(Assets.Instance.mushroomImage[0]);
+                    animation.setFrames(Assets.Instance.frogImage[0]);
                 }
             } else {
                 isCheckMoveAnimation = false;
                 animation.setDuration(.05f);
-                animation.setFrames(Assets.Instance.mushroomImage[0]);
+                animation.setFrames(Assets.Instance.frogImage[0]);
             }
         }
         else {
             isCheckJumpAnimation = false;
             isCheckMoveAnimation = false;
             animation.setDuration(0.05f);
-            animation.setFrames(Assets.Instance.mushroomImage[2]);
+            animation.setFrames(Assets.Instance.frogImage[1]);
         }
     }
 }
