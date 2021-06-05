@@ -37,10 +37,7 @@ public class GameManager {
             new MushRoom(player,bullet,new Vector2(1400,310),new Vector2(1400,310),1400,1295),
             new MushRoom(player,bullet,new Vector2(2130,550),new Vector2(2130,550),2130,2000),
             new MushRoom(player,bullet,new Vector2(4850,400),new Vector2(4850,400),5260,4850),//11
-
-
-           // new MushRoom(player,bullet,new Vector2())
-    };
+                                        };
 
     private Egg egg = new Egg();
     private MushRoom2[] mushroom2 = {
@@ -116,9 +113,7 @@ public class GameManager {
                          mushroom[9].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          mushroom[10].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          mushroom[11].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                         mushroom2[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          mushroom2[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                         mushroom2[8].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          mushroom2[9].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          mushroom2[10].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          batpig[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
@@ -177,15 +172,7 @@ public class GameManager {
                                  coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                              }
                          }
-                         try{
-                             sceneManager.currentCanvas.getGraphicsContext2D().drawImage(
-                                     new Image(new FileInputStream(
-                                             "src/Resources/Textures/Assets/Coin/item_coin4.png")),200,0);
-                         }
-                             catch(FileNotFoundException e){
-                             e.printStackTrace();
-                         }
-                         
+
                          //handle star
                          try{
                              if(!star[0].getStar()){
@@ -237,7 +224,9 @@ public class GameManager {
                         mushroom2[5].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom2[6].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom2[7].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+
                         vulture[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+
                         chicken[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         if(chicken[0].getAttack()){
                             egg.Update(sceneManager.currentCanvas.getGraphicsContext2D());
@@ -333,115 +322,9 @@ public class GameManager {
                         }catch(FileNotFoundException e) {
                             e.printStackTrace();
                         }
-
-
-
+                        
                     }
 
-                    //handle map 3
-
-                    if (sceneManager.currentScene == sceneManager.map1[2]){
-                        //handle monster
-                        vulture[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                        chicken[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                        if(chicken[0].getAttack()){
-                            egg.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                        }
-                        batpig[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                        aborigine[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                        if(aborigine[0].getAttack()){
-                            bulletMonster.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                        }
-                        //handle coin map3
-                        for(int i = 0;i<4;i++){
-                            if(!coin[i].getCoin()) {
-                                coin[i].setPosition(new Vector2(640 + i * 50, 540));
-                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                            }
-                        }
-                        for(int i = 4;i<10;i++){
-                            if(!coin[i].getCoin()) {
-                                    coin[i].setPosition(new Vector2(1068 + i * 50, 340));
-                                    coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                            }
-                        }
-                        for(int i = 10;i<14;i++){
-                            if(!coin[i].getCoin()) {
-                                        coin[i].setPosition(new Vector2(1319 + i * 50, 670));
-                                        coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                            }
-                        }
-                        for(int i = 14;i< 18;i++){
-                            if(!coin[i].getCoin()) {
-                                coin[i].setPosition(new Vector2(1800 + i * 50, 488));
-                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                            }
-                        }
-                        for(int i = 18;i<22;i++){
-                            if(!coin[i].getCoin()) {
-                                coin[i].setPosition(new Vector2(2252 + i * 50, 540));
-                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                            }
-                        }
-                        for(int i = 22;i< 26;i++){
-                            if(!coin[i].getCoin()) {
-                                coin[i].setPosition(new Vector2(3130 + i * 50, 375));
-                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                            }
-                        }
-                        for(int i = 26;i<32;i++){
-                            if(!coin[i].getCoin()) {
-                                coin[i].setPosition(new Vector2(5700 + i * 50, 516));
-                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                            }
-                        }
-                        for(int i = 32;i<36;i++){
-                            if(!coin[i].getCoin()) {
-                                coin[i].setPosition(new Vector2(7295 + i * 50, 450));
-                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                            }
-                        }for(int i = 36;i<42;i++){
-                            if(!coin[i].getCoin()) {
-                                coin[i].setPosition(new Vector2(8400 + i * 50, 570));
-                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                            }
-                        }
-                        //handle star map 3
-                        try{
-                            if(!star[0].getStar()){
-                                star[0].setPosition(new Vector2(1400,300));
-                                star[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                            }else{
-                                sceneManager.currentCanvas.getGraphicsContext2D().drawImage(
-                                        new Image(new FileInputStream(
-                                                "src/Resources/Textures/Assets/Star/star2.png"
-                                        )),1000,5);
-                            }
-                            if(!star[1].getStar()){
-                                star[1].setPosition(new Vector2(2400,670));
-                                star[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                            }else{
-                                sceneManager.currentCanvas.getGraphicsContext2D().drawImage(
-                                        new Image(new FileInputStream(
-                                                "src/Resources/Textures/Assets/Star/star.png"
-                                        )),1060,0);
-                            }
-                            if(!star[2].getStar()){
-                                star[2].setPosition(new Vector2(10250,540));
-                                star[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                            }
-                            else{
-                                sceneManager.currentCanvas.getGraphicsContext2D().drawImage(
-                                        new Image(new FileInputStream(
-                                                "src/Resources/Textures/Assets/Star/star1.png")),1120,5);
-                            }
-                        }catch(FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
-
-
-
-                    }
                     //handle destiny
                     try{
                         if(player.getDestiny()>0){
