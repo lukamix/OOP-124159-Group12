@@ -24,13 +24,14 @@ public class GameManager {
     private Bullet bullet = new Bullet();
     public Player player = new Player(bullet);
 
-    private MushRoom[] mushroom = {new MushRoom(player,bullet,new Vector2(380,573),new Vector2(380,575),480,280),
+    private MushRoom[] mushroom = {new MushRoom(player,bullet,new Vector2(380,575),new Vector2(380,575),480,280),
                                    new MushRoom(player,bullet,new Vector2(1320,220),new Vector2(1320,220),1420,1220)};
 
     private Egg egg = new Egg();
     private Chicken chicken = new Chicken(player,bullet,egg);
     private BatPig batpig = new BatPig(player,bullet);
-    private MushRoom2 mushroom2 = new MushRoom2(player,bullet);
+    private MushRoom2[] mushroom2 = {new MushRoom2(player,bullet,new Vector2(600,600),new Vector2(600,600),400,200),
+                                     new MushRoom2(player,bullet,new Vector2(800,500),new Vector2(800,500),800,600)};
     private Frog frog = new Frog(player,bullet);
     private BulletMonster bulletMonster = new BulletMonster();
     private Aborigine aborigine = new Aborigine(player,bullet,bulletMonster);
@@ -48,7 +49,7 @@ public class GameManager {
             ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
             ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
             ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
-            ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)};
+            ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)};
     private Star[] star = {new Star(player),new Star(player),new Star(player)};
     private Grass grass = new Grass();
     public void GameLoop() {
@@ -60,7 +61,6 @@ public class GameManager {
                     player.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                     chicken.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                     batpig.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                    mushroom2.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                     frog.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                     aborigine.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                     vulture.Update(sceneManager.currentCanvas.getGraphicsContext2D());
@@ -92,6 +92,9 @@ public class GameManager {
                          //handle monster
                          mushroom[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          mushroom[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                         mushroom2[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                         mushroom2[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+
 
 
                          //handle coin
@@ -187,6 +190,10 @@ public class GameManager {
                          }
 
                      }
+                     //handle map2
+                    if (sceneManager.currentScene == sceneManager.map1[1]){
+
+                    }
 
 
                     //handle destiny
@@ -223,7 +230,6 @@ public class GameManager {
         player.tileMap = sceneManager.currentScene.tileMap;
         chicken.tileMap = sceneManager.currentScene.tileMap;
         batpig.tileMap = sceneManager.currentScene.tileMap;
-        mushroom2.tileMap = sceneManager.currentScene.tileMap;
         frog.tileMap = sceneManager.currentScene.tileMap;
         aborigine.tileMap = sceneManager.currentScene.tileMap;
         woodpecker.tileMap = sceneManager.currentScene.tileMap;
@@ -238,12 +244,15 @@ public class GameManager {
         speedLine.tileMap = sceneManager.currentScene.tileMap;
         vulture.tileMap = sceneManager.currentScene.tileMap;
         checkPoint.tileMap = sceneManager.currentScene.tileMap;
-        for (int i = 0; i < 41; i++)
+        for (int i = 0; i < 42; i++)
             coin[i].tileMap = sceneManager.currentScene.tileMap;
         for (int i = 0; i < 3; i++)
             star[i].tileMap = sceneManager.currentScene.tileMap;
         for (int i = 0; i < 2; i++)
             mushroom[i].tileMap = sceneManager.currentScene.tileMap;
+        for (int i = 0; i < 2; i++)
+            mushroom2[i].tileMap = sceneManager.currentScene.tileMap;
+
 
     }
     public void StopGameLoop(){
