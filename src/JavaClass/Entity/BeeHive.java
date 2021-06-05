@@ -17,8 +17,8 @@ public class BeeHive extends Monster {
     }
 
     private void InitProperties() {
-        localPosition = new Vector2(6250, 495);
-        globalPosition = new Vector2(6250, 495);
+        localPosition = new Vector2(5300, 478);
+        globalPosition = new Vector2(5300, 478);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();

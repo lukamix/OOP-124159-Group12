@@ -43,6 +43,7 @@ public class GameManager {
     };
 
     private Egg egg = new Egg();
+<<<<<<< Updated upstream
     private Chicken chicken = new Chicken(player,bullet,egg);
     private BatPig batpig = new BatPig(player,bullet);
     private MushRoom2[] mushroom2 = {
@@ -60,16 +61,30 @@ public class GameManager {
 
     };
     private Frog frog = new Frog(player,bullet);
+=======
+
+    private Chicken[] chicken = {new Chicken(player,bullet,egg,new Vector2(7500,500),new Vector2(7500,500),7500,7300)};
+
+    private BatPig[] batpig = {new BatPig(player,bullet,new Vector2(1250,300),new Vector2(1250,300),1250,1000),
+                                new BatPig(player,bullet,new Vector2(3250,300),new Vector2(3250,300),3250,3000),
+                                 new BatPig(player,bullet,new Vector2(1330,350),new Vector2(1330,350),1330,1130)};
+
+    private MushRoom2[] mushroom2 = {new MushRoom2(player,bullet,new Vector2(600,600),new Vector2(600,600),400,200),
+                                     new MushRoom2(player,bullet,new Vector2(800,500),new Vector2(800,500),800,600)};
+
+    private Frog[] frog ={ new Frog(player,bullet,new Vector2(4850,400),new Vector2(4850,400),4950,4750)};
+
+>>>>>>> Stashed changes
     private BulletMonster bulletMonster = new BulletMonster();
-    private Aborigine aborigine = new Aborigine(player,bullet,bulletMonster);
+    private Aborigine[] aborigine = {new Aborigine(player,bullet,bulletMonster,new Vector2(8150,550),new Vector2(8150,550),8150,7950)};
     private Woodpecker woodpecker = new Woodpecker(player,bullet);
     private BeeHive beehive = new BeeHive(player);
     private Bee bee = new Bee(player,bullet);
     private UglyBird uglyBird = new UglyBird(player);
     private SpeedLine speedLine = new SpeedLine();
     private Flag flag = new Flag();
-    private CheckPoint checkPoint = new CheckPoint();
-    private Vulture vulture = new Vulture(player,bullet);
+    private CheckPoint[] checkPoint = {new CheckPoint(),new CheckPoint(),new CheckPoint()};
+    private Vulture[] vulture = {new Vulture(player,bullet,new Vector2(2900,370),new Vector2(2900,370),2900,2700)};
     public Coin[] coin = {new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
             ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
             ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
@@ -86,11 +101,7 @@ public class GameManager {
                     sceneManager.currentCanvas.getGraphicsContext2D().clearRect(0, 0, SystemConstant.SCREEN_WIDTH, SystemConstant.SCREEN_HEIGHT);
                     sceneManager.currentScene.Update(player,sceneManager.currentCanvas.getGraphicsContext2D());
                     player.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                    chicken.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                    batpig.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                    frog.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                    aborigine.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                    vulture.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+
                     PostRender.Update(sceneManager.currentCanvas.getGraphicsContext2D());
 
                     if(uglyBird.getAttack()){
@@ -99,23 +110,16 @@ public class GameManager {
                         speedLine.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                     }
                     uglyBird.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                    if(aborigine.getAttack()){
-                        bulletMonster.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                    }
-                    if(chicken.getAttack()){
-                        egg.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                    }
                     woodpecker.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                    beehive.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                    if(player.getCollideBeeHive()){
-                        bee.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                    }
                     if(player.getAttack()) {
                         bullet.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                     }
                     grass.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+
                     //handle map1
+
                      if (sceneManager.currentScene == sceneManager.map1[0]){
+<<<<<<< Updated upstream
                          //handle monster
                          mushroom[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          mushroom[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
@@ -127,6 +131,19 @@ public class GameManager {
                          mushroom2[8].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          mushroom2[9].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          mushroom2[10].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+=======
+
+                         //handle monster
+                         batpig[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                         batpig[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                         frog[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                         beehive.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                         if(player.getCollideBeeHive()){
+                             bee.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                         }
+
+
+>>>>>>> Stashed changes
                          //handle coin
                          for(int i = 0;i<4;i++){
                              if(!coin[i].getCoin()) {
@@ -172,10 +189,11 @@ public class GameManager {
                          }
                          for(int i = 29;i<33;i++){
                              if(!coin[i].getCoin()) {
-                                 coin[i].setPosition(new Vector2(3600 + i * 50, 600));
+                                 coin[i].setPosition(new Vector2(3740 + i * 50, 600));
                                  coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                              }
                          }
+<<<<<<< Updated upstream
 
                          try{
                              sceneManager.currentCanvas.getGraphicsContext2D().drawImage(
@@ -186,10 +204,12 @@ public class GameManager {
                              e.printStackTrace();
                          }
 
+=======
+>>>>>>> Stashed changes
                          //handle star
                          try{
                              if(!star[0].getStar()){
-                                 star[0].setPosition(new Vector2(1555,570));
+                                 star[0].setPosition(new Vector2(1535,500));
                                  star[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                              }else{
                                  sceneManager.currentCanvas.getGraphicsContext2D().drawImage(
@@ -198,7 +218,7 @@ public class GameManager {
                                          )),1000,5);
                              }
                              if(!star[1].getStar()){
-                                 star[1].setPosition(new Vector2(2500,320));
+                                 star[1].setPosition(new Vector2(2800,220));
                                  star[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                              }else{
                                  sceneManager.currentCanvas.getGraphicsContext2D().drawImage(
@@ -207,7 +227,7 @@ public class GameManager {
                                          )),1060,0);
                              }
                              if(!star[2].getStar()){
-                                 star[2].setPosition(new Vector2(3600,580));
+                                 star[2].setPosition(new Vector2(5500,580));
                                  star[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                              }
                              else{
@@ -237,6 +257,116 @@ public class GameManager {
                         mushroom2[6].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom2[7].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                     }
+<<<<<<< Updated upstream
+=======
+
+                    //handle map 3
+
+                    if (sceneManager.currentScene == sceneManager.map1[2]){
+                        //handle monster
+                        vulture[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        chicken[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        if(chicken[0].getAttack()){
+                            egg.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                        batpig[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        aborigine[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        if(aborigine[0].getAttack()){
+                            bulletMonster.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                        //handle coin map3
+                        for(int i = 0;i<4;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(640 + i * 50, 540));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        for(int i = 4;i<10;i++){
+                            if(!coin[i].getCoin()) {
+                                    coin[i].setPosition(new Vector2(1068 + i * 50, 340));
+                                    coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        for(int i = 10;i<14;i++){
+                            if(!coin[i].getCoin()) {
+                                        coin[i].setPosition(new Vector2(1319 + i * 50, 670));
+                                        coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        for(int i = 14;i< 18;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(1800 + i * 50, 488));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        for(int i = 18;i<22;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(2252 + i * 50, 540));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        for(int i = 22;i< 26;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(3130 + i * 50, 375));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        for(int i = 26;i<32;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(5700 + i * 50, 516));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        for(int i = 32;i<36;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(7295 + i * 50, 450));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }for(int i = 36;i<42;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(8400 + i * 50, 570));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        //handle star map 3
+                        try{
+                            if(!star[0].getStar()){
+                                star[0].setPosition(new Vector2(1400,300));
+                                star[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }else{
+                                sceneManager.currentCanvas.getGraphicsContext2D().drawImage(
+                                        new Image(new FileInputStream(
+                                                "src/Resources/Textures/Assets/Star/star2.png"
+                                        )),1000,5);
+                            }
+                            if(!star[1].getStar()){
+                                star[1].setPosition(new Vector2(2400,670));
+                                star[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }else{
+                                sceneManager.currentCanvas.getGraphicsContext2D().drawImage(
+                                        new Image(new FileInputStream(
+                                                "src/Resources/Textures/Assets/Star/star.png"
+                                        )),1060,0);
+                            }
+                            if(!star[2].getStar()){
+                                star[2].setPosition(new Vector2(10250,540));
+                                star[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                            else{
+                                sceneManager.currentCanvas.getGraphicsContext2D().drawImage(
+                                        new Image(new FileInputStream(
+                                                "src/Resources/Textures/Assets/Star/star1.png")),1120,5);
+                            }
+                        }catch(FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+                    }
+
+
+>>>>>>> Stashed changes
                     //handle destiny
                     try{
                         if(player.getDestiny()>0){
@@ -269,10 +399,6 @@ public class GameManager {
     public void InitGameLoop() {
         KeyHandler.AddKeyListener(sceneManager.currentScene, player);
         player.tileMap = sceneManager.currentScene.tileMap;
-        chicken.tileMap = sceneManager.currentScene.tileMap;
-        batpig.tileMap = sceneManager.currentScene.tileMap;
-        frog.tileMap = sceneManager.currentScene.tileMap;
-        aborigine.tileMap = sceneManager.currentScene.tileMap;
         woodpecker.tileMap = sceneManager.currentScene.tileMap;
         bullet.tileMap = sceneManager.currentScene.tileMap;
         egg.tileMap = sceneManager.currentScene.tileMap;
@@ -283,8 +409,6 @@ public class GameManager {
         grass.tileMap = sceneManager.currentScene.tileMap;
         uglyBird.tileMap = sceneManager.currentScene.tileMap;
         speedLine.tileMap = sceneManager.currentScene.tileMap;
-        vulture.tileMap = sceneManager.currentScene.tileMap;
-        checkPoint.tileMap = sceneManager.currentScene.tileMap;
         for (int i = 0; i < 42; i++)
             coin[i].tileMap = sceneManager.currentScene.tileMap;
         for (int i = 0; i < 3; i++)
@@ -293,6 +417,18 @@ public class GameManager {
             mushroom[i].tileMap = sceneManager.currentScene.tileMap;
         for (int i = 0; i < 11; i++)
             mushroom2[i].tileMap = sceneManager.currentScene.tileMap;
+        for (int i = 0; i < 3; i++)
+            checkPoint[i].tileMap = sceneManager.currentScene.tileMap;
+        for (int i = 0; i < 3; i++)
+            batpig[i].tileMap = sceneManager.currentScene.tileMap;
+        for (int i = 0; i < 1; i++)
+            frog[i].tileMap = sceneManager.currentScene.tileMap;
+        for (int i = 0; i < 1; i++)
+            chicken[i].tileMap = sceneManager.currentScene.tileMap;
+        for (int i = 0; i < 1; i++)
+            aborigine[i].tileMap = sceneManager.currentScene.tileMap;
+        for (int i = 0; i < 1; i++)
+            vulture[i].tileMap = sceneManager.currentScene.tileMap;
 
 
     }

@@ -7,9 +7,13 @@ import javafx.scene.canvas.GraphicsContext;
 import JavaClass.Sprites.Assets;
 
 public class Vulture extends Monster {
-    public Vulture(Player p,Bullet b) {
+    public Vulture(Player p,Bullet b,Vector2 localPosition,Vector2 globalPosition,double x_max,double x_min) {
         bullet = b;
         player = p;
+        this.localPosition = localPosition;
+        this.globalPosition = globalPosition;
+        this.x_max = x_max;
+        this.x_min = x_min;
         Init();
     }
 
@@ -22,8 +26,6 @@ public class Vulture extends Monster {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(3150, 200);
-        globalPosition = new Vector2(3150, 200);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
@@ -90,10 +92,10 @@ public class Vulture extends Monster {
             isLeft = false;
             isRight = false;
         }
-        if (updatedPosition.x > 3250 && isRight) {
+        if (updatedPosition.x > x_max && isRight) {
             isLeft = true;
             isRight = false;
-        } else if (updatedPosition.x < 3050 && isLeft) {
+        } else if (updatedPosition.x < x_min && isLeft) {
             isRight = true;
             isLeft = false;
         }

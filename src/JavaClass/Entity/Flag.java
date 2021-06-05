@@ -18,8 +18,8 @@ public class Flag extends Entity {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(8435, 490);
-        globalPosition = new Vector2(8435, 490);
+        localPosition = new Vector2(435, 490);
+        globalPosition = new Vector2(435, 490);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();

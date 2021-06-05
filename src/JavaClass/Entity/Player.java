@@ -61,7 +61,11 @@ public class Player extends Entity{
         UpdateDestiny();
         UpdatePosition();
         UpdateAnimation();
+<<<<<<< Updated upstream
         System.out.println(localPosition.x+"     "+ localPosition.y);
+=======
+        System.out.println(localPosition.x+""+localPosition.y);
+>>>>>>> Stashed changes
     }
     @Override
     public void Draw(GraphicsContext gc) {

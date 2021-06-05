@@ -8,10 +8,14 @@ import JavaClass.Sprites.Assets;
 public class Chicken extends Monster {
     Egg egg;
     private boolean canAttack;
-    public Chicken(Player p,Bullet b,Egg e) {
+    public Chicken(Player p,Bullet b,Egg e,Vector2 localPosition,Vector2 globalPosition,double x_max,double x_min) {
         egg = e;
         bullet = b;
         player = p;
+        this.localPosition = localPosition;
+        this.globalPosition = globalPosition;
+        this.x_max = x_max;
+        this.x_min = x_min;
         Init();
     }
 
@@ -24,8 +28,6 @@ public class Chicken extends Monster {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(1380, 480);
-        globalPosition = new Vector2(1380, 480);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
@@ -115,10 +117,10 @@ public class Chicken extends Monster {
             isLeft = false;
             isRight = false;
         }
-        if (updatedPosition.x > 1430 && isRight) {
+        if (updatedPosition.x > x_max && isRight) {
             isLeft = true;
             isRight = false;
-        } else if (updatedPosition.x < 1230 && isLeft) {
+        } else if (updatedPosition.x < x_min && isLeft) {
             isRight = true;
             isLeft = false;
         }
