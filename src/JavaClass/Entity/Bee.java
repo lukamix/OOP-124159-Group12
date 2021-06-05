@@ -22,8 +22,8 @@ public class Bee extends Monster {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(6280, 495);
-        globalPosition = new Vector2(6280, 495);
+        localPosition = new Vector2(5300, 478);
+        globalPosition = new Vector2(5300, 478);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
