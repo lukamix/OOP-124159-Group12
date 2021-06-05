@@ -136,7 +136,4 @@ public class MushRoom extends Monster {
             animation.setFrames(Assets.Instance.mushroomImage[2]);
         }
     }
-    public boolean getMushRoom() {
-        return getMushRoom();
-    }
 }
