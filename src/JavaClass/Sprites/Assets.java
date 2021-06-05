@@ -146,15 +146,21 @@ public class Assets {
         ));
     }
     public void InitCoinImage() throws FileNotFoundException{
+        for(int i=0;i<4;i++) {
+            coinImage[i] = new Image(new FileInputStream(
+                    "src/Resources/Textures/Assets/Coin/item_coin" + i + ".png"));
+        }
+        /*
         coinImage[0] = new Image(new FileInputStream(
-                "src/Resources/Textures/Assets/Coin/item_coin0.png"
-        ));
+                "src/Resources/Textures/Assets/Coin/item_coin0.png"));
         coinImage[1] = new Image(new FileInputStream(
                 "src/Resources/Textures/Assets/Coin/item_coin1.png"));
         coinImage[2] = new Image(new FileInputStream(
                 "src/Resources/Textures/Assets/Coin/item_coin2.png"));
         coinImage[3] = new Image(new FileInputStream(
                 "src/Resources/Textures/Assets/Coin/item_coin3.png"));
+
+         */
     }
     public void InitStarImage() throws FileNotFoundException {
         starImage[0] = new Image(new FileInputStream(
