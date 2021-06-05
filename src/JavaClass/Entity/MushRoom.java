@@ -6,9 +6,13 @@ import javafx.scene.canvas.GraphicsContext;
 import JavaClass.Sprites.Assets;
 
 public class MushRoom extends Monster {
-    public MushRoom(Player p,Bullet b) {
+    public MushRoom(Player p,Bullet b,Vector2 localPosition,Vector2 globalPosition,double x_max,double x_min) {
         bullet = b;
         player = p;
+        this.localPosition = localPosition;
+        this.globalPosition = globalPosition;
+        this.x_max = x_max;
+        this.x_min = x_min;
         Init();
     }
 
@@ -21,8 +25,6 @@ public class MushRoom extends Monster {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(380, 573);
-        globalPosition = new Vector2(380, 573);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
@@ -86,10 +88,10 @@ public class MushRoom extends Monster {
             isLeft = false;
             isRight = false;
         }
-        if (updatedPosition.x > 480 && isRight) {
+        if (updatedPosition.x > x_max && isRight) {
             isLeft = true;
             isRight = false;
-        } else if (updatedPosition.x < 280 && isLeft) {
+        } else if (updatedPosition.x < x_min && isLeft) {
             isRight = true;
             isLeft = false;
         }
@@ -133,5 +135,8 @@ public class MushRoom extends Monster {
             animation.setDuration(0.05f);
             animation.setFrames(Assets.Instance.mushroomImage[2]);
         }
+    }
+    public boolean getMushRoom() {
+        return getMushRoom();
     }
 }
