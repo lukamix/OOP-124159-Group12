@@ -9,6 +9,9 @@ public class Monster extends Entity{
     protected boolean collideRightEnemy;
     protected boolean collideLeftEnemy;
 
+    protected  double x_max;
+    protected  double x_min;
+
     protected void checkPlayerCollision() {
         if(Math.abs(player.nextPosition.x-localPosition.x)< CollideBox.x/2+player.CollideBox.x/2
                 &&Math.abs(player.nextPosition.y- localPosition.y)< CollideBox.y/2+player.CollideBox.y/2)
