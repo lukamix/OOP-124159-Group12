@@ -24,14 +24,41 @@ public class GameManager {
     private Bullet bullet = new Bullet();
     public Player player = new Player(bullet);
 
-    private MushRoom[] mushroom = {new MushRoom(player,bullet,new Vector2(380,575),new Vector2(380,575),480,280),
-                                   new MushRoom(player,bullet,new Vector2(1320,220),new Vector2(1320,220),1420,1220)};
+    private MushRoom[] mushroom = {
+            new MushRoom(player,bullet,new Vector2(380,575),new Vector2(380,575),480,280),
+            new MushRoom(player,bullet,new Vector2(1455,190),new Vector2(1455,190),1630,1455),
+            new MushRoom(player,bullet,new Vector2(480,610),new Vector2(300,610),480,300),
+            new MushRoom(player,bullet,new Vector2(1560,340),new Vector2(1560,340),1560,1220),
+            new MushRoom(player,bullet,new Vector2(2060,670),new Vector2(2060,670),2060,1780),//4
+            new MushRoom(player,bullet,new Vector2(10500,220),new Vector2(10500,220),10500,9870),
+            new MushRoom(player,bullet,new Vector2(8280,570),new Vector2(8200,570),8280,7900),
+            new MushRoom(player,bullet,new Vector2(9190,580),new Vector2(9190,580),9190,8740),
+            new MushRoom(player,bullet,new Vector2(4950,400),new Vector2(4950,400),4950,4350),//8
+            new MushRoom(player,bullet,new Vector2(1400,310),new Vector2(1400,310),1400,1295),
+            new MushRoom(player,bullet,new Vector2(2130,550),new Vector2(2130,550),2130,2000),
+            new MushRoom(player,bullet,new Vector2(4850,400),new Vector2(4850,400),5260,4850),//11
+
+
+           // new MushRoom(player,bullet,new Vector2())
+    };
 
     private Egg egg = new Egg();
     private Chicken chicken = new Chicken(player,bullet,egg);
     private BatPig batpig = new BatPig(player,bullet);
-    private MushRoom2[] mushroom2 = {new MushRoom2(player,bullet,new Vector2(600,600),new Vector2(600,600),400,200),
-                                     new MushRoom2(player,bullet,new Vector2(800,500),new Vector2(800,500),800,600)};
+    private MushRoom2[] mushroom2 = {
+            new MushRoom2(player,bullet,new Vector2(630,580),new Vector2(630,580),630,300),
+            new MushRoom2(player,bullet,new Vector2(930,520),new Vector2(930,520),930,780),
+            new MushRoom2(player,bullet,new Vector2(810,550),new Vector2(810,550),810,660),//2
+            new MushRoom2(player,bullet,new Vector2(10260,585),new Vector2(10260,585),10260,9860),
+            new MushRoom2(player,bullet,new Vector2(5070,640),new Vector2(5070,640),5070,4880),
+            new MushRoom2(player,bullet,new Vector2(7300,520),new Vector2(7300,520),7300,6960),
+            new MushRoom2(player,bullet,new Vector2(9060,465),new Vector2(9060,465),9060,8890),//6
+            new MushRoom2(player,bullet,new Vector2(3300,550),new Vector2(3300,550),3300,3145),//7
+            new MushRoom2(player,bullet,new Vector2(1630,190),new Vector2(1630,190),1630,1455),
+            new MushRoom2(player,bullet,new Vector2(3850,220),new Vector2(3850,220),3850,3730),
+            new MushRoom2(player,bullet,new Vector2(5550,610),new Vector2(5550,610),5550,5200),//10
+
+    };
     private Frog frog = new Frog(player,bullet);
     private BulletMonster bulletMonster = new BulletMonster();
     private Aborigine aborigine = new Aborigine(player,bullet,bulletMonster);
@@ -92,11 +119,14 @@ public class GameManager {
                          //handle monster
                          mushroom[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          mushroom[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                         mushroom[9].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                         mushroom[10].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                         mushroom[11].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          mushroom2[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          mushroom2[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-
-
-
+                         mushroom2[8].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                         mushroom2[9].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                         mushroom2[10].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          //handle coin
                          for(int i = 0;i<4;i++){
                              if(!coin[i].getCoin()) {
@@ -150,9 +180,9 @@ public class GameManager {
                          try{
                              sceneManager.currentCanvas.getGraphicsContext2D().drawImage(
                                      new Image(new FileInputStream(
-                                             "src/Resources/Textures/Assets/Coin/item_coin4.png"
-                                     )),200,0);
-                         }catch(FileNotFoundException e){
+                                             "src/Resources/Textures/Assets/Coin/item_coin4.png")),200,0);
+                         }
+                             catch(FileNotFoundException e){
                              e.printStackTrace();
                          }
 
@@ -190,12 +220,23 @@ public class GameManager {
                          }
 
                      }
-                     //handle map2
-                    if (sceneManager.currentScene == sceneManager.map1[1]){
-
+                    //handle map3
+                    if (sceneManager.currentScene == sceneManager.map1[2]) {
+                    //handle monster
+                        mushroom[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        mushroom[3].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        mushroom[4].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        mushroom[5].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        mushroom[6].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        mushroom[7].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        mushroom[8].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        mushroom2[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        mushroom2[3].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        mushroom2[4].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        mushroom2[5].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        mushroom2[6].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        mushroom2[7].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                     }
-
-
                     //handle destiny
                     try{
                         if(player.getDestiny()>0){
@@ -248,9 +289,9 @@ public class GameManager {
             coin[i].tileMap = sceneManager.currentScene.tileMap;
         for (int i = 0; i < 3; i++)
             star[i].tileMap = sceneManager.currentScene.tileMap;
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 12; i++)
             mushroom[i].tileMap = sceneManager.currentScene.tileMap;
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 11; i++)
             mushroom2[i].tileMap = sceneManager.currentScene.tileMap;
 
 
