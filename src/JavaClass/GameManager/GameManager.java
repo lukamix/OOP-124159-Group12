@@ -43,10 +43,6 @@ public class GameManager {
     };
 
     private Egg egg = new Egg();
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    private Chicken chicken = new Chicken(player,bullet,egg);
-    private BatPig batpig = new BatPig(player,bullet);
     private MushRoom2[] mushroom2 = {
             new MushRoom2(player,bullet,new Vector2(630,580),new Vector2(630,580),630,300),
             new MushRoom2(player,bullet,new Vector2(930,520),new Vector2(930,520),930,780),
@@ -61,10 +57,6 @@ public class GameManager {
             new MushRoom2(player,bullet,new Vector2(5550,610),new Vector2(5550,610),5550,5200),//10
 
     };
-    private Frog frog = new Frog(player,bullet);
-=======
-=======
->>>>>>> Stashed changes
 
     private Chicken[] chicken = {new Chicken(player,bullet,egg,new Vector2(7500,500),new Vector2(7500,500),7500,7300)};
 
@@ -72,15 +64,8 @@ public class GameManager {
                                 new BatPig(player,bullet,new Vector2(3250,300),new Vector2(3250,300),3250,3000),
                                  new BatPig(player,bullet,new Vector2(1330,350),new Vector2(1330,350),1330,1130)};
 
-    private MushRoom2[] mushroom2 = {new MushRoom2(player,bullet,new Vector2(600,600),new Vector2(600,600),400,200),
-                                     new MushRoom2(player,bullet,new Vector2(800,500),new Vector2(800,500),800,600)};
-
     private Frog[] frog ={ new Frog(player,bullet,new Vector2(4850,400),new Vector2(4850,400),4950,4750)};
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     private BulletMonster bulletMonster = new BulletMonster();
     private Aborigine[] aborigine = {new Aborigine(player,bullet,bulletMonster,new Vector2(8150,550),new Vector2(8150,550),8150,7950)};
     private Woodpecker woodpecker = new Woodpecker(player,bullet);
@@ -125,8 +110,6 @@ public class GameManager {
                     //handle map1
 
                      if (sceneManager.currentScene == sceneManager.map1[0]){
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
                          //handle monster
                          mushroom[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          mushroom[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
@@ -138,11 +121,6 @@ public class GameManager {
                          mushroom2[8].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          mushroom2[9].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          mushroom2[10].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-=======
-=======
->>>>>>> Stashed changes
-
-                         //handle monster
                          batpig[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          batpig[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          frog[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
@@ -150,9 +128,6 @@ public class GameManager {
                          if(player.getCollideBeeHive()){
                              bee.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          }
-
-
->>>>>>> Stashed changes
                          //handle coin
                          for(int i = 0;i<4;i++){
                              if(!coin[i].getCoin()) {
@@ -202,9 +177,6 @@ public class GameManager {
                                  coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                              }
                          }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-
                          try{
                              sceneManager.currentCanvas.getGraphicsContext2D().drawImage(
                                      new Image(new FileInputStream(
@@ -213,11 +185,7 @@ public class GameManager {
                              catch(FileNotFoundException e){
                              e.printStackTrace();
                          }
-
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+                         
                          //handle star
                          try{
                              if(!star[0].getStar()){
@@ -252,9 +220,10 @@ public class GameManager {
                          }
 
                      }
-                    //handle map3
-                    if (sceneManager.currentScene == sceneManager.map1[2]) {
-                    //handle monster
+                    //handle map 3
+
+                    if (sceneManager.currentScene == sceneManager.map1[2]){
+                        //handle monster
                         mushroom[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom[3].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom[4].Update(sceneManager.currentCanvas.getGraphicsContext2D());
@@ -268,14 +237,6 @@ public class GameManager {
                         mushroom2[5].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom2[6].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom2[7].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                    }
-<<<<<<< Updated upstream
-=======
-
-                    //handle map 3
-
-                    if (sceneManager.currentScene == sceneManager.map1[2]){
-                        //handle monster
                         vulture[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         chicken[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         if(chicken[0].getAttack()){
@@ -481,9 +442,6 @@ public class GameManager {
 
 
                     }
-
-
->>>>>>> Stashed changes
                     //handle destiny
                     try{
                         if(player.getDestiny()>0){
