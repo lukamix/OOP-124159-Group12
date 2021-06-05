@@ -62,7 +62,11 @@ public class Player extends Entity{
         UpdatePosition();
         UpdateAnimation();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         System.out.println(localPosition.x+"     "+ localPosition.y);
+=======
+        System.out.println(localPosition.x+""+localPosition.y);
+>>>>>>> Stashed changes
 =======
         System.out.println(localPosition.x+""+localPosition.y);
 >>>>>>> Stashed changes

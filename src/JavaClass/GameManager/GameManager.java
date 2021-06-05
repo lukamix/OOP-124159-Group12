@@ -44,6 +44,7 @@ public class GameManager {
 
     private Egg egg = new Egg();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     private Chicken chicken = new Chicken(player,bullet,egg);
     private BatPig batpig = new BatPig(player,bullet);
     private MushRoom2[] mushroom2 = {
@@ -62,6 +63,8 @@ public class GameManager {
     };
     private Frog frog = new Frog(player,bullet);
 =======
+=======
+>>>>>>> Stashed changes
 
     private Chicken[] chicken = {new Chicken(player,bullet,egg,new Vector2(7500,500),new Vector2(7500,500),7500,7300)};
 
@@ -74,6 +77,9 @@ public class GameManager {
 
     private Frog[] frog ={ new Frog(player,bullet,new Vector2(4850,400),new Vector2(4850,400),4950,4750)};
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     private BulletMonster bulletMonster = new BulletMonster();
     private Aborigine[] aborigine = {new Aborigine(player,bullet,bulletMonster,new Vector2(8150,550),new Vector2(8150,550),8150,7950)};
@@ -120,6 +126,7 @@ public class GameManager {
 
                      if (sceneManager.currentScene == sceneManager.map1[0]){
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                          //handle monster
                          mushroom[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          mushroom[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
@@ -132,6 +139,8 @@ public class GameManager {
                          mushroom2[9].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          mushroom2[10].Update(sceneManager.currentCanvas.getGraphicsContext2D());
 =======
+=======
+>>>>>>> Stashed changes
 
                          //handle monster
                          batpig[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
@@ -194,6 +203,7 @@ public class GameManager {
                              }
                          }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
                          try{
                              sceneManager.currentCanvas.getGraphicsContext2D().drawImage(
@@ -204,6 +214,8 @@ public class GameManager {
                              e.printStackTrace();
                          }
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                          //handle star
@@ -259,6 +271,111 @@ public class GameManager {
                     }
 <<<<<<< Updated upstream
 =======
+
+                    //handle map 3
+
+                    if (sceneManager.currentScene == sceneManager.map1[2]){
+                        //handle monster
+                        vulture[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        chicken[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        if(chicken[0].getAttack()){
+                            egg.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                        batpig[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        aborigine[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        if(aborigine[0].getAttack()){
+                            bulletMonster.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+                        //handle coin map3
+                        for(int i = 0;i<4;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(640 + i * 50, 540));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        for(int i = 4;i<10;i++){
+                            if(!coin[i].getCoin()) {
+                                    coin[i].setPosition(new Vector2(1068 + i * 50, 340));
+                                    coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        for(int i = 10;i<14;i++){
+                            if(!coin[i].getCoin()) {
+                                        coin[i].setPosition(new Vector2(1319 + i * 50, 670));
+                                        coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        for(int i = 14;i< 18;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(1800 + i * 50, 488));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        for(int i = 18;i<22;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(2252 + i * 50, 540));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        for(int i = 22;i< 26;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(3130 + i * 50, 375));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        for(int i = 26;i<32;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(5700 + i * 50, 516));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        for(int i = 32;i<36;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(7295 + i * 50, 450));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }for(int i = 36;i<42;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(8400 + i * 50, 570));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        //handle star map 3
+                        try{
+                            if(!star[0].getStar()){
+                                star[0].setPosition(new Vector2(1400,300));
+                                star[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }else{
+                                sceneManager.currentCanvas.getGraphicsContext2D().drawImage(
+                                        new Image(new FileInputStream(
+                                                "src/Resources/Textures/Assets/Star/star2.png"
+                                        )),1000,5);
+                            }
+                            if(!star[1].getStar()){
+                                star[1].setPosition(new Vector2(2400,670));
+                                star[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }else{
+                                sceneManager.currentCanvas.getGraphicsContext2D().drawImage(
+                                        new Image(new FileInputStream(
+                                                "src/Resources/Textures/Assets/Star/star.png"
+                                        )),1060,0);
+                            }
+                            if(!star[2].getStar()){
+                                star[2].setPosition(new Vector2(10250,540));
+                                star[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                            else{
+                                sceneManager.currentCanvas.getGraphicsContext2D().drawImage(
+                                        new Image(new FileInputStream(
+                                                "src/Resources/Textures/Assets/Star/star1.png")),1120,5);
+                            }
+                        }catch(FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+                    }
 
                     //handle map 3
 
