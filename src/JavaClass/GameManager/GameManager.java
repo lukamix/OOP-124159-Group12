@@ -65,7 +65,7 @@ public class GameManager {
     private BulletMonster bulletMonster = new BulletMonster();
 
     private Aborigine[] aborigine = {new Aborigine(player,bullet,bulletMonster,new Vector2(8150,550),new Vector2(8150,550),8150,7950),
-                                     new Aborigine(player,bullet,bulletMonster,new Vector2(10550,530),new Vector2(10550,530),10550,10350)};
+                                     new Aborigine(player,bullet,bulletMonster,new Vector2(10350,555),new Vector2(10350,555),10350,10150)};
 
     private Woodpecker woodpecker = new Woodpecker(player,bullet);
     private BeeHive beehive = new BeeHive(player);
@@ -213,7 +213,7 @@ public class GameManager {
                      }
                     //handle map 3
 
-                    if (sceneManager.currentScene == sceneManager.map1[2]){
+                    if (sceneManager.currentScene == sceneManager.map1[1]){
                         //handle monster
                         mushroom[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom[3].Update(sceneManager.currentCanvas.getGraphicsContext2D());
@@ -227,7 +227,6 @@ public class GameManager {
                         mushroom2[5].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom2[6].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom2[7].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-
                         vulture[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         vulture[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         vulture[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
