@@ -16,8 +16,8 @@ public class CheckPoint extends Entity {
     }
 
     private void InitProperties() {
-        localPosition = new Vector2(8450, 490);
-        globalPosition = new Vector2(8450, 490);
+        localPosition = new Vector2(450, 490);
+        globalPosition = new Vector2(450, 490);
         Dimension = new Vector2(50, 140);
     }
 
