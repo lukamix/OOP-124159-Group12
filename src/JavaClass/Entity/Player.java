@@ -15,8 +15,8 @@ public class Player extends Entity{
     private boolean spaceButtonPressed;
     private boolean bothRightLeftPressed=false;
     private boolean collideBeeHive;
-    private boolean beforeState;
     private int destiny = 3;
+
     //endregion
     public Player(Bullet b){
         bullet = b;
@@ -58,23 +58,12 @@ public class Player extends Entity{
     @Override
     public void Update(GraphicsContext gc) {
         super.Update(gc);
-        UpdateDestiny();
         UpdatePosition();
         UpdateAnimation();
     }
     @Override
     public void Draw(GraphicsContext gc) {
         super.Draw(gc);
-    }
-    private void UpdateDestiny(){
-        if(!beforeState&&isDead){
-            destiny-=1;
-            beforeState = true;
-        }
-        if(destiny!=0){
-            isDead = false;
-            beforeState = false;
-        }
     }
     private void UpdatePosition(){
         checkTileMapCollision();
@@ -251,6 +240,9 @@ public class Player extends Entity{
     }
     public void setCollideBeeHive(boolean collideBeeHive){
         this.collideBeeHive = collideBeeHive;
+    }
+    public void setDestiny(int destiny){
+        this.destiny = destiny;
     }
     //endregion
 }

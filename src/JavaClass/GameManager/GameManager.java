@@ -88,6 +88,7 @@ public class GameManager {
             ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)};
     private Star[] star = {new Star(player),new Star(player),new Star(player)};
     private Grass grass = new Grass();
+
     public void GameLoop() {
         InitGameLoop();
         KeyFrame kf = new KeyFrame(Duration.seconds(SystemConstant.FPS),
@@ -95,9 +96,7 @@ public class GameManager {
                     sceneManager.currentCanvas.getGraphicsContext2D().clearRect(0, 0, SystemConstant.SCREEN_WIDTH, SystemConstant.SCREEN_HEIGHT);
                     sceneManager.currentScene.Update(player,sceneManager.currentCanvas.getGraphicsContext2D());
                     player.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-
                     PostRender.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-
                     if(uglyBird.getAttack()){
                         speedLine.setPosition(new Vector2(uglyBird.getLocalPosition().x+2*uglyBird.getCollideBox().x,
                                 uglyBird.getLocalPosition().y));
@@ -211,10 +210,11 @@ public class GameManager {
                          }
 
                      }
-                    //handle map 3
+                    //handle map 2
 
                     if (sceneManager.currentScene == sceneManager.map1[1]){
                         //handle monster
+
                         mushroom[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom[3].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom[4].Update(sceneManager.currentCanvas.getGraphicsContext2D());
@@ -338,7 +338,10 @@ public class GameManager {
                         }
 
                     }
-
+                    //handle map3_boss
+                    if (sceneManager.currentScene == sceneManager.map1[2]){
+                        grass.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                    }
                     //handle destiny
                     try{
                         if(player.getDestiny()>0){
@@ -398,8 +401,8 @@ public class GameManager {
             aborigine[i].tileMap = sceneManager.currentScene.tileMap;
         for (int i = 0; i < 5; i++)
             vulture[i].tileMap = sceneManager.currentScene.tileMap;
-            woodpecker.tileMap = sceneManager.currentScene.tileMap;
-            grass.tileMap = sceneManager.currentScene.tileMap;
+        woodpecker.tileMap = sceneManager.currentScene.tileMap;
+        grass.tileMap = sceneManager.currentScene.tileMap;
 
 
     }
