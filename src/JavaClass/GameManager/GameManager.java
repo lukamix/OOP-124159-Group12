@@ -63,8 +63,10 @@ public class GameManager {
     private Frog[] frog ={ new Frog(player,bullet,new Vector2(4850,400),new Vector2(4850,400),4950,4750)};
 
     private BulletMonster bulletMonster = new BulletMonster();
+
     private Aborigine[] aborigine = {new Aborigine(player,bullet,bulletMonster,new Vector2(8150,550),new Vector2(8150,550),8150,7950),
                                      new Aborigine(player,bullet,bulletMonster,new Vector2(10550,530),new Vector2(10550,530),10550,10350)};
+
     private Woodpecker woodpecker = new Woodpecker(player,bullet);
     private BeeHive beehive = new BeeHive(player);
     private Bee bee = new Bee(player,bullet);
@@ -72,7 +74,11 @@ public class GameManager {
     private SpeedLine speedLine = new SpeedLine();
     private Flag flag = new Flag();
     private CheckPoint checkPoint = new CheckPoint();
-    private Vulture[] vulture = {new Vulture(player,bullet,new Vector2(2900,370),new Vector2(2900,370),2900,2700)};
+    private Vulture[] vulture = {new Vulture(player,bullet,new Vector2(2900,370),new Vector2(2900,370),2900,2700),
+                                 new Vulture(player,bullet,new Vector2(4300,390),new Vector2(4800,390),4800,4600),
+                                 new Vulture(player,bullet,new Vector2(4500,370),new Vector2(4500,370),4500,4300),
+                                 new Vulture(player,bullet,new Vector2(5600,375),new Vector2(5600,375),5600,5400),
+                                 new Vulture(player,bullet,new Vector2(6300,350),new Vector2(6300,350),6300,6100)};
     public Coin[] coin = {new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
             ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
             ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
@@ -98,11 +104,9 @@ public class GameManager {
                         speedLine.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                     }
                     uglyBird.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                    woodpecker.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                     if(player.getAttack()) {
                         bullet.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                     }
-                    grass.Update(sceneManager.currentCanvas.getGraphicsContext2D());
 
                     //handle map1
 
@@ -225,6 +229,12 @@ public class GameManager {
                         mushroom2[7].Update(sceneManager.currentCanvas.getGraphicsContext2D());
 
                         vulture[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        vulture[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        vulture[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        vulture[3].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        vulture[4].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+
+
 
                         chicken[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         if(chicken[0].getAttack()){
@@ -239,6 +249,8 @@ public class GameManager {
                         if(aborigine[1].getAttack()){
                             bulletMonster.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         }
+                        woodpecker.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        grass.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         //handle coin map3
                         for(int i = 0;i<4;i++){
                             if(!coin[i].getCoin()) {
@@ -360,7 +372,6 @@ public class GameManager {
     public void InitGameLoop() {
         KeyHandler.AddKeyListener(sceneManager.currentScene, player);
         player.tileMap = sceneManager.currentScene.tileMap;
-        woodpecker.tileMap = sceneManager.currentScene.tileMap;
         bullet.tileMap = sceneManager.currentScene.tileMap;
         egg.tileMap = sceneManager.currentScene.tileMap;
         flag.tileMap = sceneManager.currentScene.tileMap;
@@ -368,7 +379,6 @@ public class GameManager {
         bulletMonster.tileMap = sceneManager.currentScene.tileMap;
         beehive.tileMap = sceneManager.currentScene.tileMap;
         bee.tileMap = sceneManager.currentScene.tileMap;
-        grass.tileMap = sceneManager.currentScene.tileMap;
         uglyBird.tileMap = sceneManager.currentScene.tileMap;
         speedLine.tileMap = sceneManager.currentScene.tileMap;
         for (int i = 0; i < 42; i++)
@@ -387,8 +397,10 @@ public class GameManager {
             chicken[i].tileMap = sceneManager.currentScene.tileMap;
         for (int i = 0; i < 2; i++)
             aborigine[i].tileMap = sceneManager.currentScene.tileMap;
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 5; i++)
             vulture[i].tileMap = sceneManager.currentScene.tileMap;
+            woodpecker.tileMap = sceneManager.currentScene.tileMap;
+            grass.tileMap = sceneManager.currentScene.tileMap;
 
 
     }
