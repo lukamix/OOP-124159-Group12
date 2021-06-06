@@ -25,8 +25,8 @@ public class Woodpecker extends Monster {
         isRight = false;
         isTop = true;
         isBottom = false;
-        localPosition = new Vector2(6450, 530);
-        globalPosition = new Vector2(6450, 530);
+        localPosition = new Vector2(5265, 530);
+        globalPosition = new Vector2(5265, 530);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
@@ -92,11 +92,11 @@ public class Woodpecker extends Monster {
             isTop = false;
             isBottom = false;
         }
-        if(updatedPosition.y>570&&isTop){
+        if(updatedPosition.y>540&&isTop){
             isBottom = true;
             isTop = false;
         }
-        if(updatedPosition.y<480&&isBottom){
+        if(updatedPosition.y<470&&isBottom){
             isTop = true;
             isBottom = false;
         }
