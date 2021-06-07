@@ -11,8 +11,6 @@ public class Monster extends Entity{
 
     protected  double x_max;
     protected  double x_min;
-    protected  double y_max;
-    protected  double y_min;
 
     protected void checkPlayerCollision() {
         if(Math.abs(player.nextPosition.x-localPosition.x)< CollideBox.x/2+player.CollideBox.x/2

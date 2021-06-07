@@ -74,6 +74,7 @@ public class GameManager {
     private SpeedLine speedLine = new SpeedLine();
     private Flag flag = new Flag();
     private CheckPoint[] checkPoint = {new CheckPoint(),new CheckPoint(),new CheckPoint()};
+    private Gold gold = new Gold();
     private Vulture[] vulture = {new Vulture(player,bullet,new Vector2(2900,370),new Vector2(2900,370),2900,2700),
                                  new Vulture(player,bullet,new Vector2(4300,390),new Vector2(4800,390),4800,4600),
                                  new Vulture(player,bullet,new Vector2(4500,370),new Vector2(4500,370),4500,4300),
@@ -365,7 +366,12 @@ public class GameManager {
                     }
                     //handle map3_boss
                     if (sceneManager.currentScene == sceneManager.map1[2]){
-                        grass.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        gold.setPosition(new Vector2(3080,365));
+                        gold.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        if(player.getLocalPosition().x>3080){
+                            PostRender2.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
+
                     }
                     //handle destiny
                     try{
@@ -439,6 +445,7 @@ public class GameManager {
             tree[i].tileMap = sceneManager.currentScene.tileMap;
         woodpecker.tileMap = sceneManager.currentScene.tileMap;
         grass.tileMap = sceneManager.currentScene.tileMap;
+        gold.tileMap = sceneManager.currentScene.tileMap;
 
 
     }
