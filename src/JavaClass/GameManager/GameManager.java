@@ -388,7 +388,15 @@ public class GameManager {
                         s = Integer.toString(Coin.point);
                         sceneManager.currentCanvas.getGraphicsContext2D().setFont((Font.loadFont(new FileInputStream("src/Fonts/OpenSans/OpenSansRegular.ttf"),35)));
                         sceneManager.currentCanvas.getGraphicsContext2D().fillText(s,278,53);
+                        s = Integer.toString(Player.countBullet);
+                        sceneManager.currentCanvas.getGraphicsContext2D().fillText(s,528,53);
                     }catch(FileNotFoundException e){
+                        e.printStackTrace();
+                    }
+                    try {
+                        sceneManager.currentCanvas.getGraphicsContext2D().drawImage(new Image(
+                                new FileInputStream("src/Resources/Textures/bullet.png")),420,15);
+                    }catch (FileNotFoundException e){
                         e.printStackTrace();
                     }
                 });
