@@ -73,7 +73,7 @@ public class GameManager {
     private UglyBird uglyBird = new UglyBird(player);
     private SpeedLine speedLine = new SpeedLine();
     private Flag flag = new Flag();
-    private CheckPoint checkPoint = new CheckPoint();
+    private CheckPoint[] checkPoint = {new CheckPoint(),new CheckPoint(),new CheckPoint()};
     private Vulture[] vulture = {new Vulture(player,bullet,new Vector2(2900,370),new Vector2(2900,370),2900,2700),
                                  new Vulture(player,bullet,new Vector2(4300,390),new Vector2(4800,390),4800,4600),
                                  new Vulture(player,bullet,new Vector2(4500,370),new Vector2(4500,370),4500,4300),
@@ -87,7 +87,9 @@ public class GameManager {
             ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
             ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)};
     private Star[] star = {new Star(player),new Star(player),new Star(player)};
+    private Tree[] tree = {new Tree(),new Tree(),new Tree(),new Tree(),new Tree(),new Tree()};
     private Grass grass = new Grass();
+
     public void GameLoop() {
         InitGameLoop();
         KeyFrame kf = new KeyFrame(Duration.seconds(SystemConstant.FPS),
@@ -95,9 +97,7 @@ public class GameManager {
                     sceneManager.currentCanvas.getGraphicsContext2D().clearRect(0, 0, SystemConstant.SCREEN_WIDTH, SystemConstant.SCREEN_HEIGHT);
                     sceneManager.currentScene.Update(player,sceneManager.currentCanvas.getGraphicsContext2D());
                     player.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-
                     PostRender.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-
                     if(uglyBird.getAttack()){
                         speedLine.setPosition(new Vector2(uglyBird.getLocalPosition().x+2*uglyBird.getCollideBox().x,
                                 uglyBird.getLocalPosition().y));
@@ -127,6 +127,14 @@ public class GameManager {
                          if(player.getCollideBeeHive()){
                              bee.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          }
+                         tree[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                         tree[1].setPosition(new Vector2(2275,343));
+                         tree[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                         for(int i=2;i<5;i++){
+                             tree[i].setDimension(new Vector2(150,300));
+                         }
+                         tree[2].setPosition(new Vector2(5000,274));
+                         tree[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                          //handle coin
                          for(int i = 0;i<4;i++){
                              if(!coin[i].getCoin()) {
@@ -209,12 +217,19 @@ public class GameManager {
                          }catch(FileNotFoundException e) {
                              e.printStackTrace();
                          }
+                         checkPoint[0].setPosition(new Vector2(5665,470));
+                         checkPoint[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                         if(player.getLocalPosition().x>5665){
+                             flag.setPosition(new Vector2(5655,470));
+                             flag.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                         }
 
                      }
-                    //handle map 3
+                    //handle map 2
 
                     if (sceneManager.currentScene == sceneManager.map1[1]){
                         //handle monster
+
                         mushroom[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom[3].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom[4].Update(sceneManager.currentCanvas.getGraphicsContext2D());
@@ -250,6 +265,10 @@ public class GameManager {
                         }
                         woodpecker.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         grass.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        tree[0].setPosition(new Vector2(150,437));
+                        tree[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        tree[1].setPosition(new Vector2(7850,406));
+                        tree[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         //handle coin map3
                         for(int i = 0;i<4;i++){
                             if(!coin[i].getCoin()) {
@@ -325,7 +344,7 @@ public class GameManager {
                                         )),1060,0);
                             }
                             if(!star[2].getStar()){
-                                star[2].setPosition(new Vector2(10250,540));
+                                star[2].setPosition(new Vector2(10450,540));
                                 star[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                             }
                             else{
@@ -336,9 +355,18 @@ public class GameManager {
                         }catch(FileNotFoundException e) {
                             e.printStackTrace();
                         }
+                        checkPoint[1].setPosition(new Vector2(10500,180));
+                        checkPoint[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        if(player.getLocalPosition().x>10500){
+                            flag.setPosition(new Vector2(10490,180));
+                            flag.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
 
                     }
-
+                    //handle map3_boss
+                    if (sceneManager.currentScene == sceneManager.map1[2]){
+                        grass.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                    }
                     //handle destiny
                     try{
                         if(player.getDestiny()>0){
@@ -374,7 +402,6 @@ public class GameManager {
         bullet.tileMap = sceneManager.currentScene.tileMap;
         egg.tileMap = sceneManager.currentScene.tileMap;
         flag.tileMap = sceneManager.currentScene.tileMap;
-        checkPoint.tileMap = sceneManager.currentScene.tileMap;
         bulletMonster.tileMap = sceneManager.currentScene.tileMap;
         beehive.tileMap = sceneManager.currentScene.tileMap;
         bee.tileMap = sceneManager.currentScene.tileMap;
@@ -390,6 +417,8 @@ public class GameManager {
             mushroom2[i].tileMap = sceneManager.currentScene.tileMap;
         for (int i = 0; i < 3; i++)
             batpig[i].tileMap = sceneManager.currentScene.tileMap;
+        for (int i = 0; i < 3; i++)
+            checkPoint[i].tileMap = sceneManager.currentScene.tileMap;
         for (int i = 0; i < 1; i++)
             frog[i].tileMap = sceneManager.currentScene.tileMap;
         for (int i = 0; i < 1; i++)
@@ -398,8 +427,10 @@ public class GameManager {
             aborigine[i].tileMap = sceneManager.currentScene.tileMap;
         for (int i = 0; i < 5; i++)
             vulture[i].tileMap = sceneManager.currentScene.tileMap;
-            woodpecker.tileMap = sceneManager.currentScene.tileMap;
-            grass.tileMap = sceneManager.currentScene.tileMap;
+        for (int i = 0; i < 6; i++)
+            tree[i].tileMap = sceneManager.currentScene.tileMap;
+        woodpecker.tileMap = sceneManager.currentScene.tileMap;
+        grass.tileMap = sceneManager.currentScene.tileMap;
 
 
     }
