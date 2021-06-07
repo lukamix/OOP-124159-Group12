@@ -16,6 +16,7 @@ public class Player extends Entity{
     private boolean bothRightLeftPressed=false;
     private boolean collideBeeHive;
     private int destiny = 3;
+    public static int countBullet = 4;
 
     //endregion
     public Player(Bullet b){
@@ -167,12 +168,19 @@ public class Player extends Entity{
         }
     }
     private void UpdateAttack(){
-        if(destiny==0){
+        if(destiny==0||countBullet==0){
             enterButtonPressed = false;
             isAttack=false;
+            if (countBullet==0) {
+                if (bullet.velocity.x!=0){
+                    isAttack = true;
+                }else {isAttack = false; }
+            }
         } else{
             if(bullet.velocity.x==0)isAttack = false;
             if(enterButtonPressed){
+                countBullet-=1;
+                enterButtonPressed=false;
                 bullet.velocity.x = 0.5;
                 bullet.setPosition(new Vector2(localPosition.x+CollideBox.x/2,localPosition.y));
                 isAttack = true;
