@@ -16,9 +16,9 @@ public class Grass extends Entity {
     }
 
     private void InitProperties() {
-        localPosition = new Vector2(6450, 560);
-        globalPosition = new Vector2(6450, 560);
-        Dimension = new Vector2(150, 150);
+        localPosition = new Vector2(5265, 520);
+        globalPosition = new Vector2(5265, 520);
+        Dimension = new Vector2(100, 100);
     }
 
     private void InitAnimation() {
@@ -37,10 +37,12 @@ public class Grass extends Entity {
     public void Draw(GraphicsContext gc) {
         super.Draw(gc);
     }
-    public void setDimension(Vector2 v){
+
+    public void setDimension(Vector2 v) {
         Dimension = v;
     }
-    public Animation getAnimation(){
+
+    public Animation getAnimation() {
         return animation;
     }
 }

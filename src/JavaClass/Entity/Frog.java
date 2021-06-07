@@ -6,9 +6,13 @@ import javafx.scene.canvas.GraphicsContext;
 import JavaClass.Sprites.Assets;
 
 public class Frog extends Monster {
-    public Frog(Player p,Bullet b) {
+    public Frog(Player p,Bullet b,Vector2 localPosition,Vector2 globalPosition,double x_max,double x_min) {
         bullet = b;
         player = p;
+        this.localPosition = localPosition;
+        this.globalPosition = globalPosition;
+        this.x_max = x_max;
+        this.x_min = x_min;
         Init();
     }
 
@@ -21,8 +25,6 @@ public class Frog extends Monster {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(4850, 400);
-        globalPosition = new Vector2(4850, 400);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
@@ -58,7 +60,19 @@ public class Frog extends Monster {
     private void UpdatePosition() {
         checkTileMapCollision();
         if(!isDead&&!player.isDead) {
+            collideTopEnemy= false;
+            collideRightEnemy=false;
+            collideBottomEnemy=false;
+            collideLeftEnemy=false;
             checkPlayerCollision();
+            if (player.isDead){
+                player.setDestiny(player.getDestiny()-1);
+            }
+        }
+        if(player.isDead){
+            if (Math.abs(player.currentCol- currentCol)>4&&Math.abs(player.currentCol-currentCol)<6) {
+                player.isDead=false;
+            }
         }
         if(!isDead){
             if(player.getAttack()&&Math.abs(bullet.nextPosition.y- localPosition.y)<CollideBox.y/2&&
@@ -86,10 +100,10 @@ public class Frog extends Monster {
             isLeft = false;
             isRight = false;
         }
-        if (updatedPosition.x > 4950 && isRight) {
+        if (updatedPosition.x > x_max && isRight) {
             isLeft = true;
             isRight = false;
-        } else if (updatedPosition.x < 4750 && isLeft) {
+        } else if (updatedPosition.x < x_min && isLeft) {
             isRight = true;
             isLeft = false;
         }

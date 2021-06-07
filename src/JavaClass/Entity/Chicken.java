@@ -8,10 +8,15 @@ import JavaClass.Sprites.Assets;
 public class Chicken extends Monster {
     Egg egg;
     private boolean canAttack;
-    public Chicken(Player p,Bullet b,Egg e) {
+    private boolean deadAttack;
+    public Chicken(Player p,Bullet b,Egg e,Vector2 localPosition,Vector2 globalPosition,double x_max,double x_min) {
         egg = e;
         bullet = b;
         player = p;
+        this.localPosition = localPosition;
+        this.globalPosition = globalPosition;
+        this.x_max = x_max;
+        this.x_min = x_min;
         Init();
     }
 
@@ -24,8 +29,6 @@ public class Chicken extends Monster {
     private void InitProperties() {
         isLeft = true;
         isRight = false;
-        localPosition = new Vector2(1380, 480);
-        globalPosition = new Vector2(1380, 480);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
@@ -63,8 +66,20 @@ public class Chicken extends Monster {
     private void UpdatePosition() {
         checkTileMapCollision();
         if(!isDead&&!player.isDead) {
+            if(player.getDestiny()!=0)checkAttack();
+            collideBottomEnemy = false;
+            collideLeftEnemy = false;
+            collideRightEnemy = false;
+            collideTopEnemy = false;
             checkPlayerCollision();
-            checkAttack();
+            if(player.isDead&&!deadAttack){
+                player.setDestiny(player.getDestiny()-1);
+            }
+        }
+        if(player.isDead&&!deadAttack){
+            if(Math.abs(player.currentCol- currentCol)>4&&Math.abs(player.currentCol-currentCol)<6){
+                player.isDead = false;
+            }
         }
         if(!isDead){
             if(player.getAttack()&&Math.abs(bullet.nextPosition.y- localPosition.y)<CollideBox.y/2&&
@@ -73,26 +88,39 @@ public class Chicken extends Monster {
             }
         }
         if(egg.velocity.x==0)isAttack = false;
-        if(canAttack){
-            {
-                isAttack = true;
-                egg.velocity.x = 0.5f;
-                if (isLeft) {
-                    egg.isLeft = true;
-                    egg.isRight = false;
-                    egg.localPosition = new Vector2(localPosition.x - CollideBox.x / 2, localPosition.y);
+        deadAttack = false;
+        if(!player.isDead&&!isDead){
+            if(canAttack){
+                {
+                    isAttack = true;
+                    egg.velocity.x = 0.5f;
+                    if (isLeft) {
+                        egg.isLeft = true;
+                        egg.isRight = false;
+                        egg.localPosition = new Vector2(localPosition.x - CollideBox.x / 2, localPosition.y);
+                    }
+                    if (isRight) {
+                        egg.isLeft = false;
+                        egg.isRight = true;
+                        egg.localPosition = new Vector2(localPosition.x + CollideBox.x / 2, localPosition.y);
+                    }
                 }
-                if (isRight) {
-                    egg.isLeft = false;
-                    egg.isRight = true;
-                    egg.localPosition = new Vector2(localPosition.x + CollideBox.x / 2, localPosition.y);
+            }
+            if(isAttack){
+                if(Math.abs(player.nextPosition.x-egg.localPosition.x)< CollideBox.x/2&&
+                        Math.abs(player.nextPosition.y-egg.localPosition.y)< CollideBox.y/2) {
+                    player.isDead = true;
+                    deadAttack = true;
+                    isAttack = false;
                 }
             }
         }
-        if(isAttack){
-            if(Math.abs(player.nextPosition.x-egg.localPosition.x)< CollideBox.x/2&&
-                    Math.abs(player.nextPosition.y-egg.localPosition.y)< CollideBox.y/2){
-                player.isDead = true;
+        if(player.isDead&&deadAttack){
+            player.setDestiny(player.getDestiny()-1);
+        }
+        if(deadAttack){
+            if(Math.abs(egg.currentCol- player.currentCol)>4&&Math.abs(player.currentCol-egg.currentCol)<6){
+                if(player.getDestiny()!=0)player.isDead = false;
             }
         }
         UpdateXY();
@@ -115,10 +143,10 @@ public class Chicken extends Monster {
             isLeft = false;
             isRight = false;
         }
-        if (updatedPosition.x > 1430 && isRight) {
+        if (updatedPosition.x > x_max && isRight) {
             isLeft = true;
             isRight = false;
-        } else if (updatedPosition.x < 1230 && isLeft) {
+        } else if (updatedPosition.x < x_min && isLeft) {
             isRight = true;
             isLeft = false;
         }
@@ -173,7 +201,7 @@ public class Chicken extends Monster {
         int nextColEnemy = (int)(player.nextPosition.x)/30;
         int nextRowEnemy = (int)(player.nextPosition.y)/30;
         if(((nextColEnemy<currentCol&&nextColEnemy>currentCol-8&&isLeft)
-                ||(nextColEnemy>currentCol&&nextColEnemy<currentCol+8&&isRight))&&Math.abs(nextRowEnemy-currentRow)<=1){
+                ||(nextColEnemy>currentCol&&nextColEnemy<currentCol+8&&isRight))&&Math.abs(nextRowEnemy-currentRow)<=3){
             canAttack = true;
         }else{
             canAttack = false;

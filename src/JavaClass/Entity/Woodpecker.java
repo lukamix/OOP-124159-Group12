@@ -25,8 +25,8 @@ public class Woodpecker extends Monster {
         isRight = false;
         isTop = true;
         isBottom = false;
-        localPosition = new Vector2(6450, 530);
-        globalPosition = new Vector2(6450, 530);
+        localPosition = new Vector2(5265, 530);
+        globalPosition = new Vector2(5265, 530);
         nextPosition = new Vector2();
         updatedPosition = new Vector2();
         velocity = new Vector2();
@@ -65,7 +65,19 @@ public class Woodpecker extends Monster {
         updatedPosition.x = localPosition.x+dx;
         updatedPosition.y = localPosition.y+dy;
         if(!isDead&&!player.isDead) {
+            collideTopEnemy= false;
+            collideRightEnemy=false;
+            collideBottomEnemy=false;
+            collideLeftEnemy=false;
             checkPlayerCollision();
+            if (player.isDead){
+                player.setDestiny(player.getDestiny()-1);
+            }
+        }
+        if(player.isDead){
+            if (Math.abs(player.currentCol- currentCol)>4&&Math.abs(player.currentCol-currentCol)<6) {
+                player.isDead=false;
+            }
         }
         if(!isDead){
             if(player.getAttack()&&Math.abs(bullet.nextPosition.y- localPosition.y)<CollideBox.y/2&&
@@ -92,11 +104,11 @@ public class Woodpecker extends Monster {
             isTop = false;
             isBottom = false;
         }
-        if(updatedPosition.y>570&&isTop){
+        if(updatedPosition.y>540&&isTop){
             isBottom = true;
             isTop = false;
         }
-        if(updatedPosition.y<480&&isBottom){
+        if(updatedPosition.y<470&&isBottom){
             isTop = true;
             isBottom = false;
         }
