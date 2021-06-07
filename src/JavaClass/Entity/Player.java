@@ -15,8 +15,9 @@ public class Player extends Entity{
     private boolean spaceButtonPressed;
     private boolean bothRightLeftPressed=false;
     private boolean collideBeeHive;
-    private boolean beforeState;
     private int destiny = 3;
+    public static int countBullet = 4;
+
     //endregion
     public Player(Bullet b){
         bullet = b;
@@ -58,23 +59,12 @@ public class Player extends Entity{
     @Override
     public void Update(GraphicsContext gc) {
         super.Update(gc);
-        UpdateDestiny();
         UpdatePosition();
         UpdateAnimation();
     }
     @Override
     public void Draw(GraphicsContext gc) {
         super.Draw(gc);
-    }
-    private void UpdateDestiny(){
-        if(!beforeState&&isDead){
-            destiny-=1;
-            beforeState = true;
-        }
-        if(destiny!=0){
-            isDead = false;
-            beforeState = false;
-        }
     }
     private void UpdatePosition(){
         checkTileMapCollision();
@@ -178,12 +168,19 @@ public class Player extends Entity{
         }
     }
     private void UpdateAttack(){
-        if(destiny==0){
+        if(destiny==0||countBullet==0){
             enterButtonPressed = false;
             isAttack=false;
+            if (countBullet==0) {
+                if (bullet.velocity.x!=0){
+                    isAttack = true;
+                }else {isAttack = false; }
+            }
         } else{
             if(bullet.velocity.x==0)isAttack = false;
             if(enterButtonPressed){
+                countBullet-=1;
+                enterButtonPressed=false;
                 bullet.velocity.x = 0.5;
                 bullet.setPosition(new Vector2(localPosition.x+CollideBox.x/2,localPosition.y));
                 isAttack = true;
@@ -251,6 +248,9 @@ public class Player extends Entity{
     }
     public void setCollideBeeHive(boolean collideBeeHive){
         this.collideBeeHive = collideBeeHive;
+    }
+    public void setDestiny(int destiny){
+        this.destiny = destiny;
     }
     //endregion
 }

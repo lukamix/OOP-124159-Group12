@@ -63,7 +63,19 @@ public class BatPig extends Monster {
     private void UpdatePosition() {
         checkTileMapCollision();
         if(!isDead&&!player.isDead) {
+            collideTopEnemy= false;
+            collideRightEnemy=false;
+            collideBottomEnemy=false;
+            collideLeftEnemy=false;
             checkPlayerCollision();
+            if (player.isDead){
+                player.setDestiny(player.getDestiny()-1);
+            }
+        }
+        if(player.isDead){
+            if (Math.abs(player.currentCol- currentCol)>4&&Math.abs(player.currentCol-currentCol)<6) {
+                player.isDead=false;
+            }
         }
         if(!isDead){
             if(player.getAttack()&&Math.abs(bullet.nextPosition.y- localPosition.y)<CollideBox.y/2&&
