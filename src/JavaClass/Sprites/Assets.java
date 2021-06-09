@@ -36,6 +36,8 @@ public class Assets {
     public Image[][] treeImage = new Image[3][2];
     public Image[] grassImage = new Image[2];
     public Image[] checkPointImage = new Image[2];
+    public Image[] goldImage = new Image[2];
+    public Image[] winImage = new Image[2];
     public Assets() throws FileNotFoundException {
         Init();
     }
@@ -63,6 +65,8 @@ public class Assets {
         InitFlagImage();
         InitVultureImage();
         InitCheckPointImage();
+        initGoldImage();
+        InitWinImage();
     }
     public void InitZone1Image() throws FileNotFoundException {
         for(int i=1;i<=98;i++){
@@ -150,17 +154,7 @@ public class Assets {
             coinImage[i] = new Image(new FileInputStream(
                     "src/Resources/Textures/Assets/Coin/item_coin" + i + ".png"));
         }
-        /*
-        coinImage[0] = new Image(new FileInputStream(
-                "src/Resources/Textures/Assets/Coin/item_coin0.png"));
-        coinImage[1] = new Image(new FileInputStream(
-                "src/Resources/Textures/Assets/Coin/item_coin1.png"));
-        coinImage[2] = new Image(new FileInputStream(
-                "src/Resources/Textures/Assets/Coin/item_coin2.png"));
-        coinImage[3] = new Image(new FileInputStream(
-                "src/Resources/Textures/Assets/Coin/item_coin3.png"));
 
-         */
     }
     public void InitStarImage() throws FileNotFoundException {
         starImage[0] = new Image(new FileInputStream(
@@ -208,6 +202,7 @@ public class Assets {
         aborigineImage[2][0] = new Image( new FileInputStream(
                 "src/Resources/Textures/Monster Enemy/Monsters/Aborigine/Die/aborigine_die"+".png"));
     }
+
     public void InitWoodPeckerImage() throws FileNotFoundException{
         for(int i=0;i<14;i++){
             woodpeckerImage[0][i] = new Image( new FileInputStream(
@@ -276,5 +271,14 @@ public class Assets {
         checkPointImage[0] = new Image(new FileInputStream(
                 "src/Resources/Textures/Textures/Character/checkpoint2.png"
         ));
+    }
+    public void initGoldImage() throws FileNotFoundException{
+        goldImage[0] = new Image(new FileInputStream(
+                "src/Resources/Textures/Textures/Character/treasure1_open.png"
+        ));
+    }
+    public void InitWinImage() throws FileNotFoundException {
+        winImage[0] = new Image (new FileInputStream("src/Resources/Textures/Textures/Character/gui_selectmap_bg.png"));
+
     }
 }
