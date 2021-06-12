@@ -66,7 +66,7 @@ public class Frog extends Monster {
             collideLeftEnemy=false;
             checkPlayerCollision();
             if (player.isDead){
-                player.setDestiny(player.getDestiny()-1);
+                if (player.getDestiny()!=0)player.setDestiny(player.getDestiny()-1);
             }
         }
         if(player.isDead){

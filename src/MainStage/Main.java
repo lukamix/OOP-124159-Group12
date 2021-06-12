@@ -22,7 +22,7 @@ public class Main extends Application {
     public void SettingStage(Stage primaryStage) throws FileNotFoundException {
         primaryStage = GameManager.Instance.sceneManager.mainStage;
         primaryStage.setScene(GameManager.Instance.sceneManager.preRunScene);
-        primaryStage.setTitle("Mario");
+        primaryStage.setTitle("Group 12");
         primaryStage.getIcons().add(new Image(new FileInputStream("src/Resources/UI/Icon/logo.png")));
         primaryStage.setResizable(false);
         primaryStage.show();
