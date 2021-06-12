@@ -30,7 +30,7 @@ public class GameManager {
             new MushRoom(player,bullet,new Vector2(1455,190),new Vector2(1455,190),1630,1455),
             new MushRoom(player,bullet,new Vector2(480,610),new Vector2(300,610),480,300),
             new MushRoom(player,bullet,new Vector2(1560,340),new Vector2(1560,340),1560,1220),
-            new MushRoom(player,bullet,new Vector2(2060,670),new Vector2(2060,670),2060,1780),//4
+            new MushRoom(player,bullet,new Vector2(525,520),new Vector2(525,520),525,375),//4
             new MushRoom(player,bullet,new Vector2(10500,220),new Vector2(10500,220),10500,9870),
             new MushRoom(player,bullet,new Vector2(8280,570),new Vector2(8200,570),8280,7900),
             new MushRoom(player,bullet,new Vector2(9190,580),new Vector2(9190,580),9190,8740),
@@ -49,13 +49,17 @@ public class GameManager {
             new MushRoom2(player,bullet,new Vector2(5070,640),new Vector2(5070,640),5070,4880),
             new MushRoom2(player,bullet,new Vector2(7300,520),new Vector2(7300,520),7300,6960),
             new MushRoom2(player,bullet,new Vector2(9060,460),new Vector2(9060,460),9060,8890),//6
-            new MushRoom2(player,bullet,new Vector2(3300,550),new Vector2(3300,550),3300,3145),//7
+            new MushRoom2(player,bullet,new Vector2(800,460),new Vector2(800,460),800,645),//7
             new MushRoom2(player,bullet,new Vector2(1630,190),new Vector2(1630,190),1630,1455),
             new MushRoom2(player,bullet,new Vector2(3850,220),new Vector2(3850,220),3850,3730),
             new MushRoom2(player,bullet,new Vector2(5550,610),new Vector2(5550,610),5550,5200),//10
     };
 
-    private Chicken[] chicken = {new Chicken(player,bullet,egg,new Vector2(7500,500),new Vector2(7500,500),7500,7300)};
+    private Chicken[] chicken = {new Chicken(player,bullet,egg,new Vector2(7500,500),new Vector2(7500,500),7500,7300),
+            new Chicken(player,bullet,egg,new Vector2(1550,570),new Vector2(1500,570),1550,1260),//1 map 2
+            new Chicken(player,bullet,egg,new Vector2(6780,540),new Vector2(6780,540),6780,6500),//2
+            new Chicken(player,bullet,egg,new Vector2(3300,540),new Vector2(3300,540),3300,3150),//3 map 2
+    };
 
     private BatPig[] batpig = {new BatPig(player,bullet,new Vector2(1250,300),new Vector2(1250,300),1250,1000),
             new BatPig(player,bullet,new Vector2(3250,300),new Vector2(3250,300),3250,3000),
@@ -65,8 +69,12 @@ public class GameManager {
 
     private BulletMonster bulletMonster = new BulletMonster();
 
-    private Aborigine[] aborigine = {new Aborigine(player,bullet,bulletMonster,new Vector2(8150,550),new Vector2(8150,550),8150,7950),
-            new Aborigine(player,bullet,bulletMonster,new Vector2(10350,555),new Vector2(10350,555),10350,10150)};
+    private Aborigine[] aborigine = {new Aborigine(player,bullet,bulletMonster,new Vector2(8150,550),new Vector2(8150,550),8150,7950), //0
+            new Aborigine(player,bullet,bulletMonster,new Vector2(10350,555),new Vector2(10350,555),10350,10150),
+            new Aborigine(player,bullet,bulletMonster,new Vector2(2650,460),new Vector2(2650,460),2650,2450),
+            new Aborigine(player,bullet,bulletMonster,new Vector2(2060,650),new Vector2(2060,650),2060,1780),
+            new Aborigine(player,bullet,bulletMonster,new Vector2(1150,415),new Vector2(1150,415),1150,920),//4 map 3
+    };
 
     private Woodpecker woodpecker = new Woodpecker(player,bullet);
     private BeeHive beehive = new BeeHive(player);
@@ -80,14 +88,18 @@ public class GameManager {
             new Vulture(player,bullet,new Vector2(4300,390),new Vector2(4800,390),4800,4600),
             new Vulture(player,bullet,new Vector2(4500,370),new Vector2(4500,370),4500,4300),
             new Vulture(player,bullet,new Vector2(5600,375),new Vector2(5600,375),5600,5400),
-            new Vulture(player,bullet,new Vector2(6300,350),new Vector2(6300,350),6300,6100)};
-    public Coin[] coin = {new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
-            ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
-            ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
-            ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
-            ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
-            ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)
-            ,new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player)};
+            new Vulture(player,bullet,new Vector2(6300,350),new Vector2(6300,350),6300,6100),
+    };
+    public Coin[] coin = {
+            new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),
+            new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),
+            new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),
+            new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),
+            new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),
+            new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),
+            new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),
+            new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),new Coin(player),
+    };
     private Star[] star = {new Star(player),new Star(player),new Star(player)};
     private Tree[] tree = {new Tree(),new Tree(),new Tree(),new Tree(),new Tree(),new Tree()};
     private Grass grass = new Grass();
@@ -234,16 +246,13 @@ public class GameManager {
                         //handle monster
                         mushroom[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom[3].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                        mushroom[4].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom[5].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom[6].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                        mushroom[7].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom2[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom2[3].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom2[4].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom2[5].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         mushroom2[6].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                        mushroom2[7].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         vulture[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         vulture[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         vulture[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
@@ -251,19 +260,18 @@ public class GameManager {
                         vulture[4].Update(sceneManager.currentCanvas.getGraphicsContext2D());
 
 
-
-                        chicken[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                        if(chicken[0].getAttack()){
-                            egg.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        for(int i=0;i<4;i++) {
+                            chicken[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            if (chicken[i].getAttack()) {
+                                egg.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
                         }
                         batpig[2].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                        aborigine[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                        if(aborigine[0].getAttack()){
-                            bulletMonster.Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                        }
-                        aborigine[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                        if(aborigine[1].getAttack()){
-                            bulletMonster.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        for(int i=0;i<4;i++) {
+                            aborigine[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            if (aborigine[i].getAttack()) {
+                                bulletMonster.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
                         }
                         woodpecker.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         grass.Update(sceneManager.currentCanvas.getGraphicsContext2D());
@@ -271,7 +279,7 @@ public class GameManager {
                         tree[0].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         tree[1].setPosition(new Vector2(7850,406));
                         tree[1].Update(sceneManager.currentCanvas.getGraphicsContext2D());
-                        //handle coin map3
+                        //handle coin map2
                         for(int i = 0;i<4;i++){
                             if(!coin[i].getCoin()) {
                                 coin[i].setPosition(new Vector2(640 + i * 50, 540));
@@ -319,13 +327,20 @@ public class GameManager {
                                 coin[i].setPosition(new Vector2(7295 + i * 50, 450));
                                 coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                             }
-                        }for(int i = 36;i<42;i++){
+                        }
+                        for(int i = 36;i<42;i++){
                             if(!coin[i].getCoin()) {
                                 coin[i].setPosition(new Vector2(8400 + i * 50, 570));
                                 coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
                             }
                         }
-                        //handle star map 3
+                        for(int i = 42;i<48;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(-850 + i * 50,560));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        //handle star map 2
                         try{
                             if(!star[0].getStar()){
                                 star[0].setPosition(new Vector2(1400,300));
@@ -378,7 +393,39 @@ public class GameManager {
                         if(player.getLocalPosition().x>3080){
                             PostRender2.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         }
+                    //hand monster map 3
+                    mushroom[4].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                    mushroom2[7].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                    aborigine[4].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        if (aborigine[4].getAttack()) {
+                            bulletMonster.Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                        }
 
+                    //hand coin map 3
+                        for(int i = 0;i<4;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(375 + i * 50, 520));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        for(int i = 4;i<8;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(445 + i * 50, 460));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        for(int i = 8;i<12;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(520 + i * 50, 430));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
+                        for(int i = 12;i<32;i++){
+                            if(!coin[i].getCoin()) {
+                                coin[i].setPosition(new Vector2(760 + i * 50, 540));
+                                coin[i].Update(sceneManager.currentCanvas.getGraphicsContext2D());
+                            }
+                        }
                     }
                     //handle destiny
                     try{
@@ -429,7 +476,7 @@ public class GameManager {
         uglyBird.tileMap = sceneManager.currentScene.tileMap;
         speedLine.tileMap = sceneManager.currentScene.tileMap;
         boss3.tileMap = sceneManager.currentScene.tileMap;
-        for (int i = 0; i < 42; i++)
+        for (int i = 0; i < 48; i++)
             coin[i].tileMap = sceneManager.currentScene.tileMap;
         for (int i = 0; i < 3; i++)
             star[i].tileMap = sceneManager.currentScene.tileMap;
@@ -443,9 +490,9 @@ public class GameManager {
             checkPoint[i].tileMap = sceneManager.currentScene.tileMap;
         for (int i = 0; i < 1; i++)
             frog[i].tileMap = sceneManager.currentScene.tileMap;
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 4; i++)
             chicken[i].tileMap = sceneManager.currentScene.tileMap;
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 5; i++)
             aborigine[i].tileMap = sceneManager.currentScene.tileMap;
         for (int i = 0; i < 5; i++)
             vulture[i].tileMap = sceneManager.currentScene.tileMap;
