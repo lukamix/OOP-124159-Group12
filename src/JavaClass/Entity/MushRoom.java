@@ -71,7 +71,7 @@ public class MushRoom extends Monster {
         }
         if(player.isDead){
             if (Math.abs(player.currentCol- currentCol)>4&&Math.abs(player.currentCol-currentCol)<6) {
-            player.isDead=false;
+              if (player.getDestiny()!=0)player.isDead=false;
             }
         }
         if(!isDead){
