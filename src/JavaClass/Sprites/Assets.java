@@ -38,6 +38,9 @@ public class Assets {
     public Image[] checkPointImage = new Image[2];
     public Image[] goldImage = new Image[2];
     public Image[] winImage = new Image[2];
+    public Image[][] boss3Image = new Image[5][15];
+    public Image[] heartImage = new Image[2];
+
     public Assets() throws FileNotFoundException {
         Init();
     }
@@ -67,6 +70,9 @@ public class Assets {
         InitCheckPointImage();
         initGoldImage();
         InitWinImage();
+        InitBoss3Image();
+        InitHeartImage();
+
     }
     public void InitZone1Image() throws FileNotFoundException {
         for(int i=1;i<=98;i++){
@@ -281,4 +287,24 @@ public class Assets {
         winImage[0] = new Image (new FileInputStream("src/Resources/Textures/Textures/Character/gui_selectmap_bg.png"));
 
     }
-}
+    public void InitBoss3Image() throws FileNotFoundException {
+        for(int i = 0;i<12;i++){
+            boss3Image[0][i] = new Image(new FileInputStream("src/Resources/Textures/Monster Enemy/Monsters/boss3/idle/boss3_idle"+i+".png"));
+        }
+        for(int i = 0;i<12;i++){
+            boss3Image[1][i] = new Image(new FileInputStream("src/Resources/Textures/Monster Enemy/Monsters/boss3/move/boss3_move"+i+".png"));
+        }
+        for(int i = 0;i<2;i++){
+            boss3Image[2][i] = new Image(new FileInputStream("src/Resources/Textures/Monster Enemy/Monsters/boss3/dame/boss3_dame"+(i+1)+".png"));
+        }
+        boss3Image[3][0] = new Image(new FileInputStream("src/Resources/Textures/Monster Enemy/Monsters/boss3/die/boss3_die.png"));
+        for(int i = 0;i<5;i++){
+            boss3Image[4][i] = new Image(new FileInputStream("src/Resources/Textures/Monster Enemy/Monsters/boss3/ball/boss3_ball"+(i+1)+".png"));
+        }
+    }
+    public void InitHeartImage() throws FileNotFoundException {
+        heartImage[0] = new Image(new FileInputStream(
+                "src/Resources/Textures/Textures/Assets/item_heart.png"
+        ));
+    }
+    }
