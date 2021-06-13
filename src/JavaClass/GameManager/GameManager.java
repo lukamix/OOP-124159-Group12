@@ -4,7 +4,6 @@ import Constant.SystemConstant;
 import JavaClass.Entity.*;
 import JavaClass.SceneManager.KeyHandler;
 import JavaClass.SceneManager.SceneManager;
-import JavaClass.Sprites.Assets;
 import Utils.Vector2;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -226,7 +225,12 @@ public class GameManager {
                             flag.setPosition(new Vector2(5655,470));
                             flag.Update(sceneManager.currentCanvas.getGraphicsContext2D());
                         }
-                        
+                        if(player.getLocalPosition().x>5665){
+                            sceneManager.SwitchScene(sceneManager.map1[1]);
+                            sceneManager.setCurrentScene(sceneManager.map1[1]);
+                            sceneManager.setCurrentCanvas(4);
+                            GameLoop();
+                        }
                     }
                     //handle map 2
 
