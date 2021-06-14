@@ -35,17 +35,6 @@ public class Tile extends AStarNode {
 
     private int posX;//left corner in map
     private int posY;//right corner in map
-
-    public int getPosX()
-    {
-        return posX;
-    }
-    public int getPosY()
-    {
-        return posY;
-    }
-
-    public void setPos(int posX,int posY)
     {
         this.posX=posX;
         this.posY=posY;
