@@ -16,7 +16,7 @@ public class Player extends Entity{
     private boolean bothRightLeftPressed=false;
     private boolean collideBeeHive;
     private int destiny = 3;
-    public static int countBullet = 4;
+    public static int countBullet = 15;
 
     //endregion
     public Player(Bullet b){

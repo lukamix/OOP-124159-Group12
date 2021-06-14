@@ -33,7 +33,7 @@ public class Assets {
     public Image[] speedLineImage = new Image[2];
     public Image[] coinImage = new Image[5];
     public Image[] zone1 = new Image[100];
-    public Image[][] treeImage = new Image[3][2];
+    public Image[][] treeImage = new Image[4][2];
     public Image[] grassImage = new Image[2];
     public Image[] checkPointImage = new Image[2];
     public Image[] goldImage = new Image[2];
@@ -186,6 +186,9 @@ public class Assets {
         treeImage[2][0] = new Image(new FileInputStream(
                 "src/Resources/Textures/Textures/Tiles/Deco/deco3.png"
         ));
+        treeImage[3][0] = new Image(new FileInputStream(
+                "src/Resources/Textures/Textures/Tiles/Deco/deco21.png"
+        ));
     }
     public void InitFrogImage() throws FileNotFoundException{
         for(int i=0;i<14;i++){
@@ -285,7 +288,7 @@ public class Assets {
     }
     public void InitWinImage() throws FileNotFoundException {
         winImage[0] = new Image (new FileInputStream("src/Resources/Textures/Textures/Character/gui_selectmap_bg.png"));
-
+        winImage[1] = new Image (new FileInputStream("src/Resources/Textures/Textures/Character/gui_endgame_lose_bg.png"));
     }
     public void InitBoss3Image() throws FileNotFoundException {
         for(int i = 0;i<12;i++){
