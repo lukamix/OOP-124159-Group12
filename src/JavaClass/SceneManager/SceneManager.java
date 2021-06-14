@@ -26,6 +26,7 @@ public class SceneManager {
     public Stage mainStage;
     public void SwitchScene(Scene scene){
         mainStage.setScene(scene);
+
     }
     public void Init() throws FileNotFoundException {
         for(int i=0;i<SystemConstant.NUMBER_SCENE;i++){
@@ -41,6 +42,7 @@ public class SceneManager {
                 SystemConstant.SCREEN_WIDTH,SystemConstant.SCREEN_HEIGHT);
         selectMapScene = new SelectMapScene(anchorPane[2],
                 SystemConstant.SCREEN_WIDTH,SystemConstant.SCREEN_HEIGHT,1);
+
         map1[0] = new Map1_1(anchorPane[3],SystemConstant.SCREEN_WIDTH,SystemConstant.SCREEN_HEIGHT);
         map1[1] = new Map1_2(anchorPane[4],SystemConstant.SCREEN_WIDTH,SystemConstant.SCREEN_HEIGHT);
         map1[2] = new Map1_3(anchorPane[5],SystemConstant.SCREEN_WIDTH,SystemConstant.SCREEN_HEIGHT);

@@ -111,26 +111,6 @@ public class TileMap {
                     map[row][col]=Integer.parseInt(tokens[col]);
                 }
             }
-//            //layer 2
-//            for(int row =0 ;row<numRows ;row++)
-//            {
-//                String line=br.readLine();
-//                String[] tokens=line.split(",");
-//                for(int col=0;col<numCols;col++)
-//                {
-//                    layer2[row][col]=Integer.parseInt(tokens[col]);
-//                }
-//            }
-//            //layer 3
-//            for(int row =0 ;row<numRows ;row++)
-//            {
-//                String line=br.readLine();
-//                String[] tokens=line.split(",");
-//                for(int col=0;col<numCols;col++)
-//                {
-//                    layer3[row][col]=Integer.parseInt(tokens[col]);
-//                }
-//            }
         }
         catch (Exception e)
         {
